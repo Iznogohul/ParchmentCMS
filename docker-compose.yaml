@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  mongodb:
+    image: mongo:6.0.3
+    restart: always
+    volumes:
+      - mongodb_data_container:/data/db
+
+  api: 
+    build: .
+    ports:
+      - 3000:$PORT
+    environment:
+      - MONGODB_URI=mongodb://mongodb/test
+      - PORT=3000
+    depends_on:
+      - mongodb
+
+volumes:
+  mongodb_data_container:

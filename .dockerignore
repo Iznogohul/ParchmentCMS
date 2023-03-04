@@ -1,0 +1,15 @@
+.gitignore
+.dockerignore
+.git/
+node_modules/
+.env
+secrets/
+*pem
+*.md
+README*.md
+coverage/
+.docker-slim-state/
+logs/
+tmp/
+docker-compose.yaml
+Dockerfile
