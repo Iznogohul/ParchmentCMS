@@ -121,7 +121,7 @@ export class PostService {
 
     relationPost = await this.BlogPostModel.findOne({
       _id: relationPostId,
-    }).select("-__v -_id");
+    });
     if (!relationPost) {
       throw new PostDoesntExist(
         "Relationship Post doesn't exist cant create a relationship with Post."
