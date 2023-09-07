@@ -16,3 +16,5 @@ logs/
 tmp/
 docker-compose.yaml
 Dockerfile
+LICENSE
+test/
