@@ -8,7 +8,7 @@ To get started with this project, you can choose to either run the project nativ
 
 ### 🏠 Running natively
 
-To run the project natively, you will need to have Node.js v18 or higher and npm v8.6.0 or higher installed on your machine.
+To run the project natively, you will need to have Node.js v20 or higher and npm v9.6.4 or higher installed on your machine.
 
 1. 🍴 Clone this repository to your local machine.
 2. 💻 Run `npm install` to install the necessary dependencies.
