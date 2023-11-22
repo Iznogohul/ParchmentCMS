@@ -5,6 +5,7 @@ node_modules/
 dist/
 .env
 .env.*
+.eslintrc.js
 .npmrc
 secrets/
 *pem

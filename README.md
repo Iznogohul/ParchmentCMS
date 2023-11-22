@@ -8,7 +8,7 @@ To get started with this project, you can choose to either run the project nativ
 
 ### 🏠 Running natively
 
-To run the project natively, you will need to have Node.js v20 or higher and npm v9.6.4 or higher installed on your machine.
+To run the project natively, you will need to have Node.js v20.9.0 or higher and npm v10.1.0 or higher installed on your machine.
 
 1. 🍴 Clone this repository to your local machine.
 2. 💻 Run `npm install` to install the necessary dependencies.
@@ -22,13 +22,13 @@ To run the project with Docker, you will need to have Docker installed on your m
 
 1. 🍴 Clone this repository to your local machine.
 2. 📝 Copy the .env.example file and rename it to .env. Open the .env file and specify the desired values for MONGODB_URI and PORT variables.
-For example:
-    ```
-    # The MongoDB connection string for the BlogPost database
-    MONGODB_URI="mongodb://mongodb/test"
-    # The port on which the Blog CMS API will run
-    PORT="3000"
-    ```
+   For example:
+   ```
+   # The MongoDB connection string for the BlogPost database
+   MONGODB_URI="mongodb://mongodb/test"
+   # The port on which the Blog CMS API will run
+   PORT="3000"
+   ```
 3. 🐳 Run `docker compose build` to build the containers.
 4. 🐳 Run `docker compose up` to start the containers.
 5. 🌍 The API will be available at `http://localhost:3000/`.
