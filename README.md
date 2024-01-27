@@ -8,7 +8,7 @@ To get started with this project, you can choose to either run the project nativ
 
 ### 🏠 Running natively
 
-To run the project natively, you will need to have Node.js v20.9.0 or higher and npm v10.1.0 or higher installed on your machine.
+To run the project natively, you will need to have Node.js v20.11.0 or higher and npm v10.2.4 or higher installed on your machine.
 
 1. 🍴 Clone this repository to your local machine.
 2. 💻 Run `npm install` to install the necessary dependencies.
@@ -62,6 +62,8 @@ Here are some potential improvements that could be made to this project:
 - [ ] Implement a more robust pagination solution that allows for custom sorting and filtering.
 - [ ] Add support for different languages and locales.
 - [ ] Write jest tests
+- [ ] Add a proccess manager
+- [ ] Add Github Actions to publish image to Docker Hub, Github Registry etc.
 
 ## ✅ Completed Tasks
 
