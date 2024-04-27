@@ -22,7 +22,9 @@ import { BlogPost } from "../schemas/post.schema";
 import {
   PostCircularRelationship,
   PostDoesntExist,
+  PostIdValidationError,
   PostRelationConflict,
+  PostSlugValidationError,
 } from "./post.errors";
 import { CreateRelationshipDto } from "./dto/create-relationship.dto";
 
@@ -133,6 +135,10 @@ export class PostController {
     status: 404,
     description: "Indicates, that the are no posts.",
   })
+  @ApiResponse({
+    status: 422,
+    description: "Indicates, the query parameters are not valid",
+  })
   @ApiResponse({ status: 500, description: "Indicates, the request failed." })
   async getPosts(
     @Query("page") page?: number,
@@ -155,6 +161,8 @@ export class PostController {
         throw new HttpException(error.message, HttpStatus.CONFLICT);
       } else if (error instanceof PostDoesntExist) {
         throw new HttpException(error.message, HttpStatus.NOT_FOUND);
+      } else if (error instanceof PostSlugValidationError) {
+        throw new HttpException(error.message, HttpStatus.UNPROCESSABLE_ENTITY);
       }
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
     }
@@ -304,6 +312,10 @@ export class PostController {
     description: "Indicates, the relationship already exists.",
   })
   @ApiResponse({
+    status: 422,
+    description: "Indicates, the query parameters are not valid",
+  })
+  @ApiResponse({
     status: 500,
     description: "Indicates, the request failed.",
   })
@@ -323,6 +335,8 @@ export class PostController {
         throw new HttpException(error.message, HttpStatus.NOT_FOUND);
       } else if (error instanceof PostCircularRelationship) {
         throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+      } else if (error instanceof PostIdValidationError) {
+        throw new HttpException(error.message, HttpStatus.UNPROCESSABLE_ENTITY);
       }
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
     }
