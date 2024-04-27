@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get } from "@nestjs/common";
 import {
   HealthCheckService,
   HttpHealthIndicator,
@@ -6,9 +6,11 @@ import {
   MongooseHealthIndicator,
   MemoryHealthIndicator,
   DiskHealthIndicator,
-} from '@nestjs/terminus';
+  HealthIndicatorResult,
+  HealthCheckResult,
+} from "@nestjs/terminus";
 
-@Controller('health')
+@Controller("health")
 export class HealthController {
   constructor(
     private health: HealthCheckService,
@@ -20,16 +22,17 @@ export class HealthController {
 
   @Get()
   @HealthCheck()
-  check() {
+  check(): Promise<HealthCheckResult> {
     return this.health.check([
-      () => this.http.pingCheck('uptime', 'https://betterstack.com/better-uptime'),
-      () => this.mongoDb.pingCheck('mongodb', { timeout: 5000 }),
-      () => this.memory.checkRSS('memory_rss', 300 * 1024 * 1024),
-      () => this.memory.checkHeap('memory_heap', 300 * 1024 * 1024),
-      () => this.disk.checkStorage('storage', {
-        path: '/',
-        threshold: 128 * 1024 * 1024 * 1024,
-      }),
+      (): Promise<HealthIndicatorResult> => this.http.pingCheck("uptime", "https://betterstack.com/better-uptime"),
+      (): Promise<HealthIndicatorResult> => this.mongoDb.pingCheck("mongodb", { timeout: 5000 }),
+      (): Promise<HealthIndicatorResult> => this.memory.checkRSS("memory_rss", 300 * 1024 * 1024),
+      (): Promise<HealthIndicatorResult> => this.memory.checkHeap("memory_heap", 300 * 1024 * 1024),
+      (): Promise<HealthIndicatorResult> =>
+        this.disk.checkStorage("storage", {
+          path: "/",
+          threshold: 128 * 1024 * 1024 * 1024,
+        }),
     ]);
   }
 }
