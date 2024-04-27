@@ -1,6 +1,6 @@
 import { Body, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-import { Model } from "mongoose";
+import mongoose, { Model } from "mongoose";
 import { plainToClass } from "class-transformer";
 import { CreatePostDto } from "./dto/create-post.dto";
 import { BlogPost, BlogPostDocument } from "../schemas/post.schema";
@@ -9,6 +9,8 @@ import {
   PostDoesntExist,
   PostError,
   PostCircularRelationship,
+  PostSlugValidationError,
+  PostIdValidationError,
 } from "./post.errors";
 
 @Injectable()
@@ -45,13 +47,18 @@ export class PostService {
   }
 
   async getPostBySlug(slug: string): Promise<BlogPost> {
-    const post = await this.BlogPostModel.findOne({ slug })
-      .select("-__v -_id")
-      .exec();
-    if (post) {
-      return post;
+    const isSlugValid = /^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$/.test(slug);
+    if (isSlugValid === true) {
+      const post = await this.BlogPostModel.findOne({ slug })
+        .select("-__v -_id")
+        .exec();
+      if (post) {
+        return post;
+      }
+      throw new PostDoesntExist(`Post with slug \"${slug}\" doesn't exist.`);
+    } else {
+      throw new PostSlugValidationError("Provided slug is not valid");
     }
-    throw new PostDoesntExist(`Post with slug \"${slug}\" doesn't exist.`);
   }
 
   async getPostsByPagination(page: number, limit: number): Promise<BlogPost[]> {
@@ -103,6 +110,12 @@ export class PostService {
     sourcePostId: string,
     relationPostId: string
   ): Promise<BlogPost | null> {
+    if (!mongoose.Types.ObjectId.isValid(sourcePostId)) {
+      throw new PostIdValidationError("Provided sourcePostId is not valid");
+    }
+    if (!mongoose.Types.ObjectId.isValid(relationPostId)) {
+      throw new PostIdValidationError("Provided relationPostId is not valid");
+    }
     if (sourcePostId === relationPostId) {
       throw new PostCircularRelationship(
         "Can't make a relation using only one post"
