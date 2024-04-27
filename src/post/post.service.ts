@@ -49,7 +49,7 @@ export class PostService {
   async getPostBySlug(slug: string): Promise<BlogPost> {
     const isSlugValid = /^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$/.test(slug);
     if (isSlugValid === true) {
-      const post = await this.BlogPostModel.findOne({ slug })
+      const post = await this.BlogPostModel.findOne({ slug: { $eq: slug } })
         .select("-__v -_id")
         .exec();
       if (post) {
