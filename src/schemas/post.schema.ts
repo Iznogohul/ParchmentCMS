@@ -26,11 +26,12 @@ export type BlogPostDocument = HydratedDocument<BlogPost>;
 
 export const BlogPostSchema = SchemaFactory.createForClass(BlogPost);
 
-function generateSlug(blogPostTitle: string) {
+function generateSlug(blogPostTitle: string): string {
   const slug = blogPostTitle.toLowerCase().replace(/[^a-z0-9]/g, "-");
 
   return slug.replace(/^-|-$/g, "");
 }
+
 BlogPostSchema.pre<BlogPost>("save", function (next) {
   this.slug = generateSlug(this.title);
   next();

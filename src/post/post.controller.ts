@@ -1,32 +1,12 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Param,
-  Delete,
-  Query,
-  HttpException,
-  HttpStatus,
-} from "@nestjs/common";
-import {
-  ApiBody,
-  ApiOperation,
-  ApiQuery,
-  ApiResponse,
-  ApiTags,
-} from "@nestjs/swagger";
+import { Controller, Get, Post, Body, Param, Delete, Query, HttpException, HttpStatus } from "@nestjs/common";
+import { ApiBody, ApiOperation, ApiQuery, ApiResponse, ApiTags } from "@nestjs/swagger";
+
 import { PostService } from "./post.service";
 import { CreatePostDto } from "./dto/create-post.dto";
 import { BlogPost } from "../schemas/post.schema";
-import {
-  PostCircularRelationship,
-  PostDoesntExist,
-  PostIdValidationError,
-  PostRelationConflict,
-  PostSlugValidationError,
-} from "./post.errors";
+import { PostCircularRelationship, PostDoesntExist, PostIdValidationError, PostRelationConflict, PostSlugValidationError } from "./post.errors";
 import { CreateRelationshipDto } from "./dto/create-relationship.dto";
+import { createdBlogPost } from "./post.types";
 
 @ApiTags("Post Managment")
 @Controller("/api/v1/posts")
@@ -58,8 +38,7 @@ export class PostController {
         imagePath: {
           description: "Url of the image of the blog post",
           type: "string",
-          default:
-            "https://static1.smartbear.co/swagger/media/assets/images/swagger_logo.svg",
+          default: "https://static1.smartbear.co/swagger/media/assets/images/swagger_logo.svg",
         },
       },
       required: ["status"],
@@ -69,8 +48,7 @@ export class PostController {
         value: {
           title: "My new blog post",
           content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-          imagePath:
-            "https://static1.smartbear.co/swagger/media/assets/images/swagger_logo.svg",
+          imagePath: "https://static1.smartbear.co/swagger/media/assets/images/swagger_logo.svg",
         },
         description: "Example blog post data",
       },
@@ -93,7 +71,7 @@ export class PostController {
     description: "Indicates, the post already exists.",
   })
   @ApiResponse({ status: 500, description: "Indicates, the request failed." })
-  async create(@Body() createPostDto: CreatePostDto) {
+  async create(@Body() createPostDto: CreatePostDto): Promise<createdBlogPost> {
     try {
       const result = await this.postService.createBlogPost(createPostDto);
       return result;
@@ -140,11 +118,7 @@ export class PostController {
     description: "Indicates, the query parameters are not valid",
   })
   @ApiResponse({ status: 500, description: "Indicates, the request failed." })
-  async getPosts(
-    @Query("page") page?: number,
-    @Query("limit") limit?: number,
-    @Query("slug") slug?: string
-  ): Promise<BlogPost | BlogPost[]> {
+  async getPosts(@Query("page") page?: number, @Query("limit") limit?: number, @Query("slug") slug?: string): Promise<BlogPost | BlogPost[]> {
     try {
       if (page !== undefined && limit !== undefined) {
         const posts = await this.postService.getPostsByPagination(page, limit);
@@ -263,7 +237,7 @@ export class PostController {
     status: 500,
     description: "Indicates, the request failed.",
   })
-  async getRelatedPosts(@Param("id") id: string) {
+  async getRelatedPosts(@Param("id") id: string): Promise<{ relatedPosts: BlogPost[] }> {
     try {
       const post = await this.postService.getRelatedPosts(id);
       return { relatedPosts: post.relatedPosts };
@@ -319,14 +293,9 @@ export class PostController {
     status: 500,
     description: "Indicates, the request failed.",
   })
-  async createRelation(
-    @Query() CreateRelationshipDto: CreateRelationshipDto
-  ): Promise<{ success: boolean; data: BlogPost } | Error> {
+  async createRelation(@Query() CreateRelationshipDto: CreateRelationshipDto): Promise<{ success: boolean; data: BlogPost } | Error> {
     try {
-      const post = await this.postService.createRelation(
-        CreateRelationshipDto.sourcePostId,
-        CreateRelationshipDto.relationPostId
-      );
+      const post = await this.postService.createRelation(CreateRelationshipDto.sourcePostId, CreateRelationshipDto.relationPostId);
       return { success: true, data: post };
     } catch (error) {
       if (error instanceof PostRelationConflict) {

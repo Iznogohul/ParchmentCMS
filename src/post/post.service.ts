@@ -2,32 +2,23 @@ import { Body, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import mongoose, { Model } from "mongoose";
 import { plainToClass } from "class-transformer";
+
 import { CreatePostDto } from "./dto/create-post.dto";
 import { BlogPost, BlogPostDocument } from "../schemas/post.schema";
-import {
-  PostRelationConflict,
-  PostDoesntExist,
-  PostError,
-  PostCircularRelationship,
-  PostSlugValidationError,
-  PostIdValidationError,
-} from "./post.errors";
+import { PostRelationConflict, PostDoesntExist, PostError, PostCircularRelationship, PostSlugValidationError, PostIdValidationError } from "./post.errors";
+import { createdBlogPost } from "./post.types";
 
 @Injectable()
 export class PostService {
-  constructor(
-    @InjectModel(BlogPost.name) private BlogPostModel: Model<BlogPost>
-  ) {}
+  constructor(@InjectModel(BlogPost.name) private BlogPostModel: Model<BlogPost>) {}
 
-  async createBlogPost(@Body() createPostDto: CreatePostDto) {
+  async createBlogPost(@Body() createPostDto: CreatePostDto): Promise<createdBlogPost> {
     const post = plainToClass(BlogPost, createPostDto);
     const existingPost = await this.BlogPostModel.findOne({
       title: post.title,
     });
     if (existingPost) {
-      throw new PostRelationConflict(
-        `Post with title \"${post.title}\" already exists.`
-      );
+      throw new PostRelationConflict(`Post with title \"${post.title}\" already exists.`);
     }
     const savedPost = await new this.BlogPostModel(post).save();
     return {
@@ -63,19 +54,12 @@ export class PostService {
 
   async getPostsByPagination(page: number, limit: number): Promise<BlogPost[]> {
     const skip = page * limit;
-    return this.BlogPostModel.find()
-      .skip(skip)
-      .limit(limit)
-      .sort("-createdAt")
-      .select("-__v -_id")
-      .exec();
+    return this.BlogPostModel.find().skip(skip).limit(limit).sort("-createdAt").select("-__v -_id").exec();
   }
 
   async getPostById(id: string): Promise<BlogPost | undefined> {
     try {
-      const post = await this.BlogPostModel.findOne({ _id: id }).select(
-        "-__v -_id"
-      );
+      const post = await this.BlogPostModel.findOne({ _id: id }).select("-__v -_id");
       if (post) {
         return post;
       }
@@ -85,7 +69,7 @@ export class PostService {
     }
   }
 
-  async deletePost(id: string) {
+  async deletePost(id: string): Promise<number> {
     try {
       const result = await this.BlogPostModel.deleteOne({ _id: id }).exec();
       if (result.deletedCount === 0) {
@@ -97,7 +81,7 @@ export class PostService {
     }
   }
 
-  async getRelatedPosts(id: string): Promise<any> {
+  async getRelatedPosts(id: string): Promise<{ relatedPosts: BlogPost[] }> {
     try {
       const post = await this.BlogPostModel.findOne({ _id: id });
       return { relatedPosts: post.relatedPosts };
@@ -106,10 +90,7 @@ export class PostService {
     }
   }
 
-  async createRelation(
-    sourcePostId: string,
-    relationPostId: string
-  ): Promise<BlogPost | null> {
+  async createRelation(sourcePostId: string, relationPostId: string): Promise<BlogPost | null> {
     if (!mongoose.Types.ObjectId.isValid(sourcePostId)) {
       throw new PostIdValidationError("Provided sourcePostId is not valid");
     }
@@ -117,43 +98,32 @@ export class PostService {
       throw new PostIdValidationError("Provided relationPostId is not valid");
     }
     if (sourcePostId === relationPostId) {
-      throw new PostCircularRelationship(
-        "Can't make a relation using only one post"
-      );
+      throw new PostCircularRelationship("Can't make a relation using only one post");
     }
 
-    let sourcePost: BlogPostDocument;
-    let relationPost: BlogPostDocument;
-
-    sourcePost = await this.BlogPostModel.findOne({ _id: sourcePostId });
+    const sourcePost: BlogPostDocument = await this.BlogPostModel.findOne({
+      _id: sourcePostId,
+    });
     if (!sourcePost) {
-      throw new PostDoesntExist(
-        "Post doesn't exist cant create a relationship with other Post"
-      );
+      throw new PostDoesntExist("Post doesn't exist cant create a relationship with other Post");
     }
 
-    relationPost = await this.BlogPostModel.findOne({
+    const relationPost: BlogPostDocument = await this.BlogPostModel.findOne({
       _id: relationPostId,
     });
     if (!relationPost) {
-      throw new PostDoesntExist(
-        "Relationship Post doesn't exist cant create a relationship with Post."
-      );
+      throw new PostDoesntExist("Relationship Post doesn't exist cant create a relationship with Post.");
     }
 
     relationPost.relatedPosts = undefined;
 
-    const index = sourcePost.relatedPosts.findIndex(
-      (relation) => relation.slug === relationPost.slug
-    );
+    const index = sourcePost.relatedPosts.findIndex(relation => relation.slug === relationPost.slug);
 
     if (index === -1) {
       sourcePost.relatedPosts.push(relationPost);
       const updatedPost = await sourcePost.save();
       return updatedPost;
     }
-    throw new PostRelationConflict(
-      "Relationship between posts already exists!"
-    );
+    throw new PostRelationConflict("Relationship between posts already exists!");
   }
 }

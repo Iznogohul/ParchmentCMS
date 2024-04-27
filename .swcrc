@@ -1,15 +1,15 @@
 {
-	"$schema": "https://json.schemastore.org/swcrc",
-	"jsc": {
-		"parser": {
-			"syntax": "typescript",
-			"dynamicImport": false,
-			"decorators": true
-		},
-		"target": "es2022",
-		"loose": true,
-		"externalHelpers": true,
-		"keepClassNames": false
-	},
-	"minify": true
+  "$schema": "https://json.schemastore.org/swcrc",
+  "jsc": {
+    "parser": {
+      "syntax": "typescript",
+      "dynamicImport": false,
+      "decorators": true
+    },
+    "target": "es2022",
+    "loose": true,
+    "externalHelpers": true,
+    "keepClassNames": false
+  },
+  "minify": true
 }
