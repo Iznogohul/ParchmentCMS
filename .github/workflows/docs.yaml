@@ -23,3 +23,7 @@ jobs:
 
       - name: Generate documentation
         run: npm run docs
+
+      - name: Check for changes
+        run: |
+          git diff --quiet || (git add . && git commit -m "chore: update docs" && git push)
