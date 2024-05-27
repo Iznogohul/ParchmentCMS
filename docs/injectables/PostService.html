@@ -1,0 +1,1315 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>ParchmentCMS Documentation 📖</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">ParchmentCMS Documentation 📖</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >PostService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/post/post.service.ts</code>
+        </p>
+
+
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#addComment" >addComment</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#createBlogPost" >createBlogPost</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#createRelation" >createRelation</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#deleteComment" >deleteComment</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#deletePost" >deletePost</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getAllPosts" >getAllPosts</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getComments" >getComments</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getPostById" >getPostById</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getPostBySlug" >getPostBySlug</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getPostsByPagination" >getPostsByPagination</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getRelatedPosts" >getRelatedPosts</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(BlogPostModel: <a href="../classes/BlogPost.html" target="_self">Model&lt;BlogPost&gt;</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/post/post.service.ts:23</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>BlogPostModel</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../classes/BlogPost.html" target="_self" >Model&lt;BlogPost&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addComment"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>addComment</b></span>
+                        <a href="#addComment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addComment(postId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, createCommentDto: <a href="../classes/CreateCommentDto.html" target="_self">CreateCommentDto</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="156"
+                                    class="link-to-prism">src/post/post.service.ts:156</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>postId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>createCommentDto</td>
+                                            <td>
+                                                            <code><a href="../classes/CreateCommentDto.html" target="_self" >CreateCommentDto</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/BlogPost.html" target="_self" >Promise&lt;BlogPost&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createBlogPost"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>createBlogPost</b></span>
+                        <a href="#createBlogPost"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createBlogPost(createPostDto: <a href="../classes/CreatePostDto.html" target="_self">CreatePostDto</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="26"
+                                    class="link-to-prism">src/post/post.service.ts:26</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>createPostDto</td>
+                                            <td>
+                                                            <code><a href="../classes/CreatePostDto.html" target="_self" >CreatePostDto</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/BlogPost.html" target="_self" >Promise&lt;createdBlogPost&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createRelation"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>createRelation</b></span>
+                        <a href="#createRelation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createRelation(sourcePostId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, relationPostId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="104"
+                                    class="link-to-prism">src/post/post.service.ts:104</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>sourcePostId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>relationPostId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/BlogPost.html" target="_self" >Promise&lt;BlogPost | null&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteComment"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>deleteComment</b></span>
+                        <a href="#deleteComment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deleteComment(postId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, commentId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="179"
+                                    class="link-to-prism">src/post/post.service.ts:179</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>postId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>commentId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;literal type&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deletePost"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>deletePost</b></span>
+                        <a href="#deletePost"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deletePost(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="83"
+                                    class="link-to-prism">src/post/post.service.ts:83</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;number&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAllPosts"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>getAllPosts</b></span>
+                        <a href="#getAllPosts"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getAllPosts()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="43"
+                                    class="link-to-prism">src/post/post.service.ts:43</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/BlogPost.html" target="_self" >Promise&lt;BlogPost[]&gt;</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getComments"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>getComments</b></span>
+                        <a href="#getComments"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getComments(postId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="141"
+                                    class="link-to-prism">src/post/post.service.ts:141</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>postId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;BlogPostComment[]&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getPostById"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>getPostById</b></span>
+                        <a href="#getPostById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getPostById(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="71"
+                                    class="link-to-prism">src/post/post.service.ts:71</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/BlogPost.html" target="_self" >Promise&lt;BlogPost | undefined&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getPostBySlug"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>getPostBySlug</b></span>
+                        <a href="#getPostBySlug"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getPostBySlug(slug: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="51"
+                                    class="link-to-prism">src/post/post.service.ts:51</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>slug</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/BlogPost.html" target="_self" >Promise&lt;BlogPost&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getPostsByPagination"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>getPostsByPagination</b></span>
+                        <a href="#getPostsByPagination"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getPostsByPagination(page: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, limit: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="66"
+                                    class="link-to-prism">src/post/post.service.ts:66</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>page</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>limit</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/BlogPost.html" target="_self" >Promise&lt;BlogPost[]&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getRelatedPosts"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>getRelatedPosts</b></span>
+                        <a href="#getRelatedPosts"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getRelatedPosts(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="95"
+                                    class="link-to-prism">src/post/post.service.ts:95</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;literal type&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Injectable } from &quot;@nestjs/common&quot;;
+import { InjectModel } from &quot;@nestjs/mongoose&quot;;
+import mongoose, { Model } from &quot;mongoose&quot;;
+import { plainToClass } from &quot;class-transformer&quot;;
+
+import { CreatePostDto } from &quot;./dto/create-post.dto&quot;;
+import { BlogPost, BlogPostDocument } from &quot;@/schemas/post.schema&quot;;
+import { BlogPostComment } from &quot;@/schemas/comment.schema&quot;;
+import {
+  PostRelationConflict,
+  PostDoesntExist,
+  PostError,
+  PostCircularRelationship,
+  PostSlugValidationError,
+  PostIdValidationError,
+  CommentDoesntExist,
+  PostDoesntHaveComments,
+} from &quot;./post.errors&quot;;
+import { createdBlogPost } from &quot;./post.types&quot;;
+import { CreateCommentDto } from &quot;./dto/create-comment.dto&quot;;
+
+@Injectable()
+export class PostService {
+  constructor(@InjectModel(BlogPost.name) private BlogPostModel: Model&lt;BlogPost&gt;) {}
+
+  async createBlogPost(@Body() createPostDto: CreatePostDto): Promise&lt;createdBlogPost&gt; {
+    const post &#x3D; plainToClass(BlogPost, createPostDto);
+    const existingPost &#x3D; await this.BlogPostModel.findOne({
+      title: post.title,
+    });
+    if (existingPost) {
+      throw new PostRelationConflict(&#x60;Post with title \&quot;${post.title}\&quot; already exists.&#x60;);
+    }
+    const savedPost &#x3D; await new this.BlogPostModel(post).save();
+    return {
+      result: &quot;success&quot;,
+      title: savedPost.title,
+      content: savedPost.content,
+      imagePath: savedPost.imagePath,
+    };
+  }
+
+  async getAllPosts(): Promise&lt;BlogPost[]&gt; {
+    const posts &#x3D; await this.BlogPostModel.find().select(&quot;-__v&quot;).exec();
+    if (posts.length &gt; 0) {
+      return posts;
+    }
+    throw new PostDoesntExist(&quot;Posts are empty!&quot;);
+  }
+
+  async getPostBySlug(slug: string): Promise&lt;BlogPost&gt; {
+    const isSlugValid &#x3D; /^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$/.test(slug);
+    if (isSlugValid &#x3D;&#x3D;&#x3D; true) {
+      const post &#x3D; await this.BlogPostModel.findOne({ slug: { $eq: slug } })
+        .select(&quot;-__v -_id&quot;)
+        .exec();
+      if (post) {
+        return post;
+      }
+      throw new PostDoesntExist(&#x60;Post with slug \&quot;${slug}\&quot; doesn&#x27;t exist.&#x60;);
+    } else {
+      throw new PostSlugValidationError(&quot;Provided slug is not valid&quot;);
+    }
+  }
+
+  async getPostsByPagination(page: number, limit: number): Promise&lt;BlogPost[]&gt; {
+    const skip &#x3D; page * limit;
+    return this.BlogPostModel.find().skip(skip).limit(limit).sort(&quot;-createdAt&quot;).select(&quot;-__v -_id&quot;).exec();
+  }
+
+  async getPostById(id: string): Promise&lt;BlogPost | undefined&gt; {
+    try {
+      const post &#x3D; await this.BlogPostModel.findOne({ _id: id }).select(&quot;-__v -_id&quot;);
+      if (post) {
+        return post;
+      }
+      throw new PostDoesntExist(&#x60;Post with id \&quot;${id}\&quot; doesn&#x27;t exist.&#x60;);
+    } catch (error) {
+      throw new PostDoesntExist(&#x60;Post with id \&quot;${id}\&quot; doesn&#x27;t exist.&#x60;);
+    }
+  }
+
+  async deletePost(id: string): Promise&lt;number&gt; {
+    try {
+      const result &#x3D; await this.BlogPostModel.deleteOne({ _id: id }).exec();
+      if (result.deletedCount &#x3D;&#x3D;&#x3D; 0) {
+        throw new PostError(&#x60;Didnt delete post with \&quot;${id}\&quot; .&#x60;);
+      }
+      return result.deletedCount;
+    } catch (err) {
+      throw new PostDoesntExist(&#x60;Post with id \&quot;${id}\&quot; doesn&#x27;t exist.&#x60;);
+    }
+  }
+
+  async getRelatedPosts(id: string): Promise&lt;{ relatedPosts: BlogPost[] }&gt; {
+    try {
+      const post &#x3D; await this.BlogPostModel.findOne({ _id: id });
+      return { relatedPosts: post.relatedPosts };
+    } catch (error) {
+      throw new PostDoesntExist(&#x60;Post with id \&quot;${id}\&quot; doesn&#x27;t exist.&#x60;);
+    }
+  }
+
+  async createRelation(sourcePostId: string, relationPostId: string): Promise&lt;BlogPost | null&gt; {
+    if (!mongoose.Types.ObjectId.isValid(sourcePostId)) {
+      throw new PostIdValidationError(&quot;Provided sourcePostId is not valid&quot;);
+    }
+    if (!mongoose.Types.ObjectId.isValid(relationPostId)) {
+      throw new PostIdValidationError(&quot;Provided relationPostId is not valid&quot;);
+    }
+    if (sourcePostId &#x3D;&#x3D;&#x3D; relationPostId) {
+      throw new PostCircularRelationship(&quot;Can&#x27;t make a relation using only one post&quot;);
+    }
+
+    const sourcePost: BlogPostDocument &#x3D; await this.BlogPostModel.findOne({
+      _id: sourcePostId,
+    });
+    if (!sourcePost) {
+      throw new PostDoesntExist(&quot;Post doesn&#x27;t exist cant create a relationship with other Post&quot;);
+    }
+
+    const relationPost: BlogPostDocument &#x3D; await this.BlogPostModel.findOne({
+      _id: relationPostId,
+    });
+    if (!relationPost) {
+      throw new PostDoesntExist(&quot;Relationship Post doesn&#x27;t exist cant create a relationship with Post.&quot;);
+    }
+
+    relationPost.relatedPosts &#x3D; undefined;
+
+    const index &#x3D; sourcePost.relatedPosts.findIndex(relation &#x3D;&gt; relation.slug &#x3D;&#x3D;&#x3D; relationPost.slug);
+
+    if (index &#x3D;&#x3D;&#x3D; -1) {
+      sourcePost.relatedPosts.push(relationPost);
+      const updatedPost &#x3D; await sourcePost.save();
+      return updatedPost;
+    }
+    throw new PostRelationConflict(&quot;Relationship between posts already exists!&quot;);
+  }
+
+  async getComments(postId: string): Promise&lt;BlogPostComment[]&gt; {
+    if (!mongoose.Types.ObjectId.isValid(postId)) {
+      throw new PostIdValidationError(&quot;Provided postId is not valid&quot;);
+    }
+
+    const post &#x3D; await this.BlogPostModel.findById(postId).select(&quot;comments&quot;);
+    if (!post) {
+      throw new PostDoesntExist(&#x60;Post with id \&quot;${postId}\&quot; doesn&#x27;t exist.&#x60;);
+    }
+    if (post.comments.length &#x3D;&#x3D;&#x3D; 0) {
+      throw new PostDoesntHaveComments(&#x60;Post comments are empty!&#x60;);
+    }
+    return post.comments;
+  }
+
+  async addComment(postId: string, createCommentDto: CreateCommentDto): Promise&lt;BlogPost&gt; {
+    if (!mongoose.Types.ObjectId.isValid(postId)) {
+      throw new PostIdValidationError(&quot;Provided postId is not valid&quot;);
+    }
+
+    const post &#x3D; await this.BlogPostModel.findById(postId);
+    if (!post) {
+      throw new PostDoesntExist(&#x60;Post with id \&quot;${postId}\&quot; doesn&#x27;t exist.&#x60;);
+    }
+
+    const comment &#x3D; {
+      _id: new mongoose.Types.ObjectId(),
+      author: createCommentDto.author,
+      content: createCommentDto.content,
+      date: new Date(),
+    };
+
+    post.comments.push(comment);
+    await post.save();
+
+    return post;
+  }
+
+  async deleteComment(postId: string, commentId: string): Promise&lt;{ success: boolean }&gt; {
+    if (!mongoose.Types.ObjectId.isValid(postId)) {
+      throw new PostIdValidationError(&quot;Provided postId is not valid&quot;);
+    }
+
+    const post &#x3D; await this.BlogPostModel.findById(postId);
+    if (!post) {
+      throw new PostDoesntExist(&#x60;Post with id \&quot;${postId}\&quot; doesn&#x27;t exist.&#x60;);
+    }
+
+    const commentIndex &#x3D; post.comments.findIndex(comment &#x3D;&gt; comment._id.toString() &#x3D;&#x3D;&#x3D; commentId);
+    if (commentIndex &#x3D;&#x3D;&#x3D; -1) {
+      throw new CommentDoesntExist(&#x60;Comment with id \&quot;${commentId}\&quot; doesn&#x27;t exist.&#x60;);
+    }
+    post.comments.splice(commentIndex, 1);
+    await post.save();
+
+    return { success: true };
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'PostService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
