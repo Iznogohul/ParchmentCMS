@@ -1,12 +1,14 @@
 import { Controller, Get, Post, Body, Param, Delete, Query, HttpException, HttpStatus } from "@nestjs/common";
-import { ApiBody, ApiOperation, ApiQuery, ApiResponse, ApiTags } from "@nestjs/swagger";
+import { ApiBody, ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiTags } from "@nestjs/swagger";
 
 import { PostService } from "./post.service";
 import { CreatePostDto } from "./dto/create-post.dto";
-import { BlogPost } from "../schemas/post.schema";
-import { PostCircularRelationship, PostDoesntExist, PostIdValidationError, PostRelationConflict, PostSlugValidationError } from "./post.errors";
+import { BlogPost } from "@/schemas/post.schema";
+import { PostCircularRelationship, PostDoesntExist, PostDoesntHaveComments, PostIdValidationError, PostRelationConflict, PostSlugValidationError } from "./post.errors";
 import { CreateRelationshipDto } from "./dto/create-relationship.dto";
 import { createdBlogPost } from "./post.types";
+import { CreateCommentDto } from "./dto/create-comment.dto";
+import { BlogPostComment } from "@/schemas/comment.schema";
 
 @ApiTags("Post Managment")
 @Controller("/api/v1/posts")
@@ -147,14 +149,12 @@ export class PostController {
     summary: "Get post",
     description: "Get a post based on the id",
     operationId: "getPost",
-    parameters: [
-      {
-        in: "path",
-        name: "id",
-        required: true,
-        description: "The id of the post",
-      },
-    ],
+  })
+  @ApiParam({
+    name: "id",
+    description: "The id of the post",
+    required: true,
+    type: String,
   })
   @ApiResponse({
     status: 200,
@@ -182,14 +182,12 @@ export class PostController {
     summary: "Delete post",
     description: "Delete a post based on the id",
     operationId: "deletePost",
-    parameters: [
-      {
-        name: "id",
-        in: "path",
-        description: "ID of post to delete",
-        required: true,
-      },
-    ],
+  })
+  @ApiParam({
+    name: "id",
+    description: "ID of post to delete",
+    required: true,
+    type: String,
   })
   @ApiResponse({
     status: 200,
@@ -293,9 +291,9 @@ export class PostController {
     status: 500,
     description: "Indicates, the request failed.",
   })
-  async createRelation(@Query() CreateRelationshipDto: CreateRelationshipDto): Promise<{ success: boolean; data: BlogPost } | Error> {
+  async createRelation(@Query() createRelationshipDto: CreateRelationshipDto): Promise<{ success: boolean; data: BlogPost } | Error> {
     try {
-      const post = await this.postService.createRelation(CreateRelationshipDto.sourcePostId, CreateRelationshipDto.relationPostId);
+      const post = await this.postService.createRelation(createRelationshipDto.sourcePostId, createRelationshipDto.relationPostId);
       return { success: true, data: post };
     } catch (error) {
       if (error instanceof PostRelationConflict) {
@@ -306,6 +304,174 @@ export class PostController {
         throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
       } else if (error instanceof PostIdValidationError) {
         throw new HttpException(error.message, HttpStatus.UNPROCESSABLE_ENTITY);
+      }
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get("/:id/comments")
+  @ApiOperation({
+    summary: "Get comments for a post",
+    description: "Retrieve all comments associated with a specific blog post by its ID",
+  })
+  @ApiParam({
+    name: "id",
+    description: "Id of the blog post",
+    required: true,
+    schema: {
+      type: "string",
+    },
+  })
+  @ApiResponse({
+    status: 200,
+    description: "Successfully retrieved comments",
+  })
+  @ApiResponse({
+    status: 400,
+    description: "Invalid post ID",
+  })
+  @ApiResponse({
+    status: 404,
+    description: "Post not found",
+  })
+  @ApiResponse({
+    status: 500,
+    description: "Indicates, the request failed.",
+  })
+  async getComments(@Param("id") postId: string): Promise<BlogPostComment[]> {
+    try {
+      const result = await this.postService.getComments(postId);
+      return result;
+    } catch (error) {
+      if (error instanceof PostDoesntExist || PostDoesntHaveComments) {
+        throw new HttpException(error.message, HttpStatus.NOT_FOUND);
+      } else if (error instanceof PostIdValidationError) {
+        throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+      }
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Post("/:id/comments")
+  @ApiOperation({
+    summary: "Add comment to post",
+    description: "Add a comment to a blog post",
+  })
+  @ApiBody({
+    type: CreateCommentDto,
+    description: "The input data to create a new comment",
+    required: true,
+    schema: {
+      type: "object",
+      properties: {
+        author: {
+          description: "Author of the comment",
+          type: "string",
+          default: "John Doe",
+        },
+        content: {
+          description: "Content of the comment",
+          type: "string",
+          default: "Great post!",
+        },
+      },
+      required: ["author", "content"],
+    },
+    examples: {
+      successExample: {
+        value: {
+          author: "John Doe",
+          content: "Great post!",
+        },
+        description: "Example comment data",
+      },
+      failExample: {
+        value: {
+          author: "",
+          content: "Great post!",
+        },
+        description: "Example comment data with missing author",
+      },
+      failExample2: {
+        value: {
+          author: "John Doe",
+          content: "",
+        },
+        description: "Example comment data with missing content",
+      },
+    },
+  })
+  @ApiResponse({
+    status: 201,
+    description: "Indicates the comment was successfully added.",
+  })
+  @ApiResponse({
+    status: 404,
+    description: "Indicates the post was not found.",
+  })
+  @ApiResponse({ status: 500, description: "Indicates, the request failed." })
+  async addComment(@Param("id") postId: string, @Body() createCommentDto: CreateCommentDto): Promise<BlogPost> {
+    try {
+      const result = await this.postService.addComment(postId, createCommentDto);
+      return result;
+    } catch (error) {
+      if (error instanceof PostDoesntExist) {
+        throw new HttpException(error.message, HttpStatus.NOT_FOUND);
+      } else if (error instanceof PostIdValidationError) {
+        throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+      }
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Delete("/:postId/comments/:commentId")
+  @ApiOperation({
+    summary: "Delete a comment from a post",
+    description: "Remove a specific comment from a blog post by its ID",
+  })
+  @ApiParam({
+    name: "postId",
+    description: "ID of the blog post",
+    required: true,
+    schema: {
+      type: "string",
+    },
+  })
+  @ApiParam({
+    name: "commentId",
+    description: "ID of the comment to be deleted",
+    required: true,
+    schema: {
+      type: "string",
+    },
+  })
+  @ApiResponse({
+    status: 200,
+    description: "Successfully deleted comment",
+  })
+  @ApiResponse({
+    status: 400,
+    description: "Invalid post or comment id",
+  })
+  @ApiResponse({
+    status: 404,
+    description: "Post or comment not found",
+  })
+  @ApiResponse({ status: 500, description: "Indicates, the request failed." })
+  async deleteComment(
+    @Param("postId") postId: string,
+    @Param("commentId") commentId: string,
+  ): Promise<{
+    success: boolean;
+  }> {
+    try {
+      const result = await this.postService.deleteComment(postId, commentId);
+      return result;
+    } catch (error) {
+      if (error instanceof PostDoesntExist) {
+        throw new HttpException(error.message, HttpStatus.NOT_FOUND);
+      } else if (error instanceof PostIdValidationError) {
+        throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
       }
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
     }

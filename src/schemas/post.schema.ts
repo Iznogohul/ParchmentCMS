@@ -1,6 +1,9 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { HydratedDocument } from "mongoose";
 
+import { BlogPostComment, BlogPostCommentSchema } from "./comment.schema";
+import slugify from "slugify";
+
 @Schema({ timestamps: true })
 export class BlogPost {
   @Prop({ required: true })
@@ -12,14 +15,17 @@ export class BlogPost {
   @Prop({ required: true })
   content: string;
 
-  @Prop({ required: true, default: new Date() })
+  @Prop({ required: true, default: () => new Date() })
   date: Date;
 
-  @Prop()
+  @Prop({ unique: true, index: true })
   slug: string;
 
-  @Prop()
-  relatedPosts: Array<BlogPost> = [];
+  @Prop({ type: [{ type: "ObjectId", ref: "BlogPost" }] })
+  relatedPosts: BlogPost[];
+
+  @Prop({ type: [BlogPostCommentSchema], default: [] })
+  comments: BlogPostComment[];
 }
 
 export type BlogPostDocument = HydratedDocument<BlogPost>;
@@ -27,12 +33,12 @@ export type BlogPostDocument = HydratedDocument<BlogPost>;
 export const BlogPostSchema = SchemaFactory.createForClass(BlogPost);
 
 function generateSlug(blogPostTitle: string): string {
-  const slug = blogPostTitle.toLowerCase().replace(/[^a-z0-9]/g, "-");
-
-  return slug.replace(/^-|-$/g, "");
+  return slugify(blogPostTitle, { lower: true, strict: true });
 }
 
 BlogPostSchema.pre<BlogPost>("save", function (next) {
-  this.slug = generateSlug(this.title);
+  if (!this.slug) {
+    this.slug = generateSlug(this.title);
+  }
   next();
 });

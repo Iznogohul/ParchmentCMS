@@ -9,3 +9,6 @@ export class PostDoesntExist extends PostError {}
 export class PostCircularRelationship extends PostError {}
 export class PostSlugValidationError extends PostError {}
 export class PostIdValidationError extends PostError {}
+export class PostDoesntHaveComments extends PostError {}
+export class CommentDoesntExist extends PostError {}
+
