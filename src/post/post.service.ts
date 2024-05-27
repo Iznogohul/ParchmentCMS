@@ -4,9 +4,20 @@ import mongoose, { Model } from "mongoose";
 import { plainToClass } from "class-transformer";
 
 import { CreatePostDto } from "./dto/create-post.dto";
-import { BlogPost, BlogPostDocument } from "../schemas/post.schema";
-import { PostRelationConflict, PostDoesntExist, PostError, PostCircularRelationship, PostSlugValidationError, PostIdValidationError } from "./post.errors";
+import { BlogPost, BlogPostDocument } from "@/schemas/post.schema";
+import { BlogPostComment } from "@/schemas/comment.schema";
+import {
+  PostRelationConflict,
+  PostDoesntExist,
+  PostError,
+  PostCircularRelationship,
+  PostSlugValidationError,
+  PostIdValidationError,
+  CommentDoesntExist,
+  PostDoesntHaveComments,
+} from "./post.errors";
 import { createdBlogPost } from "./post.types";
+import { CreateCommentDto } from "./dto/create-comment.dto";
 
 @Injectable()
 export class PostService {
@@ -125,5 +136,63 @@ export class PostService {
       return updatedPost;
     }
     throw new PostRelationConflict("Relationship between posts already exists!");
+  }
+
+  async getComments(postId: string): Promise<BlogPostComment[]> {
+    if (!mongoose.Types.ObjectId.isValid(postId)) {
+      throw new PostIdValidationError("Provided postId is not valid");
+    }
+
+    const post = await this.BlogPostModel.findById(postId).select("comments");
+    if (!post) {
+      throw new PostDoesntExist(`Post with id \"${postId}\" doesn't exist.`);
+    }
+    if (post.comments.length === 0) {
+      throw new PostDoesntHaveComments(`Post comments are empty!`);
+    }
+    return post.comments;
+  }
+
+  async addComment(postId: string, createCommentDto: CreateCommentDto): Promise<BlogPost> {
+    if (!mongoose.Types.ObjectId.isValid(postId)) {
+      throw new PostIdValidationError("Provided postId is not valid");
+    }
+
+    const post = await this.BlogPostModel.findById(postId);
+    if (!post) {
+      throw new PostDoesntExist(`Post with id \"${postId}\" doesn't exist.`);
+    }
+
+    const comment = {
+      _id: new mongoose.Types.ObjectId(),
+      author: createCommentDto.author,
+      content: createCommentDto.content,
+      date: new Date(),
+    };
+
+    post.comments.push(comment);
+    await post.save();
+
+    return post;
+  }
+
+  async deleteComment(postId: string, commentId: string): Promise<{ success: boolean }> {
+    if (!mongoose.Types.ObjectId.isValid(postId)) {
+      throw new PostIdValidationError("Provided postId is not valid");
+    }
+
+    const post = await this.BlogPostModel.findById(postId);
+    if (!post) {
+      throw new PostDoesntExist(`Post with id \"${postId}\" doesn't exist.`);
+    }
+
+    const commentIndex = post.comments.findIndex(comment => comment._id.toString() === commentId);
+    if (commentIndex === -1) {
+      throw new CommentDoesntExist(`Comment with id \"${commentId}\" doesn't exist.`);
+    }
+    post.comments.splice(commentIndex, 1);
+    await post.save();
+
+    return { success: true };
   }
 }
