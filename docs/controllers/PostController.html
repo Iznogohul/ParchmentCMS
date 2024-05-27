@@ -1,0 +1,1621 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>ParchmentCMS Documentation 📖</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">ParchmentCMS Documentation 📖</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content controller">
+                   <div class="content-data">
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Controllers</li>
+  <li class="breadcrumb-item" >PostController</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/post/post.controller.ts</code>
+        </p>
+
+            <p class="comment">
+                <h3>Prefix</h3>
+            </p>
+            <p class="comment">
+                <code>/api/v1/posts</code>
+            </p>
+
+
+
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#addComment" >addComment</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#create" >create</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#createRelation" >createRelation</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#deleteComment" >deleteComment</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#deletePost" >deletePost</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#getComments" >getComments</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#getPostById" >getPostById</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#getPosts" >getPosts</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#getRelatedPosts" >getRelatedPosts</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addComment"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>addComment</b></span>
+                        <a href="#addComment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addComment(postId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, createCommentDto: <a href="../classes/CreateCommentDto.html" target="_self">CreateCommentDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Post(&#x27;/:id/comments&#x27;)<br />@ApiOperation({summary: &#x27;Add comment to post&#x27;, description: &#x27;Add a comment to a blog post&#x27;})<br />@ApiBody({type: CreateCommentDto, description: &#x27;The input data to create a new comment&#x27;, required: true, schema: undefined, examples: undefined})<br />@ApiResponse({status: 201, description: &#x27;Indicates the comment was successfully added.&#x27;})<br />@ApiResponse({status: 404, description: &#x27;Indicates the post was not found.&#x27;})<br />@ApiResponse({status: 500, description: &#x27;Indicates, the request failed.&#x27;})<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="413"
+                                    class="link-to-prism">src/post/post.controller.ts:413</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>postId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>createCommentDto</td>
+                                            <td>
+                                                            <code><a href="../classes/CreateCommentDto.html" target="_self" >CreateCommentDto</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/BlogPost.html" target="_self" >Promise&lt;BlogPost&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="create"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>create</b></span>
+                        <a href="#create"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>create(createPostDto: <a href="../classes/CreatePostDto.html" target="_self">CreatePostDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Post(&#x27;&#x27;)<br />@ApiOperation({summary: &#x27;Create post&#x27;, description: &#x27;Get a post&#x27;})<br />@ApiBody({type: CreatePostDto, description: &#x27;The input data to create a new blog post&#x27;, required: true, schema: undefined, examples: undefined})<br />@ApiResponse({status: 201, description: &#x27;Indicates, the request was successful.&#x27;})<br />@ApiResponse({status: 409, description: &#x27;Indicates, the post already exists.&#x27;})<br />@ApiResponse({status: 500, description: &#x27;Indicates, the request failed.&#x27;})<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="76"
+                                    class="link-to-prism">src/post/post.controller.ts:76</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>createPostDto</td>
+                                            <td>
+                                                            <code><a href="../classes/CreatePostDto.html" target="_self" >CreatePostDto</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/BlogPost.html" target="_self" >Promise&lt;createdBlogPost&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createRelation"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>createRelation</b></span>
+                        <a href="#createRelation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createRelation(createRelationshipDto: <a href="../classes/CreateRelationshipDto.html" target="_self">CreateRelationshipDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Post(&#x27;/relation/&#x27;)<br />@ApiOperation({summary: &#x27;Set Post Relationship&#x27;, parameters: undefined, description: &#x27;Set Relationship between two posts&#x27;})<br />@ApiResponse({status: 201, description: &#x27;Indicates, the request was successful.&#x27;})<br />@ApiResponse({status: 400, description: &#x27;Indicates, the request failed.&#x27;})<br />@ApiResponse({status: 404, description: &#x27;Indicates, the post doesnt exist.&#x27;})<br />@ApiResponse({status: 409, description: &#x27;Indicates, the relationship already exists.&#x27;})<br />@ApiResponse({status: 422, description: &#x27;Indicates, the query parameters are not valid&#x27;})<br />@ApiResponse({status: 500, description: &#x27;Indicates, the request failed.&#x27;})<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="294"
+                                    class="link-to-prism">src/post/post.controller.ts:294</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>createRelationshipDto</td>
+                                            <td>
+                                                            <code><a href="../classes/CreateRelationshipDto.html" target="_self" >CreateRelationshipDto</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;literal type | Error&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteComment"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>deleteComment</b></span>
+                        <a href="#deleteComment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deleteComment(postId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, commentId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Delete(&#x27;/:postId/comments/:commentId&#x27;)<br />@ApiOperation({summary: &#x27;Delete a comment from a post&#x27;, description: &#x27;Remove a specific comment from a blog post by its ID&#x27;})<br />@ApiParam({name: &#x27;postId&#x27;, description: &#x27;ID of the blog post&#x27;, required: true, schema: undefined})<br />@ApiParam({name: &#x27;commentId&#x27;, description: &#x27;ID of the comment to be deleted&#x27;, required: true, schema: undefined})<br />@ApiResponse({status: 200, description: &#x27;Successfully deleted comment&#x27;})<br />@ApiResponse({status: 400, description: &#x27;Invalid post or comment id&#x27;})<br />@ApiResponse({status: 404, description: &#x27;Post or comment not found&#x27;})<br />@ApiResponse({status: 500, description: &#x27;Indicates, the request failed.&#x27;})<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="461"
+                                    class="link-to-prism">src/post/post.controller.ts:461</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>postId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>commentId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;literal type&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deletePost"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>deletePost</b></span>
+                        <a href="#deletePost"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deletePost(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Delete(&#x27;/:id&#x27;)<br />@ApiOperation({summary: &#x27;Delete post&#x27;, description: &#x27;Delete a post based on the id&#x27;, operationId: &#x27;deletePost&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, description: &#x27;ID of post to delete&#x27;, required: true, type: String})<br />@ApiResponse({status: 200, description: &#x27;Indicates, the request was successful.&#x27;})<br />@ApiResponse({status: 404, description: &#x27;Indicates, the post doesnt exist.&#x27;})<br />@ApiResponse({status: 500, description: &#x27;Indicates, the request failed.&#x27;})<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="201"
+                                    class="link-to-prism">src/post/post.controller.ts:201</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;literal type&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getComments"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>getComments</b></span>
+                        <a href="#getComments"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getComments(postId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/:id/comments&#x27;)<br />@ApiOperation({summary: &#x27;Get comments for a post&#x27;, description: &#x27;Retrieve all comments associated with a specific blog post by its ID&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, description: &#x27;Id of the blog post&#x27;, required: true, schema: undefined})<br />@ApiResponse({status: 200, description: &#x27;Successfully retrieved comments&#x27;})<br />@ApiResponse({status: 400, description: &#x27;Invalid post ID&#x27;})<br />@ApiResponse({status: 404, description: &#x27;Post not found&#x27;})<br />@ApiResponse({status: 500, description: &#x27;Indicates, the request failed.&#x27;})<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="341"
+                                    class="link-to-prism">src/post/post.controller.ts:341</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>postId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;BlogPostComment[]&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getPostById"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>getPostById</b></span>
+                        <a href="#getPostById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getPostById(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/:id&#x27;)<br />@ApiOperation({summary: &#x27;Get post&#x27;, description: &#x27;Get a post based on the id&#x27;, operationId: &#x27;getPost&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, description: &#x27;The id of the post&#x27;, required: true, type: String})<br />@ApiResponse({status: 200, description: &#x27;Indicates, the request was successful.&#x27;})<br />@ApiResponse({status: 404, description: &#x27;Indicates, the post doesnt exist.&#x27;})<br />@ApiResponse({status: 500, description: &#x27;Indicates, the request failed.&#x27;})<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="168"
+                                    class="link-to-prism">src/post/post.controller.ts:168</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/BlogPost.html" target="_self" >Promise&lt;BlogPost&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getPosts"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>getPosts</b></span>
+                        <a href="#getPosts"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getPosts(page?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, limit?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, slug?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;&#x27;)<br />@ApiOperation({summary: &#x27;Get all posts&#x27;, description: &#x27;Get all posts&#x27;})<br />@ApiQuery({name: &#x27;page&#x27;, type: Number, required: false})<br />@ApiQuery({name: &#x27;limit&#x27;, type: Number, required: false})<br />@ApiQuery({name: &#x27;slug&#x27;, type: String, required: false})<br />@ApiResponse({status: 200, description: &#x27;Indicates, the request was successful.&#x27;})<br />@ApiResponse({status: 404, description: &#x27;Indicates, that the are no posts.&#x27;})<br />@ApiResponse({status: 422, description: &#x27;Indicates, the query parameters are not valid&#x27;})<br />@ApiResponse({status: 500, description: &#x27;Indicates, the request failed.&#x27;})<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="123"
+                                    class="link-to-prism">src/post/post.controller.ts:123</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>page</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>limit</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>slug</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/BlogPost.html" target="_self" >Promise&lt;BlogPost | []&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getRelatedPosts"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>getRelatedPosts</b></span>
+                        <a href="#getRelatedPosts"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getRelatedPosts(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/:id/relations&#x27;)<br />@ApiOperation({summary: &#x27;Post Relationships&#x27;, parameters: undefined, description: &#x27;Get Relationships of a post&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Indicates, the request was successful.&#x27;})<br />@ApiResponse({status: 404, description: &#x27;Indicates, the post doesnt exist.&#x27;})<br />@ApiResponse({status: 500, description: &#x27;Indicates, the request failed.&#x27;})<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="238"
+                                    class="link-to-prism">src/post/post.controller.ts:238</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;literal type&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Post, Body, Param, Delete, Query, HttpException, HttpStatus } from &quot;@nestjs/common&quot;;
+import { ApiBody, ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiTags } from &quot;@nestjs/swagger&quot;;
+
+import { PostService } from &quot;./post.service&quot;;
+import { CreatePostDto } from &quot;./dto/create-post.dto&quot;;
+import { BlogPost } from &quot;@/schemas/post.schema&quot;;
+import { PostCircularRelationship, PostDoesntExist, PostDoesntHaveComments, PostIdValidationError, PostRelationConflict, PostSlugValidationError } from &quot;./post.errors&quot;;
+import { CreateRelationshipDto } from &quot;./dto/create-relationship.dto&quot;;
+import { createdBlogPost } from &quot;./post.types&quot;;
+import { CreateCommentDto } from &quot;./dto/create-comment.dto&quot;;
+import { BlogPostComment } from &quot;@/schemas/comment.schema&quot;;
+
+@ApiTags(&quot;Post Managment&quot;)
+@Controller(&quot;/api/v1/posts&quot;)
+export class PostController {
+  constructor(private readonly postService: PostService) {}
+
+  @Post(&quot;&quot;)
+  @ApiOperation({
+    summary: &quot;Create post&quot;,
+    description: &quot;Get a post&quot;,
+  })
+  @ApiBody({
+    type: CreatePostDto,
+    description: &quot;The input data to create a new blog post&quot;,
+    required: true,
+    schema: {
+      type: &quot;object&quot;,
+      properties: {
+        title: {
+          description: &quot;Title of the blog post&quot;,
+          type: &quot;string&quot;,
+          default: &quot;How to configure Swagger 101&quot;,
+        },
+        content: {
+          description: &quot;Content of the blog post&quot;,
+          type: &quot;string&quot;,
+          default: &quot;How to configure Swagger 101&quot;,
+        },
+        imagePath: {
+          description: &quot;Url of the image of the blog post&quot;,
+          type: &quot;string&quot;,
+          default: &quot;https://static1.smartbear.co/swagger/media/assets/images/swagger_logo.svg&quot;,
+        },
+      },
+      required: [&quot;status&quot;],
+    },
+    examples: {
+      successExample: {
+        value: {
+          title: &quot;My new blog post&quot;,
+          content: &quot;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&quot;,
+          imagePath: &quot;https://static1.smartbear.co/swagger/media/assets/images/swagger_logo.svg&quot;,
+        },
+        description: &quot;Example blog post data&quot;,
+      },
+      failExample: {
+        value: {
+          title: &quot;My new blog post&quot;,
+          content: &quot;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&quot;,
+          imagePath: &quot;&quot;,
+        },
+        description: &quot;Example blog post data&quot;,
+      },
+    },
+  })
+  @ApiResponse({
+    status: 201,
+    description: &quot;Indicates, the request was successful.&quot;,
+  })
+  @ApiResponse({
+    status: 409,
+    description: &quot;Indicates, the post already exists.&quot;,
+  })
+  @ApiResponse({ status: 500, description: &quot;Indicates, the request failed.&quot; })
+  async create(@Body() createPostDto: CreatePostDto): Promise&lt;createdBlogPost&gt; {
+    try {
+      const result &#x3D; await this.postService.createBlogPost(createPostDto);
+      return result;
+    } catch (error) {
+      if (error instanceof PostRelationConflict) {
+        throw new HttpException(error.message, HttpStatus.CONFLICT);
+      } else if (error instanceof PostDoesntExist) {
+        throw new HttpException(error.message, HttpStatus.NOT_FOUND);
+      }
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get(&quot;&quot;)
+  @ApiOperation({
+    summary: &quot;Get all posts&quot;,
+    description: &quot;Get all posts&quot;,
+  })
+  @ApiQuery({
+    name: &quot;page&quot;,
+    type: Number,
+    required: false,
+  })
+  @ApiQuery({
+    name: &quot;limit&quot;,
+    type: Number,
+    required: false,
+  })
+  @ApiQuery({
+    name: &quot;slug&quot;,
+    type: String,
+    required: false,
+  })
+  @ApiResponse({
+    status: 200,
+    description: &quot;Indicates, the request was successful.&quot;,
+  })
+  @ApiResponse({
+    status: 404,
+    description: &quot;Indicates, that the are no posts.&quot;,
+  })
+  @ApiResponse({
+    status: 422,
+    description: &quot;Indicates, the query parameters are not valid&quot;,
+  })
+  @ApiResponse({ status: 500, description: &quot;Indicates, the request failed.&quot; })
+  async getPosts(@Query(&quot;page&quot;) page?: number, @Query(&quot;limit&quot;) limit?: number, @Query(&quot;slug&quot;) slug?: string): Promise&lt;BlogPost | BlogPost[]&gt; {
+    try {
+      if (page !&#x3D;&#x3D; undefined &amp;&amp; limit !&#x3D;&#x3D; undefined) {
+        const posts &#x3D; await this.postService.getPostsByPagination(page, limit);
+        return posts;
+      }
+      if (slug !&#x3D;&#x3D; undefined) {
+        const post &#x3D; await this.postService.getPostBySlug(slug);
+        return post;
+      }
+      const posts &#x3D; await this.postService.getAllPosts();
+      return posts;
+    } catch (error) {
+      if (error instanceof PostRelationConflict) {
+        throw new HttpException(error.message, HttpStatus.CONFLICT);
+      } else if (error instanceof PostDoesntExist) {
+        throw new HttpException(error.message, HttpStatus.NOT_FOUND);
+      } else if (error instanceof PostSlugValidationError) {
+        throw new HttpException(error.message, HttpStatus.UNPROCESSABLE_ENTITY);
+      }
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get(&quot;/:id&quot;)
+  @ApiOperation({
+    summary: &quot;Get post&quot;,
+    description: &quot;Get a post based on the id&quot;,
+    operationId: &quot;getPost&quot;,
+  })
+  @ApiParam({
+    name: &quot;id&quot;,
+    description: &quot;The id of the post&quot;,
+    required: true,
+    type: String,
+  })
+  @ApiResponse({
+    status: 200,
+    description: &quot;Indicates, the request was successful.&quot;,
+  })
+  @ApiResponse({
+    status: 404,
+    description: &quot;Indicates, the post doesnt exist.&quot;,
+  })
+  @ApiResponse({ status: 500, description: &quot;Indicates, the request failed.&quot; })
+  async getPostById(@Param(&quot;id&quot;) id: string): Promise&lt;BlogPost&gt; {
+    try {
+      const post &#x3D; await this.postService.getPostById(id);
+      return post;
+    } catch (error) {
+      if (error instanceof PostDoesntExist) {
+        throw new HttpException(error.message, HttpStatus.NOT_FOUND);
+      }
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Delete(&quot;/:id&quot;)
+  @ApiOperation({
+    summary: &quot;Delete post&quot;,
+    description: &quot;Delete a post based on the id&quot;,
+    operationId: &quot;deletePost&quot;,
+  })
+  @ApiParam({
+    name: &quot;id&quot;,
+    description: &quot;ID of post to delete&quot;,
+    required: true,
+    type: String,
+  })
+  @ApiResponse({
+    status: 200,
+    description: &quot;Indicates, the request was successful.&quot;,
+  })
+  @ApiResponse({
+    status: 404,
+    description: &quot;Indicates, the post doesnt exist.&quot;,
+  })
+  @ApiResponse({ status: 500, description: &quot;Indicates, the request failed.&quot; })
+  async deletePost(@Param(&quot;id&quot;) id: string): Promise&lt;{ result: string }&gt; {
+    try {
+      await this.postService.deletePost(id);
+      return { result: &quot;success&quot; };
+    } catch (error) {
+      if (error instanceof PostDoesntExist) {
+        throw new HttpException(error.message, HttpStatus.NOT_FOUND);
+      }
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get(&quot;/:id/relations&quot;)
+  @ApiOperation({
+    summary: &quot;Post Relationships&quot;,
+    parameters: [
+      {
+        in: &quot;query&quot;,
+        name: &quot;sourcePostId&quot;,
+        required: true,
+        description: &quot;sourcePostId to use&quot;,
+      },
+    ],
+    description: &quot;Get Relationships of a post&quot;,
+  })
+  @ApiResponse({
+    status: 200,
+    description: &quot;Indicates, the request was successful.&quot;,
+  })
+  @ApiResponse({
+    status: 404,
+    description: &quot;Indicates, the post doesnt exist.&quot;,
+  })
+  @ApiResponse({
+    status: 500,
+    description: &quot;Indicates, the request failed.&quot;,
+  })
+  async getRelatedPosts(@Param(&quot;id&quot;) id: string): Promise&lt;{ relatedPosts: BlogPost[] }&gt; {
+    try {
+      const post &#x3D; await this.postService.getRelatedPosts(id);
+      return { relatedPosts: post.relatedPosts };
+    } catch (error) {
+      if (error instanceof PostDoesntExist) {
+        throw new HttpException(error.message, HttpStatus.NOT_FOUND);
+      }
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Post(&quot;/relation/&quot;)
+  @ApiOperation({
+    summary: &quot;Set Post Relationship&quot;,
+    parameters: [
+      {
+        in: &quot;query&quot;,
+        name: &quot;sourcePostId&quot;,
+        required: true,
+        description: &quot;sourcePostId to use&quot;,
+      },
+      {
+        in: &quot;query&quot;,
+        name: &quot;relationPostId&quot;,
+        required: true,
+
+        description: &quot;relationPostId to use&quot;,
+      },
+    ],
+    description: &quot;Set Relationship between two posts&quot;,
+  })
+  @ApiResponse({
+    status: 201,
+    description: &quot;Indicates, the request was successful.&quot;,
+  })
+  @ApiResponse({
+    status: 400,
+    description: &quot;Indicates, the request failed.&quot;,
+  })
+  @ApiResponse({
+    status: 404,
+    description: &quot;Indicates, the post doesnt exist.&quot;,
+  })
+  @ApiResponse({
+    status: 409,
+    description: &quot;Indicates, the relationship already exists.&quot;,
+  })
+  @ApiResponse({
+    status: 422,
+    description: &quot;Indicates, the query parameters are not valid&quot;,
+  })
+  @ApiResponse({
+    status: 500,
+    description: &quot;Indicates, the request failed.&quot;,
+  })
+  async createRelation(@Query() createRelationshipDto: CreateRelationshipDto): Promise&lt;{ success: boolean; data: BlogPost } | Error&gt; {
+    try {
+      const post &#x3D; await this.postService.createRelation(createRelationshipDto.sourcePostId, createRelationshipDto.relationPostId);
+      return { success: true, data: post };
+    } catch (error) {
+      if (error instanceof PostRelationConflict) {
+        throw new HttpException(error.message, HttpStatus.CONFLICT);
+      } else if (error instanceof PostDoesntExist) {
+        throw new HttpException(error.message, HttpStatus.NOT_FOUND);
+      } else if (error instanceof PostCircularRelationship) {
+        throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+      } else if (error instanceof PostIdValidationError) {
+        throw new HttpException(error.message, HttpStatus.UNPROCESSABLE_ENTITY);
+      }
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get(&quot;/:id/comments&quot;)
+  @ApiOperation({
+    summary: &quot;Get comments for a post&quot;,
+    description: &quot;Retrieve all comments associated with a specific blog post by its ID&quot;,
+  })
+  @ApiParam({
+    name: &quot;id&quot;,
+    description: &quot;Id of the blog post&quot;,
+    required: true,
+    schema: {
+      type: &quot;string&quot;,
+    },
+  })
+  @ApiResponse({
+    status: 200,
+    description: &quot;Successfully retrieved comments&quot;,
+  })
+  @ApiResponse({
+    status: 400,
+    description: &quot;Invalid post ID&quot;,
+  })
+  @ApiResponse({
+    status: 404,
+    description: &quot;Post not found&quot;,
+  })
+  @ApiResponse({
+    status: 500,
+    description: &quot;Indicates, the request failed.&quot;,
+  })
+  async getComments(@Param(&quot;id&quot;) postId: string): Promise&lt;BlogPostComment[]&gt; {
+    try {
+      const result &#x3D; await this.postService.getComments(postId);
+      return result;
+    } catch (error) {
+      if (error instanceof PostDoesntExist || PostDoesntHaveComments) {
+        throw new HttpException(error.message, HttpStatus.NOT_FOUND);
+      } else if (error instanceof PostIdValidationError) {
+        throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+      }
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Post(&quot;/:id/comments&quot;)
+  @ApiOperation({
+    summary: &quot;Add comment to post&quot;,
+    description: &quot;Add a comment to a blog post&quot;,
+  })
+  @ApiBody({
+    type: CreateCommentDto,
+    description: &quot;The input data to create a new comment&quot;,
+    required: true,
+    schema: {
+      type: &quot;object&quot;,
+      properties: {
+        author: {
+          description: &quot;Author of the comment&quot;,
+          type: &quot;string&quot;,
+          default: &quot;John Doe&quot;,
+        },
+        content: {
+          description: &quot;Content of the comment&quot;,
+          type: &quot;string&quot;,
+          default: &quot;Great post!&quot;,
+        },
+      },
+      required: [&quot;author&quot;, &quot;content&quot;],
+    },
+    examples: {
+      successExample: {
+        value: {
+          author: &quot;John Doe&quot;,
+          content: &quot;Great post!&quot;,
+        },
+        description: &quot;Example comment data&quot;,
+      },
+      failExample: {
+        value: {
+          author: &quot;&quot;,
+          content: &quot;Great post!&quot;,
+        },
+        description: &quot;Example comment data with missing author&quot;,
+      },
+      failExample2: {
+        value: {
+          author: &quot;John Doe&quot;,
+          content: &quot;&quot;,
+        },
+        description: &quot;Example comment data with missing content&quot;,
+      },
+    },
+  })
+  @ApiResponse({
+    status: 201,
+    description: &quot;Indicates the comment was successfully added.&quot;,
+  })
+  @ApiResponse({
+    status: 404,
+    description: &quot;Indicates the post was not found.&quot;,
+  })
+  @ApiResponse({ status: 500, description: &quot;Indicates, the request failed.&quot; })
+  async addComment(@Param(&quot;id&quot;) postId: string, @Body() createCommentDto: CreateCommentDto): Promise&lt;BlogPost&gt; {
+    try {
+      const result &#x3D; await this.postService.addComment(postId, createCommentDto);
+      return result;
+    } catch (error) {
+      if (error instanceof PostDoesntExist) {
+        throw new HttpException(error.message, HttpStatus.NOT_FOUND);
+      } else if (error instanceof PostIdValidationError) {
+        throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+      }
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Delete(&quot;/:postId/comments/:commentId&quot;)
+  @ApiOperation({
+    summary: &quot;Delete a comment from a post&quot;,
+    description: &quot;Remove a specific comment from a blog post by its ID&quot;,
+  })
+  @ApiParam({
+    name: &quot;postId&quot;,
+    description: &quot;ID of the blog post&quot;,
+    required: true,
+    schema: {
+      type: &quot;string&quot;,
+    },
+  })
+  @ApiParam({
+    name: &quot;commentId&quot;,
+    description: &quot;ID of the comment to be deleted&quot;,
+    required: true,
+    schema: {
+      type: &quot;string&quot;,
+    },
+  })
+  @ApiResponse({
+    status: 200,
+    description: &quot;Successfully deleted comment&quot;,
+  })
+  @ApiResponse({
+    status: 400,
+    description: &quot;Invalid post or comment id&quot;,
+  })
+  @ApiResponse({
+    status: 404,
+    description: &quot;Post or comment not found&quot;,
+  })
+  @ApiResponse({ status: 500, description: &quot;Indicates, the request failed.&quot; })
+  async deleteComment(
+    @Param(&quot;postId&quot;) postId: string,
+    @Param(&quot;commentId&quot;) commentId: string,
+  ): Promise&lt;{
+    success: boolean;
+  }&gt; {
+    try {
+      const result &#x3D; await this.postService.deleteComment(postId, commentId);
+      return result;
+    } catch (error) {
+      if (error instanceof PostDoesntExist) {
+        throw new HttpException(error.message, HttpStatus.NOT_FOUND);
+      } else if (error instanceof PostIdValidationError) {
+        throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+      }
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
+            var COMPODOC_CURRENT_PAGE_URL = 'PostController.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
