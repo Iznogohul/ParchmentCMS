@@ -1,7 +1,11 @@
 .gitignore
 .dockerignore
+.compodocrc
+.github/
 .git/
 node_modules/
+docs/
+documentation/
 dist/
 .env
 .env.*
