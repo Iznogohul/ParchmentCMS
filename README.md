@@ -68,10 +68,10 @@ Here are some potential improvements that could be made to this project:
 
 Here are the tasks that have already been completed in this project:
 
-- [✅] Further optimize the Docker images to reduce size, making the deployment process faster and more efficient.
-- [✅] Rewrite the project in TypeScript for better type safety.
-- [✅] Refactor the project using the NestJs framework for better code organization and modularity.
-- [✅] Add support for comments in each post: Users and non-users can add comments to posts and engage in discussions.
+- ✅ Further optimize the Docker images to reduce size, making the deployment process faster and more efficient.
+- ✅ Rewrite the project in TypeScript for better type safety.
+- ✅ Refactor the project using the NestJs framework for better code organization and modularity.
+- ✅ Add support for comments in each post: Users and non-users can add comments to posts and engage in discussions.
 
 ## 🤝 Contributing
 
