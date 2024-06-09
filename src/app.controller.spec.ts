@@ -17,7 +17,7 @@ describe("AppController", () => {
 
   describe("root", () => {
     it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe(
+      expect(appController.getDevInstructions()).toBe(
         '<div>Welcome to Parchment CMS API.</div><p>To get started, please refer to the Swagger Documentation <a href="http://localhost:undefined/api-docs">here</a>.</p>',
       );
     });
