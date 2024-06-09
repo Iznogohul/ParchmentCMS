@@ -10,7 +10,7 @@ import { createdBlogPost } from "./post.types";
 import { CreateCommentDto } from "./dto/create-comment.dto";
 import { BlogPostComment } from "@/schemas/comment.schema";
 
-@ApiTags("Post Managment")
+@ApiTags("Post Management")
 @Controller("/api/v1/posts")
 export class PostController {
   constructor(private readonly postService: PostService) {}
