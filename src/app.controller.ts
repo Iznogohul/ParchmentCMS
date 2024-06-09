@@ -10,6 +10,6 @@ export class AppController {
 
   @Get()
   getDevInstructions(): string {
-    return this.appService.getHello();
+    return this.appService.getDevInstructions();
   }
 }
