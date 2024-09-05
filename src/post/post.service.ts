@@ -87,7 +87,7 @@ export class PostService {
         throw new PostError(`Didnt delete post with \"${id}\" .`);
       }
       return result.deletedCount;
-    } catch (err) {
+    } catch (error) {
       throw new PostDoesntExist(`Post with id \"${id}\" doesn't exist.`);
     }
   }

@@ -5,7 +5,7 @@ import { HydratedDocument, Types } from "mongoose";
 export class BlogPostComment {
   @Prop({ type: Types.ObjectId, auto: true })
   _id: Types.ObjectId;
-  
+
   @Prop({ required: true })
   author: string;
 
