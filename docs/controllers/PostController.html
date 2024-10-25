@@ -13,7 +13,7 @@
     </head>
     <body>
           <script>
-               // Blocking script to avaoid flickering dark mode
+               // Blocking script to avoid flickering dark mode
                // Dark mode toggle button
                var useDark = window.matchMedia('(prefers-color-scheme: dark)');
                var darkModeState = useDark.matches;
@@ -62,9 +62,11 @@
                toggleDarkMode(darkModeState);
           </script>
 
-        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
-            <a href="../" class="navbar-brand">ParchmentCMS Documentation 📖</a>
-            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">ParchmentCMS Documentation 📖</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
@@ -73,7 +75,7 @@
 
         <div class="container-fluid main">
            <div class="row main">
-               <div class="hidden-xs menu">
+               <div class="d-none d-md-block menu">
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
@@ -155,10 +157,14 @@
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#create" >create</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
@@ -179,10 +185,14 @@
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#deleteComment" >deleteComment</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
@@ -227,6 +237,7 @@
                                 <a href="#getPosts" >getPosts</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
@@ -287,8 +298,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="413"
-                                    class="link-to-prism">src/post/post.controller.ts:413</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="448"
+                                    class="link-to-prism">src/post/post.controller.ts:448</a></div>
                         </td>
                     </tr>
 
@@ -336,7 +347,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../classes/BlogPost.html" target="_self" >Promise&lt;BlogPost&gt;</a></code>
+                            <b>Returns : </b>        <code><a href="../interfaces/BlogPostSanitizedResponse.html" target="_self" >Promise&lt;BlogPostSanitizedResponse&gt;</a></code>
 
                         </div>
                             <div class="io-description">
@@ -358,6 +369,8 @@
                             <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Async</span>
                         <span ><b>create</b></span>
                         <a href="#create"><span class="icon ion-ios-link"></span></a>
@@ -367,7 +380,7 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>create(createPostDto: <a href="../classes/CreatePostDto.html" target="_self">CreatePostDto</a>)</code>
+                    <code>create(createPostDto: <a href="../classes/CreatePostDto.html" target="_self">CreatePostDto</a>, req: <a href="../interfaces/ExpressRequestWithBlogPostUser.html" target="_self">ExpressRequestWithBlogPostUser</a>)</code>
                 </td>
             </tr>
 
@@ -375,14 +388,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;&#x27;)<br />@ApiOperation({summary: &#x27;Create post&#x27;, description: &#x27;Get a post&#x27;})<br />@ApiBody({type: CreatePostDto, description: &#x27;The input data to create a new blog post&#x27;, required: true, schema: undefined, examples: undefined})<br />@ApiResponse({status: 201, description: &#x27;Indicates, the request was successful.&#x27;})<br />@ApiResponse({status: 409, description: &#x27;Indicates, the post already exists.&#x27;})<br />@ApiResponse({status: 500, description: &#x27;Indicates, the request failed.&#x27;})<br /></code>
+                    <code>@Post(&#x27;&#x27;)<br />@ApiOperation({summary: &#x27;Create post&#x27;, description: &#x27;Get a post&#x27;})<br />@ApiBody({type: CreatePostDto, description: &#x27;The input data to create a new blog post&#x27;, required: true, schema: undefined, examples: undefined})<br />@ApiResponse({status: 201, description: &#x27;Indicates, the request was successful.&#x27;})<br />@ApiResponse({status: 401, description: &#x27;Indicates that the user is not authorized.&#x27;})<br />@ApiResponse({status: 409, description: &#x27;Indicates, the post already exists.&#x27;})<br />@ApiResponse({status: 500, description: &#x27;Indicates, the request failed.&#x27;})<br />@UseGuards(JwtAuthGuard)<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="76"
-                                    class="link-to-prism">src/post/post.controller.ts:76</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="93"
+                                    class="link-to-prism">src/post/post.controller.ts:93</a></div>
                         </td>
                     </tr>
 
@@ -414,11 +427,23 @@
 
 
                                         </tr>
+                                        <tr>
+                                                <td>req</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ExpressRequestWithBlogPostUser.html" target="_self" >ExpressRequestWithBlogPostUser</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../classes/BlogPost.html" target="_self" >Promise&lt;createdBlogPost&gt;</a></code>
+                            <b>Returns : </b>        <code><a href="../classes/BlogPost.html" target="_self" >Promise&lt;CreatedBlogPost&gt;</a></code>
 
                         </div>
                             <div class="io-description">
@@ -434,6 +459,8 @@
                 <td class="col-md-4">
                     <a name="createRelation"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
@@ -459,14 +486,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;/relation/&#x27;)<br />@ApiOperation({summary: &#x27;Set Post Relationship&#x27;, parameters: undefined, description: &#x27;Set Relationship between two posts&#x27;})<br />@ApiResponse({status: 201, description: &#x27;Indicates, the request was successful.&#x27;})<br />@ApiResponse({status: 400, description: &#x27;Indicates, the request failed.&#x27;})<br />@ApiResponse({status: 404, description: &#x27;Indicates, the post doesnt exist.&#x27;})<br />@ApiResponse({status: 409, description: &#x27;Indicates, the relationship already exists.&#x27;})<br />@ApiResponse({status: 422, description: &#x27;Indicates, the query parameters are not valid&#x27;})<br />@ApiResponse({status: 500, description: &#x27;Indicates, the request failed.&#x27;})<br /></code>
+                    <code>@Post(&#x27;/relation/&#x27;)<br />@ApiOperation({summary: &#x27;Set Post Relationship&#x27;, parameters: undefined, description: &#x27;Set Relationship between two posts&#x27;})<br />@ApiResponse({status: 201, description: &#x27;Indicates, the request was successful.&#x27;})<br />@ApiResponse({status: 400, description: &#x27;Indicates, the request failed.&#x27;})<br />@ApiResponse({status: 401, description: &#x27;Indicates that the user is not authorized.&#x27;})<br />@ApiResponse({status: 404, description: &#x27;Indicates, the post doesn&#x27;t exist.&#x27;})<br />@ApiResponse({status: 409, description: &#x27;Indicates, the relationship already exists.&#x27;})<br />@ApiResponse({status: 422, description: &#x27;Indicates, the query parameters are not valid&#x27;})<br />@ApiResponse({status: 500, description: &#x27;Indicates, the request failed.&#x27;})<br />@UseGuards(JwtAuthGuard)<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="294"
-                                    class="link-to-prism">src/post/post.controller.ts:294</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="329"
+                                    class="link-to-prism">src/post/post.controller.ts:329</a></div>
                         </td>
                     </tr>
 
@@ -526,6 +553,8 @@
                             <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Async</span>
                         <span ><b>deleteComment</b></span>
                         <a href="#deleteComment"><span class="icon ion-ios-link"></span></a>
@@ -535,7 +564,7 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>deleteComment(postId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, commentId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>deleteComment(postId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, commentId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, req: <a href="../interfaces/ExpressRequestWithBlogPostUser.html" target="_self">ExpressRequestWithBlogPostUser</a>)</code>
                 </td>
             </tr>
 
@@ -543,14 +572,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Delete(&#x27;/:postId/comments/:commentId&#x27;)<br />@ApiOperation({summary: &#x27;Delete a comment from a post&#x27;, description: &#x27;Remove a specific comment from a blog post by its ID&#x27;})<br />@ApiParam({name: &#x27;postId&#x27;, description: &#x27;ID of the blog post&#x27;, required: true, schema: undefined})<br />@ApiParam({name: &#x27;commentId&#x27;, description: &#x27;ID of the comment to be deleted&#x27;, required: true, schema: undefined})<br />@ApiResponse({status: 200, description: &#x27;Successfully deleted comment&#x27;})<br />@ApiResponse({status: 400, description: &#x27;Invalid post or comment id&#x27;})<br />@ApiResponse({status: 404, description: &#x27;Post or comment not found&#x27;})<br />@ApiResponse({status: 500, description: &#x27;Indicates, the request failed.&#x27;})<br /></code>
+                    <code>@Delete(&#x27;/:postId/comments/:commentId&#x27;)<br />@ApiOperation({summary: &#x27;Delete a comment from a post&#x27;, description: &#x27;Remove a specific comment from a blog post by its ID&#x27;})<br />@ApiParam({name: &#x27;postId&#x27;, description: &#x27;ID of the blog post&#x27;, required: true, schema: undefined})<br />@ApiParam({name: &#x27;commentId&#x27;, description: &#x27;ID of the comment to be deleted&#x27;, required: true, schema: undefined})<br />@ApiResponse({status: 200, description: &#x27;Successfully deleted comment&#x27;})<br />@ApiResponse({status: 400, description: &#x27;Invalid post or comment id&#x27;})<br />@ApiResponse({status: 401, description: &#x27;Indicates that the user is not authorized.&#x27;})<br />@ApiResponse({status: 404, description: &#x27;Post or comment not found&#x27;})<br />@ApiResponse({status: 500, description: &#x27;Indicates, the request failed.&#x27;})<br />@UseGuards(JwtAuthGuard)<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="461"
-                                    class="link-to-prism">src/post/post.controller.ts:461</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="501"
+                                    class="link-to-prism">src/post/post.controller.ts:501</a></div>
                         </td>
                     </tr>
 
@@ -594,6 +623,18 @@
 
 
                                         </tr>
+                                        <tr>
+                                                <td>req</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ExpressRequestWithBlogPostUser.html" target="_self" >ExpressRequestWithBlogPostUser</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -620,6 +661,8 @@
                             <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Async</span>
                         <span ><b>deletePost</b></span>
                         <a href="#deletePost"><span class="icon ion-ios-link"></span></a>
@@ -629,7 +672,7 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>deletePost(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>deletePost(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, req: <a href="../interfaces/ExpressRequestWithBlogPostUser.html" target="_self">ExpressRequestWithBlogPostUser</a>)</code>
                 </td>
             </tr>
 
@@ -637,14 +680,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Delete(&#x27;/:id&#x27;)<br />@ApiOperation({summary: &#x27;Delete post&#x27;, description: &#x27;Delete a post based on the id&#x27;, operationId: &#x27;deletePost&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, description: &#x27;ID of post to delete&#x27;, required: true, type: String})<br />@ApiResponse({status: 200, description: &#x27;Indicates, the request was successful.&#x27;})<br />@ApiResponse({status: 404, description: &#x27;Indicates, the post doesnt exist.&#x27;})<br />@ApiResponse({status: 500, description: &#x27;Indicates, the request failed.&#x27;})<br /></code>
+                    <code>@Delete(&#x27;/:id&#x27;)<br />@ApiOperation({summary: &#x27;Delete post&#x27;, description: &#x27;Delete a post based on the id&#x27;, operationId: &#x27;deletePost&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, description: &#x27;ID of post to delete&#x27;, required: true, type: String})<br />@ApiResponse({status: 200, description: &#x27;Indicates, the request was successful.&#x27;})<br />@ApiResponse({status: 401, description: &#x27;Indicates that the user is not authorized.&#x27;})<br />@ApiResponse({status: 404, description: &#x27;Indicates, the post doesn&#x27;t exist.&#x27;})<br />@ApiResponse({status: 500, description: &#x27;Indicates, the request failed.&#x27;})<br />@UseGuards(JwtAuthGuard)<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="201"
-                                    class="link-to-prism">src/post/post.controller.ts:201</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="224"
+                                    class="link-to-prism">src/post/post.controller.ts:224</a></div>
                         </td>
                     </tr>
 
@@ -668,6 +711,18 @@
                                                 <td>id</td>
                                             <td>
                                                             <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>req</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ExpressRequestWithBlogPostUser.html" target="_self" >ExpressRequestWithBlogPostUser</a></code>
                                             </td>
 
                                             <td>
@@ -726,8 +781,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="341"
-                                    class="link-to-prism">src/post/post.controller.ts:341</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="376"
+                                    class="link-to-prism">src/post/post.controller.ts:376</a></div>
                         </td>
                     </tr>
 
@@ -802,14 +857,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/:id&#x27;)<br />@ApiOperation({summary: &#x27;Get post&#x27;, description: &#x27;Get a post based on the id&#x27;, operationId: &#x27;getPost&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, description: &#x27;The id of the post&#x27;, required: true, type: String})<br />@ApiResponse({status: 200, description: &#x27;Indicates, the request was successful.&#x27;})<br />@ApiResponse({status: 404, description: &#x27;Indicates, the post doesnt exist.&#x27;})<br />@ApiResponse({status: 500, description: &#x27;Indicates, the request failed.&#x27;})<br /></code>
+                    <code>@Get(&#x27;/:id&#x27;)<br />@ApiOperation({summary: &#x27;Get post&#x27;, description: &#x27;Get a post based on the id&#x27;, operationId: &#x27;getPost&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, description: &#x27;The id of the post&#x27;, required: true, type: String})<br />@ApiResponse({status: 200, description: &#x27;Indicates, the request was successful.&#x27;})<br />@ApiResponse({status: 404, description: &#x27;Indicates, the post doesn&#x27;t exist.&#x27;})<br />@ApiResponse({status: 500, description: &#x27;Indicates, the request failed.&#x27;})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="168"
-                                    class="link-to-prism">src/post/post.controller.ts:168</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="186"
+                                    class="link-to-prism">src/post/post.controller.ts:186</a></div>
                         </td>
                     </tr>
 
@@ -845,7 +900,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../classes/BlogPost.html" target="_self" >Promise&lt;BlogPost&gt;</a></code>
+                            <b>Returns : </b>        <code><a href="../interfaces/BlogPostSanitizedResponse.html" target="_self" >Promise&lt;BlogPostSanitizedResponse&gt;</a></code>
 
                         </div>
                             <div class="io-description">
@@ -887,14 +942,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;&#x27;)<br />@ApiOperation({summary: &#x27;Get all posts&#x27;, description: &#x27;Get all posts&#x27;})<br />@ApiQuery({name: &#x27;page&#x27;, type: Number, required: false})<br />@ApiQuery({name: &#x27;limit&#x27;, type: Number, required: false})<br />@ApiQuery({name: &#x27;slug&#x27;, type: String, required: false})<br />@ApiResponse({status: 200, description: &#x27;Indicates, the request was successful.&#x27;})<br />@ApiResponse({status: 404, description: &#x27;Indicates, that the are no posts.&#x27;})<br />@ApiResponse({status: 422, description: &#x27;Indicates, the query parameters are not valid&#x27;})<br />@ApiResponse({status: 500, description: &#x27;Indicates, the request failed.&#x27;})<br /></code>
+                    <code>@Get(&#x27;&#x27;)<br />@ApiOperation({summary: &#x27;Get all posts&#x27;, description: &#x27;Get all posts&#x27;})<br />@ApiQuery({name: &#x27;page&#x27;, type: Number, required: false})<br />@ApiQuery({name: &#x27;limit&#x27;, type: Number, required: false})<br />@ApiQuery({name: &#x27;slug&#x27;, type: String, required: false})<br />@ApiResponse({status: 200, description: &#x27;Indicates, the request was successful.&#x27;})<br />@ApiResponse({status: 404, description: &#x27;Indicates, that there are no posts.&#x27;})<br />@ApiResponse({status: 422, description: &#x27;Indicates, the query parameters are not valid&#x27;})<br />@ApiResponse({status: 500, description: &#x27;Indicates, the request failed.&#x27;})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="123"
-                                    class="link-to-prism">src/post/post.controller.ts:123</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="141"
+                                    class="link-to-prism">src/post/post.controller.ts:141</a></div>
                         </td>
                     </tr>
 
@@ -954,7 +1009,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../classes/BlogPost.html" target="_self" >Promise&lt;BlogPost | []&gt;</a></code>
+                            <b>Returns : </b>        <code><a href="../interfaces/BlogPostSanitizedResponse.html" target="_self" >Promise&lt;BlogPostSanitizedResponse | []&gt;</a></code>
 
                         </div>
                             <div class="io-description">
@@ -975,6 +1030,7 @@
                             <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Async</span>
                         <span ><b>getRelatedPosts</b></span>
                         <a href="#getRelatedPosts"><span class="icon ion-ios-link"></span></a>
@@ -984,7 +1040,7 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getRelatedPosts(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>getRelatedPosts(getRelatedPostsDto: <a href="../classes/GetRelatedPostsDto.html" target="_self">GetRelatedPostsDto</a>)</code>
                 </td>
             </tr>
 
@@ -992,14 +1048,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/:id/relations&#x27;)<br />@ApiOperation({summary: &#x27;Post Relationships&#x27;, parameters: undefined, description: &#x27;Get Relationships of a post&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Indicates, the request was successful.&#x27;})<br />@ApiResponse({status: 404, description: &#x27;Indicates, the post doesnt exist.&#x27;})<br />@ApiResponse({status: 500, description: &#x27;Indicates, the request failed.&#x27;})<br /></code>
+                    <code>@Get(&#x27;/:id/relations&#x27;)<br />@ApiOperation({summary: &#x27;Post Relationships&#x27;, parameters: undefined, description: &#x27;Get Relationships of a post&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Indicates, the request was successful.&#x27;})<br />@ApiResponse({status: 400, description: &#x27;Indicates, the provided post id was invalid&#x27;})<br />@ApiResponse({status: 404, description: &#x27;Indicates, the post doesn&#x27;t exist.&#x27;})<br />@ApiResponse({status: 500, description: &#x27;Indicates, the request failed.&#x27;})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="238"
-                                    class="link-to-prism">src/post/post.controller.ts:238</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="268"
+                                    class="link-to-prism">src/post/post.controller.ts:268</a></div>
                         </td>
                     </tr>
 
@@ -1020,9 +1076,9 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>id</td>
+                                                <td>getRelatedPostsDto</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                            <code><a href="../classes/GetRelatedPostsDto.html" target="_self" >GetRelatedPostsDto</a></code>
                                             </td>
 
                                             <td>
@@ -1049,19 +1105,31 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Post, Body, Param, Delete, Query, HttpException, HttpStatus } from &quot;@nestjs/common&quot;;
-import { ApiBody, ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiTags } from &quot;@nestjs/swagger&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Post, Body, Param, Delete, Query, HttpException, HttpStatus, UseGuards, Request } from &quot;@nestjs/common&quot;;
+import { ApiBearerAuth, ApiBody, ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiTags } from &quot;@nestjs/swagger&quot;;
 
 import { PostService } from &quot;./post.service&quot;;
 import { CreatePostDto } from &quot;./dto/create-post.dto&quot;;
 import { BlogPost } from &quot;@/schemas/post.schema&quot;;
-import { PostCircularRelationship, PostDoesntExist, PostDoesntHaveComments, PostIdValidationError, PostRelationConflict, PostSlugValidationError } from &quot;./post.errors&quot;;
+import {
+  PostCircularRelationship,
+  PostDoesNotExist,
+  PostDoesNotHaveComments,
+  PostIdValidationError,
+  PostInsufficientPermissionsError,
+  PostRelationConflict,
+  PostSlugValidationError,
+} from &quot;./post.errors&quot;;
 import { CreateRelationshipDto } from &quot;./dto/create-relationship.dto&quot;;
-import { createdBlogPost } from &quot;./post.types&quot;;
+import { CreatedBlogPost } from &quot;./types/post.types&quot;;
 import { CreateCommentDto } from &quot;./dto/create-comment.dto&quot;;
 import { BlogPostComment } from &quot;@/schemas/comment.schema&quot;;
+import { JwtAuthGuard } from &quot;@/auth/jwt-auth.guard&quot;;
+import { BlogPostSanitizedResponse, ExpressRequestWithBlogPostUser } from &quot;./interfaces/post.interface&quot;;
+import { GetRelatedPostsDto } from &quot;./dto/get-related-posts.dto&quot;;
 
-@ApiTags(&quot;Post Managment&quot;)
+@ApiBearerAuth()
+@ApiTags(&quot;Post Management&quot;)
 @Controller(&quot;/api/v1/posts&quot;)
 export class PostController {
   constructor(private readonly postService: PostService) {}
@@ -1120,18 +1188,24 @@ export class PostController {
     description: &quot;Indicates, the request was successful.&quot;,
   })
   @ApiResponse({
+    status: 401,
+    description: &quot;Indicates that the user is not authorized.&quot;,
+  })
+  @ApiResponse({
     status: 409,
     description: &quot;Indicates, the post already exists.&quot;,
   })
   @ApiResponse({ status: 500, description: &quot;Indicates, the request failed.&quot; })
-  async create(@Body() createPostDto: CreatePostDto): Promise&lt;createdBlogPost&gt; {
+  @UseGuards(JwtAuthGuard)
+  async create(@Body() createPostDto: CreatePostDto, @Request() req: ExpressRequestWithBlogPostUser): Promise&lt;CreatedBlogPost&gt; {
     try {
-      const result &#x3D; await this.postService.createBlogPost(createPostDto);
+      const blogPostUser &#x3D; req.user;
+      const result &#x3D; await this.postService.createBlogPost(createPostDto, blogPostUser._id);
       return result;
     } catch (error) {
       if (error instanceof PostRelationConflict) {
         throw new HttpException(error.message, HttpStatus.CONFLICT);
-      } else if (error instanceof PostDoesntExist) {
+      } else if (error instanceof PostDoesNotExist) {
         throw new HttpException(error.message, HttpStatus.NOT_FOUND);
       }
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -1164,14 +1238,14 @@ export class PostController {
   })
   @ApiResponse({
     status: 404,
-    description: &quot;Indicates, that the are no posts.&quot;,
+    description: &quot;Indicates, that there are no posts.&quot;,
   })
   @ApiResponse({
     status: 422,
     description: &quot;Indicates, the query parameters are not valid&quot;,
   })
   @ApiResponse({ status: 500, description: &quot;Indicates, the request failed.&quot; })
-  async getPosts(@Query(&quot;page&quot;) page?: number, @Query(&quot;limit&quot;) limit?: number, @Query(&quot;slug&quot;) slug?: string): Promise&lt;BlogPost | BlogPost[]&gt; {
+  async getPosts(@Query(&quot;page&quot;) page?: number, @Query(&quot;limit&quot;) limit?: number, @Query(&quot;slug&quot;) slug?: string): Promise&lt;BlogPostSanitizedResponse | BlogPostSanitizedResponse[]&gt; {
     try {
       if (page !&#x3D;&#x3D; undefined &amp;&amp; limit !&#x3D;&#x3D; undefined) {
         const posts &#x3D; await this.postService.getPostsByPagination(page, limit);
@@ -1186,7 +1260,7 @@ export class PostController {
     } catch (error) {
       if (error instanceof PostRelationConflict) {
         throw new HttpException(error.message, HttpStatus.CONFLICT);
-      } else if (error instanceof PostDoesntExist) {
+      } else if (error instanceof PostDoesNotExist) {
         throw new HttpException(error.message, HttpStatus.NOT_FOUND);
       } else if (error instanceof PostSlugValidationError) {
         throw new HttpException(error.message, HttpStatus.UNPROCESSABLE_ENTITY);
@@ -1213,15 +1287,15 @@ export class PostController {
   })
   @ApiResponse({
     status: 404,
-    description: &quot;Indicates, the post doesnt exist.&quot;,
+    description: &quot;Indicates, the post doesn&#x27;t exist.&quot;,
   })
   @ApiResponse({ status: 500, description: &quot;Indicates, the request failed.&quot; })
-  async getPostById(@Param(&quot;id&quot;) id: string): Promise&lt;BlogPost&gt; {
+  async getPostById(@Param(&quot;id&quot;) id: string): Promise&lt;BlogPostSanitizedResponse&gt; {
     try {
       const post &#x3D; await this.postService.getPostById(id);
       return post;
     } catch (error) {
-      if (error instanceof PostDoesntExist) {
+      if (error instanceof PostDoesNotExist) {
         throw new HttpException(error.message, HttpStatus.NOT_FOUND);
       }
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -1245,17 +1319,25 @@ export class PostController {
     description: &quot;Indicates, the request was successful.&quot;,
   })
   @ApiResponse({
+    status: 401,
+    description: &quot;Indicates that the user is not authorized.&quot;,
+  })
+  @ApiResponse({
     status: 404,
-    description: &quot;Indicates, the post doesnt exist.&quot;,
+    description: &quot;Indicates, the post doesn&#x27;t exist.&quot;,
   })
   @ApiResponse({ status: 500, description: &quot;Indicates, the request failed.&quot; })
-  async deletePost(@Param(&quot;id&quot;) id: string): Promise&lt;{ result: string }&gt; {
+  @UseGuards(JwtAuthGuard)
+  async deletePost(@Param(&quot;id&quot;) id: string, @Request() req: ExpressRequestWithBlogPostUser): Promise&lt;{ result: string }&gt; {
     try {
-      await this.postService.deletePost(id);
+      const blogPostUser &#x3D; req.user;
+      await this.postService.deletePost(id, blogPostUser._id);
       return { result: &quot;success&quot; };
     } catch (error) {
-      if (error instanceof PostDoesntExist) {
+      if (error instanceof PostDoesNotExist) {
         throw new HttpException(error.message, HttpStatus.NOT_FOUND);
+      } else if (error instanceof PostInsufficientPermissionsError) {
+        throw new HttpException(error.message, HttpStatus.UNAUTHORIZED);
       }
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
     }
@@ -1279,19 +1361,23 @@ export class PostController {
     description: &quot;Indicates, the request was successful.&quot;,
   })
   @ApiResponse({
+    status: 400,
+    description: &quot;Indicates, the provided post id was invalid&quot;,
+  })
+  @ApiResponse({
     status: 404,
-    description: &quot;Indicates, the post doesnt exist.&quot;,
+    description: &quot;Indicates, the post doesn&#x27;t exist.&quot;,
   })
   @ApiResponse({
     status: 500,
     description: &quot;Indicates, the request failed.&quot;,
   })
-  async getRelatedPosts(@Param(&quot;id&quot;) id: string): Promise&lt;{ relatedPosts: BlogPost[] }&gt; {
+  async getRelatedPosts(@Param() getRelatedPostsDto: GetRelatedPostsDto): Promise&lt;{ relatedPosts: BlogPost[] }&gt; {
     try {
-      const post &#x3D; await this.postService.getRelatedPosts(id);
+      const post &#x3D; await this.postService.getRelatedPosts(getRelatedPostsDto.id);
       return { relatedPosts: post.relatedPosts };
     } catch (error) {
-      if (error instanceof PostDoesntExist) {
+      if (error instanceof PostDoesNotExist) {
         throw new HttpException(error.message, HttpStatus.NOT_FOUND);
       }
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -1327,8 +1413,12 @@ export class PostController {
     description: &quot;Indicates, the request failed.&quot;,
   })
   @ApiResponse({
+    status: 401,
+    description: &quot;Indicates that the user is not authorized.&quot;,
+  })
+  @ApiResponse({
     status: 404,
-    description: &quot;Indicates, the post doesnt exist.&quot;,
+    description: &quot;Indicates, the post doesn&#x27;t exist.&quot;,
   })
   @ApiResponse({
     status: 409,
@@ -1342,14 +1432,15 @@ export class PostController {
     status: 500,
     description: &quot;Indicates, the request failed.&quot;,
   })
-  async createRelation(@Query() createRelationshipDto: CreateRelationshipDto): Promise&lt;{ success: boolean; data: BlogPost } | Error&gt; {
+  @UseGuards(JwtAuthGuard)
+  async createRelation(@Query() createRelationshipDto: CreateRelationshipDto): Promise&lt;{ success: boolean; data: BlogPostSanitizedResponse } | Error&gt; {
     try {
       const post &#x3D; await this.postService.createRelation(createRelationshipDto.sourcePostId, createRelationshipDto.relationPostId);
       return { success: true, data: post };
     } catch (error) {
       if (error instanceof PostRelationConflict) {
         throw new HttpException(error.message, HttpStatus.CONFLICT);
-      } else if (error instanceof PostDoesntExist) {
+      } else if (error instanceof PostDoesNotExist) {
         throw new HttpException(error.message, HttpStatus.NOT_FOUND);
       } else if (error instanceof PostCircularRelationship) {
         throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
@@ -1394,7 +1485,7 @@ export class PostController {
       const result &#x3D; await this.postService.getComments(postId);
       return result;
     } catch (error) {
-      if (error instanceof PostDoesntExist || PostDoesntHaveComments) {
+      if (error instanceof PostDoesNotExist || PostDoesNotHaveComments) {
         throw new HttpException(error.message, HttpStatus.NOT_FOUND);
       } else if (error instanceof PostIdValidationError) {
         throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
@@ -1461,12 +1552,12 @@ export class PostController {
     description: &quot;Indicates the post was not found.&quot;,
   })
   @ApiResponse({ status: 500, description: &quot;Indicates, the request failed.&quot; })
-  async addComment(@Param(&quot;id&quot;) postId: string, @Body() createCommentDto: CreateCommentDto): Promise&lt;BlogPost&gt; {
+  async addComment(@Param(&quot;id&quot;) postId: string, @Body() createCommentDto: CreateCommentDto): Promise&lt;BlogPostSanitizedResponse&gt; {
     try {
       const result &#x3D; await this.postService.addComment(postId, createCommentDto);
       return result;
     } catch (error) {
-      if (error instanceof PostDoesntExist) {
+      if (error instanceof PostDoesNotExist) {
         throw new HttpException(error.message, HttpStatus.NOT_FOUND);
       } else if (error instanceof PostIdValidationError) {
         throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
@@ -1505,21 +1596,28 @@ export class PostController {
     description: &quot;Invalid post or comment id&quot;,
   })
   @ApiResponse({
+    status: 401,
+    description: &quot;Indicates that the user is not authorized.&quot;,
+  })
+  @ApiResponse({
     status: 404,
     description: &quot;Post or comment not found&quot;,
   })
   @ApiResponse({ status: 500, description: &quot;Indicates, the request failed.&quot; })
+  @UseGuards(JwtAuthGuard)
   async deleteComment(
     @Param(&quot;postId&quot;) postId: string,
     @Param(&quot;commentId&quot;) commentId: string,
+    @Request() req: ExpressRequestWithBlogPostUser,
   ): Promise&lt;{
     success: boolean;
   }&gt; {
     try {
-      const result &#x3D; await this.postService.deleteComment(postId, commentId);
+      const blogPostUser &#x3D; req.user;
+      const result &#x3D; await this.postService.deleteComment(postId, commentId, blogPostUser._id);
       return result;
     } catch (error) {
-      if (error instanceof PostDoesntExist) {
+      if (error instanceof PostDoesNotExist) {
         throw new HttpException(error.message, HttpStatus.NOT_FOUND);
       } else if (error instanceof PostIdValidationError) {
         throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
@@ -1601,7 +1699,6 @@ export class PostController {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

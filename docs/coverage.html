@@ -13,7 +13,7 @@
     </head>
     <body>
           <script>
-               // Blocking script to avaoid flickering dark mode
+               // Blocking script to avoid flickering dark mode
                // Dark mode toggle button
                var useDark = window.matchMedia('(prefers-color-scheme: dark)');
                var darkModeState = useDark.matches;
@@ -62,9 +62,11 @@
                toggleDarkMode(darkModeState);
           </script>
 
-        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
-            <a href="./" class="navbar-brand">ParchmentCMS Documentation 📖</a>
-            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="./" class="navbar-brand">ParchmentCMS Documentation 📖</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
@@ -73,7 +75,7 @@
 
         <div class="container-fluid main">
            <div class="row main">
-               <div class="hidden-xs menu">
+               <div class="d-none d-md-block menu">
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
@@ -143,6 +145,102 @@
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
+                <a href="./controllers/AuthController.html">src/auth/auth.controller.ts</a>
+            </td>
+            <td>controller</td>
+            <td>AuthController</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/4)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/AuthService.html">src/auth/auth.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>AuthService</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/functions.html#hasUsernameOrEmail">src/auth/decorators/hasUsernameOrEmail.decorator.ts</a>
+            </td>
+            <td>function</td>
+            <td>hasUsernameOrEmail</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/LoginUserDto.html">src/auth/dto/login-user.dto.ts</a>
+            </td>
+            <td>class</td>
+            <td>LoginUserDto</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/5)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/RegisterUserDto.html">src/auth/dto/register-user.dto.ts</a>
+            </td>
+            <td>class</td>
+            <td>RegisterUserDto</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/5)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/UpdateUserDto.html">src/auth/dto/update-user.dto.ts</a>
+            </td>
+            <td>class</td>
+            <td>UpdateUserDto</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/2)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/JwtAuthGuard.html">src/auth/jwt-auth.guard.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>JwtAuthGuard</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/JwtStrategy.html">src/auth/jwt.strategy.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>JwtStrategy</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
                 <a href="./controllers/HealthController.html">src/health/health.controller.ts</a>
             </td>
             <td>controller</td>
@@ -155,7 +253,7 @@
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
-                <a href="./miscellaneous/functions.html#bootstrap">src/main.ts</a>
+                        <a href="./miscellaneous/functions.html#bootstrap">src/main.ts</a>
             </td>
             <td>function</td>
             <td>bootstrap</td>
@@ -167,7 +265,7 @@
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
-                <a href="./miscellaneous/variables.html#CreatePostDtoStub">src/post/dto/create-comment.dto.stub.ts</a>
+                        <a href="./miscellaneous/variables.html#CreatePostDtoStub">src/post/dto/create-comment.dto.stub.ts</a>
             </td>
             <td>variable</td>
             <td>CreatePostDtoStub</td>
@@ -191,7 +289,7 @@
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
-                <a href="./miscellaneous/variables.html#CreatePostDtoStub">src/post/dto/create-post.dto.stub.ts</a>
+                        <a href="./miscellaneous/variables.html#CreatePostDtoStub">src/post/dto/create-post.dto.stub.ts</a>
             </td>
             <td>variable</td>
             <td>CreatePostDtoStub</td>
@@ -227,6 +325,42 @@
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
+                <a href="./classes/GetRelatedPostsDto.html">src/post/dto/get-related-posts.dto.ts</a>
+            </td>
+            <td>class</td>
+            <td>GetRelatedPostsDto</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/2)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/BlogPostSanitizedResponse.html">src/post/interfaces/post.interface.ts</a>
+            </td>
+            <td>interface</td>
+            <td>BlogPostSanitizedResponse</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/ExpressRequestWithBlogPostUser.html">src/post/interfaces/post.interface.ts</a>
+            </td>
+            <td>interface</td>
+            <td>ExpressRequestWithBlogPostUser</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/2)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
                 <a href="./controllers/PostController.html">src/post/post.controller.ts</a>
             </td>
             <td>controller</td>
@@ -239,10 +373,22 @@
         <tr class="very-good">
             <td>
                 <!-- miscellaneous -->
-                <a href="./classes/CommentDoesntExist.html">src/post/post.errors.ts</a>
+                <a href="./classes/CommentDoesNotExist.html">src/post/post.errors.ts</a>
             </td>
             <td>class</td>
-            <td>CommentDoesntExist</td>
+            <td>CommentDoesNotExist</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/CommentInsufficientPermissionsError.html">src/post/post.errors.ts</a>
+            </td>
+            <td>class</td>
+            <td>CommentInsufficientPermissionsError</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
                 <span class="coverage-count">(1/1)</span>
@@ -263,10 +409,10 @@
         <tr class="very-good">
             <td>
                 <!-- miscellaneous -->
-                <a href="./classes/PostDoesntExist.html">src/post/post.errors.ts</a>
+                <a href="./classes/PostDoesNotExist.html">src/post/post.errors.ts</a>
             </td>
             <td>class</td>
-            <td>PostDoesntExist</td>
+            <td>PostDoesNotExist</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
                 <span class="coverage-count">(1/1)</span>
@@ -275,10 +421,10 @@
         <tr class="very-good">
             <td>
                 <!-- miscellaneous -->
-                <a href="./classes/PostDoesntHaveComments.html">src/post/post.errors.ts</a>
+                <a href="./classes/PostDoesNotHaveComments.html">src/post/post.errors.ts</a>
             </td>
             <td>class</td>
-            <td>PostDoesntHaveComments</td>
+            <td>PostDoesNotHaveComments</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
                 <span class="coverage-count">(1/1)</span>
@@ -303,6 +449,18 @@
             </td>
             <td>class</td>
             <td>PostIdValidationError</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/PostInsufficientPermissionsError.html">src/post/post.errors.ts</a>
+            </td>
+            <td>class</td>
+            <td>PostInsufficientPermissionsError</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
                 <span class="coverage-count">(1/1)</span>
@@ -347,6 +505,42 @@
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#CreatedBlogPost">src/post/types/post.types.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>CreatedBlogPost</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/functions.html#sanitizeBlogPost">src/post/utils/post.utils.ts</a>
+            </td>
+            <td>function</td>
+            <td>sanitizeBlogPost</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/functions.html#sanitizeBlogPosts">src/post/utils/post.utils.ts</a>
+            </td>
+            <td>function</td>
+            <td>sanitizeBlogPosts</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
                 <a href="./classes/BlogPostComment.html">src/schemas/comment.schema.ts</a>
             </td>
             <td>class</td>
@@ -359,10 +553,22 @@
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
-                <a href="./miscellaneous/variables.html#BlogPostCommentSchema">src/schemas/comment.schema.ts</a>
+                        <a href="./miscellaneous/variables.html#BlogPostCommentSchema">src/schemas/comment.schema.ts</a>
             </td>
             <td>variable</td>
             <td>BlogPostCommentSchema</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#BlogPostCommentDocument">src/schemas/comment.schema.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>BlogPostCommentDocument</td>
             <td align="right" data-sort="0">
                 <span class="coverage-percent">0 %</span>
                 <span class="coverage-count">(0/1)</span>
@@ -377,13 +583,13 @@
             <td>BlogPost</td>
             <td align="right" data-sort="0">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/8)</span>
+                <span class="coverage-count">(0/10)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
-                <a href="./miscellaneous/functions.html#generateSlug">src/schemas/post.schema.ts</a>
+                        <a href="./miscellaneous/functions.html#generateSlug">src/schemas/post.schema.ts</a>
             </td>
             <td>function</td>
             <td>generateSlug</td>
@@ -395,13 +601,85 @@
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
-                <a href="./miscellaneous/variables.html#BlogPostSchema">src/schemas/post.schema.ts</a>
+                        <a href="./miscellaneous/variables.html#BlogPostSchema">src/schemas/post.schema.ts</a>
             </td>
             <td>variable</td>
             <td>BlogPostSchema</td>
             <td align="right" data-sort="0">
                 <span class="coverage-percent">0 %</span>
                 <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#BlogPostDocument">src/schemas/post.schema.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>BlogPostDocument</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/BlogPostUser.html">src/schemas/user.schema.ts</a>
+            </td>
+            <td>class</td>
+            <td>BlogPostUser</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/5)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/variables.html#BlogPostUserSchema">src/schemas/user.schema.ts</a>
+            </td>
+            <td>variable</td>
+            <td>BlogPostUserSchema</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/variables.html#UserSchema">src/schemas/user.schema.ts</a>
+            </td>
+            <td>variable</td>
+            <td>UserSchema</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#BlogPostUserDocument">src/schemas/user.schema.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>BlogPostUserDocument</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/UserService.html">src/user/user.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>UserService</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/9)</span>
             </td>
         </tr>
     </tbody>
@@ -467,7 +745,6 @@
        <script src="./js/libs/es6-shim.min.js"></script>
        <script src="./js/libs/EventDispatcher.js"></script>
        <script src="./js/libs/promise.min.js"></script>
-       <script src="./js/libs/zepto.min.js"></script>
 
        <script src="./js/compodoc.js"></script>
 

@@ -24,7 +24,7 @@ export class PostRelationConflict extends PostError {}
  * @class
  * @extends PostError
  */
-export class PostDoesntExist extends PostError {}
+export class PostDoesNotExist extends PostError {}
 
 /**
  * Error class for circular post relationships.
@@ -52,11 +52,25 @@ export class PostIdValidationError extends PostError {}
  * @class
  * @extends PostError
  */
-export class PostDoesntHaveComments extends PostError {}
+export class PostDoesNotHaveComments extends PostError {}
+
+/**
+ * Error class for post insufficient permissions.
+ * @class
+ * @extends PostError
+ */
+export class PostInsufficientPermissionsError extends PostError {}
+
+/**
+ * Error class for post insufficient permissions.
+ * @class
+ * @extends PostError
+ */
+export class CommentInsufficientPermissionsError extends PostError {}
 
 /**
  * Error class for comments not existing.
  * @class
  * @extends PostError
  */
-export class CommentDoesntExist extends PostError {}
+export class CommentDoesNotExist extends PostError {}

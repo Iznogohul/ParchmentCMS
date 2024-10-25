@@ -13,7 +13,7 @@
     </head>
     <body>
           <script>
-               // Blocking script to avaoid flickering dark mode
+               // Blocking script to avoid flickering dark mode
                // Dark mode toggle button
                var useDark = window.matchMedia('(prefers-color-scheme: dark)');
                var darkModeState = useDark.matches;
@@ -62,9 +62,11 @@
                toggleDarkMode(darkModeState);
           </script>
 
-        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
-            <a href="./" class="navbar-brand">ParchmentCMS Documentation 📖</a>
-            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="./" class="navbar-brand">ParchmentCMS Documentation 📖</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
@@ -73,7 +75,7 @@
 
         <div class="container-fluid main">
            <div class="row main">
-               <div class="hidden-xs menu">
+               <div class="d-none d-md-block menu">
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
@@ -85,7 +87,7 @@
 <h2>🚀 Getting Started</h2>
 <p>To get started with this project, you can choose to either run the project natively on your machine, or with Docker.</p>
 <h3>🏠 Running natively</h3>
-<p>To run the project natively, you will need to have Node.js v20.13.1 or higher and npm v10.5.2 or higher installed on your machine.</p>
+<p>To run the project natively, you will need to have Node.js v22.9.0 or higher and npm v10.8.3 or higher installed on your machine.</p>
 <ol>
 <li>🍴 Clone this repository to your local machine.</li>
 <li>💻 Run <code>npm install</code> to install the necessary dependencies.</li>
@@ -101,7 +103,9 @@
 For example:<b>Example :</b><div><pre class="line-numbers"><code class="language-none"># The MongoDB connection string for the BlogPost database
 MONGODB_URI=&quot;mongodb://mongodb/test&quot;
 # The port on which the Blog CMS API will run
-PORT=&quot;3000&quot;</code></pre></div></li>
+PORT=&quot;3000&quot;
+# The seed string to be used for the JwtStrategy
+JWT_SECRET=&quot;42&quot;</code></pre></div></li>
 <li>🐳 Run <code>docker compose build</code> to build the containers.</li>
 <li>🐳 Run <code>docker compose up</code> to start the containers.</li>
 <li>🌍 The API will be available at <code>http://localhost:3000/</code>.</li>
@@ -123,15 +127,14 @@ PORT=&quot;3000&quot;</code></pre></div></li>
 <h2>🚀 Future Improvements</h2>
 <p>Here are some potential improvements that could be made to this project:</p>
 <ul>
-<li><input disabled="" type="checkbox"> Implement authentication to secure the API.</li>
+<li><input disabled="" type="checkbox"> Add support for updating post content</li>
 <li><input disabled="" type="checkbox"> Add support for media uploads (images, videos, etc.).</li>
-<li><input disabled="" type="checkbox"> Add support for user: Users can create accounts, log in, and manage their profile.</li>
-<li><input disabled="" type="checkbox"> Have multiple users create their own posts: Each user can create their own posts and manage them.</li>
+<li><input disabled="" type="checkbox"> Add support for more auth providers (Auth0,OAuth2 etc)</li>
 <li><input disabled="" type="checkbox"> Create a frontend interface for post management.</li>
 <li><input disabled="" type="checkbox"> Implement a more robust pagination solution that allows for custom sorting and filtering.</li>
 <li><input disabled="" type="checkbox"> Add support for different languages and locales.</li>
 <li><input disabled="" type="checkbox"> Write jest tests</li>
-<li><input disabled="" type="checkbox"> Add a proccess manager</li>
+<li><input disabled="" type="checkbox"> Add a process manager</li>
 <li><input disabled="" type="checkbox"> Add Github Actions to publish image to Docker Hub, Github Registry etc.</li>
 </ul>
 <h2>✅ Completed Tasks</h2>
@@ -141,6 +144,9 @@ PORT=&quot;3000&quot;</code></pre></div></li>
 <li>✅ Rewrite the project in TypeScript for better type safety.</li>
 <li>✅ Refactor the project using the NestJs framework for better code organization and modularity.</li>
 <li>✅ Add support for comments in each post: Users and non-users can add comments to posts and engage in discussions.</li>
+<li>✅ Implement authentication to secure the API.</li>
+<li>✅ Add support for user: Users can create accounts, log in, and manage their profile.</li>
+<li>✅ Have multiple users create their own posts: Each user can create their own posts and manage them.</li>
 </ul>
 <h2>🤝 Contributing</h2>
 <p>Contributions to this project are welcome! If you have any suggestions, bug reports, or feature requests, please open an issue or submit a pull request.</p>
@@ -221,7 +227,6 @@ PORT=&quot;3000&quot;</code></pre></div></li>
        <script src="./js/libs/es6-shim.min.js"></script>
        <script src="./js/libs/EventDispatcher.js"></script>
        <script src="./js/libs/promise.min.js"></script>
-       <script src="./js/libs/zepto.min.js"></script>
 
        <script src="./js/compodoc.js"></script>
 
