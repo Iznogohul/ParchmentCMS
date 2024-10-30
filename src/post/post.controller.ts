@@ -1,15 +1,27 @@
-import { Controller, Get, Post, Body, Param, Delete, Query, HttpException, HttpStatus } from "@nestjs/common";
-import { ApiBody, ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiTags } from "@nestjs/swagger";
+import { Controller, Get, Post, Body, Param, Delete, Query, HttpException, HttpStatus, UseGuards, Request } from "@nestjs/common";
+import { ApiBearerAuth, ApiBody, ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiTags } from "@nestjs/swagger";
 
 import { PostService } from "./post.service";
 import { CreatePostDto } from "./dto/create-post.dto";
 import { BlogPost } from "@/schemas/post.schema";
-import { PostCircularRelationship, PostDoesntExist, PostDoesntHaveComments, PostIdValidationError, PostRelationConflict, PostSlugValidationError } from "./post.errors";
+import {
+  PostCircularRelationship,
+  PostDoesNotExist,
+  PostDoesNotHaveComments,
+  PostIdValidationError,
+  PostInsufficientPermissionsError,
+  PostRelationConflict,
+  PostSlugValidationError,
+} from "./post.errors";
 import { CreateRelationshipDto } from "./dto/create-relationship.dto";
-import { createdBlogPost } from "./post.types";
+import { CreatedBlogPost } from "./types/post.types";
 import { CreateCommentDto } from "./dto/create-comment.dto";
 import { BlogPostComment } from "@/schemas/comment.schema";
+import { JwtAuthGuard } from "@/auth/jwt-auth.guard";
+import { BlogPostSanitizedResponse, ExpressRequestWithBlogPostUser } from "./interfaces/post.interface";
+import { GetRelatedPostsDto } from "./dto/get-related-posts.dto";
 
+@ApiBearerAuth()
 @ApiTags("Post Management")
 @Controller("/api/v1/posts")
 export class PostController {
@@ -69,18 +81,24 @@ export class PostController {
     description: "Indicates, the request was successful.",
   })
   @ApiResponse({
+    status: 401,
+    description: "Indicates that the user is not authorized.",
+  })
+  @ApiResponse({
     status: 409,
     description: "Indicates, the post already exists.",
   })
   @ApiResponse({ status: 500, description: "Indicates, the request failed." })
-  async create(@Body() createPostDto: CreatePostDto): Promise<createdBlogPost> {
+  @UseGuards(JwtAuthGuard)
+  async create(@Body() createPostDto: CreatePostDto, @Request() req: ExpressRequestWithBlogPostUser): Promise<CreatedBlogPost> {
     try {
-      const result = await this.postService.createBlogPost(createPostDto);
+      const blogPostUser = req.user;
+      const result = await this.postService.createBlogPost(createPostDto, blogPostUser._id);
       return result;
     } catch (error) {
       if (error instanceof PostRelationConflict) {
         throw new HttpException(error.message, HttpStatus.CONFLICT);
-      } else if (error instanceof PostDoesntExist) {
+      } else if (error instanceof PostDoesNotExist) {
         throw new HttpException(error.message, HttpStatus.NOT_FOUND);
       }
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -113,14 +131,14 @@ export class PostController {
   })
   @ApiResponse({
     status: 404,
-    description: "Indicates, that the are no posts.",
+    description: "Indicates, that there are no posts.",
   })
   @ApiResponse({
     status: 422,
     description: "Indicates, the query parameters are not valid",
   })
   @ApiResponse({ status: 500, description: "Indicates, the request failed." })
-  async getPosts(@Query("page") page?: number, @Query("limit") limit?: number, @Query("slug") slug?: string): Promise<BlogPost | BlogPost[]> {
+  async getPosts(@Query("page") page?: number, @Query("limit") limit?: number, @Query("slug") slug?: string): Promise<BlogPostSanitizedResponse | BlogPostSanitizedResponse[]> {
     try {
       if (page !== undefined && limit !== undefined) {
         const posts = await this.postService.getPostsByPagination(page, limit);
@@ -135,7 +153,7 @@ export class PostController {
     } catch (error) {
       if (error instanceof PostRelationConflict) {
         throw new HttpException(error.message, HttpStatus.CONFLICT);
-      } else if (error instanceof PostDoesntExist) {
+      } else if (error instanceof PostDoesNotExist) {
         throw new HttpException(error.message, HttpStatus.NOT_FOUND);
       } else if (error instanceof PostSlugValidationError) {
         throw new HttpException(error.message, HttpStatus.UNPROCESSABLE_ENTITY);
@@ -162,15 +180,15 @@ export class PostController {
   })
   @ApiResponse({
     status: 404,
-    description: "Indicates, the post doesnt exist.",
+    description: "Indicates, the post doesn't exist.",
   })
   @ApiResponse({ status: 500, description: "Indicates, the request failed." })
-  async getPostById(@Param("id") id: string): Promise<BlogPost> {
+  async getPostById(@Param("id") id: string): Promise<BlogPostSanitizedResponse> {
     try {
       const post = await this.postService.getPostById(id);
       return post;
     } catch (error) {
-      if (error instanceof PostDoesntExist) {
+      if (error instanceof PostDoesNotExist) {
         throw new HttpException(error.message, HttpStatus.NOT_FOUND);
       }
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -194,17 +212,25 @@ export class PostController {
     description: "Indicates, the request was successful.",
   })
   @ApiResponse({
+    status: 401,
+    description: "Indicates that the user is not authorized.",
+  })
+  @ApiResponse({
     status: 404,
-    description: "Indicates, the post doesnt exist.",
+    description: "Indicates, the post doesn't exist.",
   })
   @ApiResponse({ status: 500, description: "Indicates, the request failed." })
-  async deletePost(@Param("id") id: string): Promise<{ result: string }> {
+  @UseGuards(JwtAuthGuard)
+  async deletePost(@Param("id") id: string, @Request() req: ExpressRequestWithBlogPostUser): Promise<{ result: string }> {
     try {
-      await this.postService.deletePost(id);
+      const blogPostUser = req.user;
+      await this.postService.deletePost(id, blogPostUser._id);
       return { result: "success" };
     } catch (error) {
-      if (error instanceof PostDoesntExist) {
+      if (error instanceof PostDoesNotExist) {
         throw new HttpException(error.message, HttpStatus.NOT_FOUND);
+      } else if (error instanceof PostInsufficientPermissionsError) {
+        throw new HttpException(error.message, HttpStatus.UNAUTHORIZED);
       }
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
     }
@@ -228,19 +254,23 @@ export class PostController {
     description: "Indicates, the request was successful.",
   })
   @ApiResponse({
+    status: 400,
+    description: "Indicates, the provided post id was invalid",
+  })
+  @ApiResponse({
     status: 404,
-    description: "Indicates, the post doesnt exist.",
+    description: "Indicates, the post doesn't exist.",
   })
   @ApiResponse({
     status: 500,
     description: "Indicates, the request failed.",
   })
-  async getRelatedPosts(@Param("id") id: string): Promise<{ relatedPosts: BlogPost[] }> {
+  async getRelatedPosts(@Param() getRelatedPostsDto: GetRelatedPostsDto): Promise<{ relatedPosts: BlogPost[] }> {
     try {
-      const post = await this.postService.getRelatedPosts(id);
+      const post = await this.postService.getRelatedPosts(getRelatedPostsDto.id);
       return { relatedPosts: post.relatedPosts };
     } catch (error) {
-      if (error instanceof PostDoesntExist) {
+      if (error instanceof PostDoesNotExist) {
         throw new HttpException(error.message, HttpStatus.NOT_FOUND);
       }
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -276,8 +306,12 @@ export class PostController {
     description: "Indicates, the request failed.",
   })
   @ApiResponse({
+    status: 401,
+    description: "Indicates that the user is not authorized.",
+  })
+  @ApiResponse({
     status: 404,
-    description: "Indicates, the post doesnt exist.",
+    description: "Indicates, the post doesn't exist.",
   })
   @ApiResponse({
     status: 409,
@@ -291,14 +325,15 @@ export class PostController {
     status: 500,
     description: "Indicates, the request failed.",
   })
-  async createRelation(@Query() createRelationshipDto: CreateRelationshipDto): Promise<{ success: boolean; data: BlogPost } | Error> {
+  @UseGuards(JwtAuthGuard)
+  async createRelation(@Query() createRelationshipDto: CreateRelationshipDto): Promise<{ success: boolean; data: BlogPostSanitizedResponse } | Error> {
     try {
       const post = await this.postService.createRelation(createRelationshipDto.sourcePostId, createRelationshipDto.relationPostId);
       return { success: true, data: post };
     } catch (error) {
       if (error instanceof PostRelationConflict) {
         throw new HttpException(error.message, HttpStatus.CONFLICT);
-      } else if (error instanceof PostDoesntExist) {
+      } else if (error instanceof PostDoesNotExist) {
         throw new HttpException(error.message, HttpStatus.NOT_FOUND);
       } else if (error instanceof PostCircularRelationship) {
         throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
@@ -343,7 +378,7 @@ export class PostController {
       const result = await this.postService.getComments(postId);
       return result;
     } catch (error) {
-      if (error instanceof PostDoesntExist || PostDoesntHaveComments) {
+      if (error instanceof PostDoesNotExist || PostDoesNotHaveComments) {
         throw new HttpException(error.message, HttpStatus.NOT_FOUND);
       } else if (error instanceof PostIdValidationError) {
         throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
@@ -410,12 +445,12 @@ export class PostController {
     description: "Indicates the post was not found.",
   })
   @ApiResponse({ status: 500, description: "Indicates, the request failed." })
-  async addComment(@Param("id") postId: string, @Body() createCommentDto: CreateCommentDto): Promise<BlogPost> {
+  async addComment(@Param("id") postId: string, @Body() createCommentDto: CreateCommentDto): Promise<BlogPostSanitizedResponse> {
     try {
       const result = await this.postService.addComment(postId, createCommentDto);
       return result;
     } catch (error) {
-      if (error instanceof PostDoesntExist) {
+      if (error instanceof PostDoesNotExist) {
         throw new HttpException(error.message, HttpStatus.NOT_FOUND);
       } else if (error instanceof PostIdValidationError) {
         throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
@@ -454,21 +489,28 @@ export class PostController {
     description: "Invalid post or comment id",
   })
   @ApiResponse({
+    status: 401,
+    description: "Indicates that the user is not authorized.",
+  })
+  @ApiResponse({
     status: 404,
     description: "Post or comment not found",
   })
   @ApiResponse({ status: 500, description: "Indicates, the request failed." })
+  @UseGuards(JwtAuthGuard)
   async deleteComment(
     @Param("postId") postId: string,
     @Param("commentId") commentId: string,
+    @Request() req: ExpressRequestWithBlogPostUser,
   ): Promise<{
     success: boolean;
   }> {
     try {
-      const result = await this.postService.deleteComment(postId, commentId);
+      const blogPostUser = req.user;
+      const result = await this.postService.deleteComment(postId, commentId, blogPostUser._id);
       return result;
     } catch (error) {
-      if (error instanceof PostDoesntExist) {
+      if (error instanceof PostDoesNotExist) {
         throw new HttpException(error.message, HttpStatus.NOT_FOUND);
       } else if (error instanceof PostIdValidationError) {
         throw new HttpException(error.message, HttpStatus.BAD_REQUEST);

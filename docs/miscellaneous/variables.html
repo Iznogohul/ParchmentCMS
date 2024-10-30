@@ -13,7 +13,7 @@
     </head>
     <body>
           <script>
-               // Blocking script to avaoid flickering dark mode
+               // Blocking script to avoid flickering dark mode
                // Dark mode toggle button
                var useDark = window.matchMedia('(prefers-color-scheme: dark)');
                var darkModeState = useDark.matches;
@@ -62,9 +62,11 @@
                toggleDarkMode(darkModeState);
           </script>
 
-        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
-            <a href="../" class="navbar-brand">ParchmentCMS Documentation 📖</a>
-            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">ParchmentCMS Documentation 📖</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
@@ -73,7 +75,7 @@
 
         <div class="container-fluid main">
            <div class="row main">
-               <div class="hidden-xs menu">
+               <div class="d-none d-md-block menu">
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
@@ -116,10 +118,16 @@
                             <a href="#BlogPostSchema" title="src/schemas/post.schema.ts" ><b>BlogPostSchema</b>&nbsp;&nbsp;&nbsp;(src/.../post.schema.ts)</a>
                         </li>
                         <li>
+                            <a href="#BlogPostUserSchema" title="src/schemas/user.schema.ts" ><b>BlogPostUserSchema</b>&nbsp;&nbsp;&nbsp;(src/.../user.schema.ts)</a>
+                        </li>
+                        <li>
                             <a href="#CreatePostDtoStub" title="src/post/dto/create-comment.dto.stub.ts" ><b>CreatePostDtoStub</b>&nbsp;&nbsp;&nbsp;(src/.../create-comment.dto.stub.ts)</a>
                         </li>
                         <li>
                             <a href="#CreatePostDtoStub" title="src/post/dto/create-post.dto.stub.ts" ><b>CreatePostDtoStub</b>&nbsp;&nbsp;&nbsp;(src/.../create-post.dto.stub.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#UserSchema" title="src/schemas/user.schema.ts" ><b>UserSchema</b>&nbsp;&nbsp;&nbsp;(src/.../user.schema.ts)</a>
                         </li>
                     </ul>
                 </td>
@@ -167,6 +175,49 @@
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>SchemaFactory.createForClass(BlogPost)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/schemas/user.schema.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="BlogPostUserSchema"></a>
+                    <span class="name">
+                        <span ><b>BlogPostUserSchema</b></span>
+                        <a href="#BlogPostUserSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>SchemaFactory.createForClass(BlogPostUser)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="UserSchema"></a>
+                    <span class="name">
+                        <span ><b>UserSchema</b></span>
+                        <a href="#UserSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>SchemaFactory.createForClass(BlogPostUser)</code>
                     </td>
                 </tr>
 
@@ -284,7 +335,6 @@
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

@@ -8,7 +8,7 @@ To get started with this project, you can choose to either run the project nativ
 
 ### 🏠 Running natively
 
-To run the project natively, you will need to have Node.js v20.13.1 or higher and npm v10.5.2 or higher installed on your machine.
+To run the project natively, you will need to have Node.js v22.9.0 or higher and npm v10.8.3 or higher installed on your machine.
 
 1. 🍴 Clone this repository to your local machine.
 2. 💻 Run `npm install` to install the necessary dependencies.
@@ -28,6 +28,8 @@ To run the project with Docker, you will need to have Docker installed on your m
    MONGODB_URI="mongodb://mongodb/test"
    # The port on which the Blog CMS API will run
    PORT="3000"
+   # The seed string to be used for the JwtStrategy
+   JWT_SECRET="42"
    ```
 3. 🐳 Run `docker compose build` to build the containers.
 4. 🐳 Run `docker compose up` to start the containers.
@@ -53,15 +55,14 @@ Once the server is running, you can use the following endpoints to manage your b
 
 Here are some potential improvements that could be made to this project:
 
-- [ ] Implement authentication to secure the API.
+- [ ] Add support for updating post content
 - [ ] Add support for media uploads (images, videos, etc.).
-- [ ] Add support for user: Users can create accounts, log in, and manage their profile.
-- [ ] Have multiple users create their own posts: Each user can create their own posts and manage them.
+- [ ] Add support for more auth providers (Auth0,OAuth2 etc)
 - [ ] Create a frontend interface for post management.
 - [ ] Implement a more robust pagination solution that allows for custom sorting and filtering.
 - [ ] Add support for different languages and locales.
 - [ ] Write jest tests
-- [ ] Add a proccess manager
+- [ ] Add a process manager
 - [ ] Add Github Actions to publish image to Docker Hub, Github Registry etc.
 
 ## ✅ Completed Tasks
@@ -72,6 +73,9 @@ Here are the tasks that have already been completed in this project:
 - ✅ Rewrite the project in TypeScript for better type safety.
 - ✅ Refactor the project using the NestJs framework for better code organization and modularity.
 - ✅ Add support for comments in each post: Users and non-users can add comments to posts and engage in discussions.
+- ✅ Implement authentication to secure the API.
+- ✅ Add support for user: Users can create accounts, log in, and manage their profile.
+- ✅ Have multiple users create their own posts: Each user can create their own posts and manage them.
 
 ## 🤝 Contributing
 

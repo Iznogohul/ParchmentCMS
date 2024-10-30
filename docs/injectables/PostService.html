@@ -13,7 +13,7 @@
     </head>
     <body>
           <script>
-               // Blocking script to avaoid flickering dark mode
+               // Blocking script to avoid flickering dark mode
                // Dark mode toggle button
                var useDark = window.matchMedia('(prefers-color-scheme: dark)');
                var darkModeState = useDark.matches;
@@ -62,9 +62,11 @@
                toggleDarkMode(darkModeState);
           </script>
 
-        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
-            <a href="../" class="navbar-brand">ParchmentCMS Documentation 📖</a>
-            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">ParchmentCMS Documentation 📖</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
@@ -73,7 +75,7 @@
 
         <div class="container-fluid main">
            <div class="row main">
-               <div class="hidden-xs menu">
+               <div class="d-none d-md-block menu">
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
@@ -195,12 +197,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(BlogPostModel: <a href="../classes/BlogPost.html" target="_self">Model&lt;BlogPost&gt;</a>)</code>
+<code>constructor(blogPostModel: <a href="../classes/BlogPost.html" target="_self">Model&lt;BlogPost&gt;</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/post/post.service.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/post/post.service.ts:27</a></div>
                             </td>
                         </tr>
 
@@ -218,7 +220,7 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>BlogPostModel</td>
+                                                        <td>blogPostModel</td>
                                                   
                                                         <td>
                                                                         <code><a href="../classes/BlogPost.html" target="_self" >Model&lt;BlogPost&gt;</a></code>
@@ -265,8 +267,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="156"
-                                    class="link-to-prism">src/post/post.service.ts:156</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="200"
+                                    class="link-to-prism">src/post/post.service.ts:200</a></div>
                         </td>
                     </tr>
 
@@ -314,7 +316,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../classes/BlogPost.html" target="_self" >Promise&lt;BlogPost&gt;</a></code>
+                            <b>Returns : </b>        <code><a href="../interfaces/BlogPostSanitizedResponse.html" target="_self" >Promise&lt;BlogPostSanitizedResponse&gt;</a></code>
 
                         </div>
                             <div class="io-description">
@@ -339,15 +341,15 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>createBlogPost(createPostDto: <a href="../classes/CreatePostDto.html" target="_self">CreatePostDto</a>)</code>
+                    <code>createBlogPost(createPostDto: <a href="../classes/CreatePostDto.html" target="_self">CreatePostDto</a>, userId: mongoose.Types.ObjectId)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="26"
-                                    class="link-to-prism">src/post/post.service.ts:26</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="30"
+                                    class="link-to-prism">src/post/post.service.ts:30</a></div>
                         </td>
                     </tr>
 
@@ -379,11 +381,23 @@
 
 
                                         </tr>
+                                        <tr>
+                                                <td>userId</td>
+                                            <td>
+                                                        <code>mongoose.Types.ObjectId</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../classes/BlogPost.html" target="_self" >Promise&lt;createdBlogPost&gt;</a></code>
+                            <b>Returns : </b>        <code><a href="../classes/BlogPost.html" target="_self" >Promise&lt;CreatedBlogPost&gt;</a></code>
 
                         </div>
                             <div class="io-description">
@@ -415,8 +429,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="104"
-                                    class="link-to-prism">src/post/post.service.ts:104</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="148"
+                                    class="link-to-prism">src/post/post.service.ts:148</a></div>
                         </td>
                     </tr>
 
@@ -464,7 +478,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../classes/BlogPost.html" target="_self" >Promise&lt;BlogPost | null&gt;</a></code>
+                            <b>Returns : </b>        <code><a href="../interfaces/BlogPostSanitizedResponse.html" target="_self" >Promise&lt;BlogPostSanitizedResponse | undefined&gt;</a></code>
 
                         </div>
                             <div class="io-description">
@@ -489,15 +503,15 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>deleteComment(postId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, commentId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>deleteComment(postId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, commentId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: mongoose.Types.ObjectId)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="179"
-                                    class="link-to-prism">src/post/post.service.ts:179</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="226"
+                                    class="link-to-prism">src/post/post.service.ts:226</a></div>
                         </td>
                     </tr>
 
@@ -541,6 +555,18 @@
 
 
                                         </tr>
+                                        <tr>
+                                                <td>userId</td>
+                                            <td>
+                                                        <code>mongoose.Types.ObjectId</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -570,15 +596,15 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>deletePost(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>deletePost(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: mongoose.Types.ObjectId)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="83"
-                                    class="link-to-prism">src/post/post.service.ts:83</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="117"
+                                    class="link-to-prism">src/post/post.service.ts:117</a></div>
                         </td>
                     </tr>
 
@@ -602,6 +628,18 @@
                                                 <td>id</td>
                                             <td>
                                                             <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>userId</td>
+                                            <td>
+                                                        <code>mongoose.Types.ObjectId</code>
                                             </td>
 
                                             <td>
@@ -646,8 +684,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="43"
-                                    class="link-to-prism">src/post/post.service.ts:43</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="56"
+                                    class="link-to-prism">src/post/post.service.ts:56</a></div>
                         </td>
                     </tr>
 
@@ -656,7 +694,7 @@
                 <td class="col-md-4">
 
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../classes/BlogPost.html" target="_self" >Promise&lt;BlogPost[]&gt;</a></code>
+                            <b>Returns : </b>        <code><a href="../interfaces/BlogPostSanitizedResponse.html" target="_self" >Promise&lt;BlogPostSanitizedResponse[]&gt;</a></code>
 
                         </div>
                 </td>
@@ -685,8 +723,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="141"
-                                    class="link-to-prism">src/post/post.service.ts:141</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="184"
+                                    class="link-to-prism">src/post/post.service.ts:184</a></div>
                         </td>
                     </tr>
 
@@ -754,8 +792,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="71"
-                                    class="link-to-prism">src/post/post.service.ts:71</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="101"
+                                    class="link-to-prism">src/post/post.service.ts:101</a></div>
                         </td>
                     </tr>
 
@@ -791,7 +829,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../classes/BlogPost.html" target="_self" >Promise&lt;BlogPost | undefined&gt;</a></code>
+                            <b>Returns : </b>        <code><a href="../interfaces/BlogPostSanitizedResponse.html" target="_self" >Promise&lt;BlogPostSanitizedResponse&gt;</a></code>
 
                         </div>
                             <div class="io-description">
@@ -823,8 +861,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="51"
-                                    class="link-to-prism">src/post/post.service.ts:51</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="64"
+                                    class="link-to-prism">src/post/post.service.ts:64</a></div>
                         </td>
                     </tr>
 
@@ -860,7 +898,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../classes/BlogPost.html" target="_self" >Promise&lt;BlogPost&gt;</a></code>
+                            <b>Returns : </b>        <code><a href="../interfaces/BlogPostSanitizedResponse.html" target="_self" >Promise&lt;BlogPostSanitizedResponse&gt;</a></code>
 
                         </div>
                             <div class="io-description">
@@ -892,8 +930,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="66"
-                                    class="link-to-prism">src/post/post.service.ts:66</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="82"
+                                    class="link-to-prism">src/post/post.service.ts:82</a></div>
                         </td>
                     </tr>
 
@@ -941,7 +979,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../classes/BlogPost.html" target="_self" >Promise&lt;BlogPost[]&gt;</a></code>
+                            <b>Returns : </b>        <code><a href="../interfaces/BlogPostSanitizedResponse.html" target="_self" >Promise&lt;BlogPostSanitizedResponse[]&gt;</a></code>
 
                         </div>
                             <div class="io-description">
@@ -973,8 +1011,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="95"
-                                    class="link-to-prism">src/post/post.service.ts:95</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="137"
+                                    class="link-to-prism">src/post/post.service.ts:137</a></div>
                         </td>
                     </tr>
 
@@ -1036,30 +1074,43 @@ import { BlogPost, BlogPostDocument } from &quot;@/schemas/post.schema&quot;;
 import { BlogPostComment } from &quot;@/schemas/comment.schema&quot;;
 import {
   PostRelationConflict,
-  PostDoesntExist,
+  PostDoesNotExist,
   PostError,
   PostCircularRelationship,
   PostSlugValidationError,
   PostIdValidationError,
-  CommentDoesntExist,
-  PostDoesntHaveComments,
+  CommentDoesNotExist,
+  PostDoesNotHaveComments,
+  PostInsufficientPermissionsError,
+  CommentInsufficientPermissionsError,
 } from &quot;./post.errors&quot;;
-import { createdBlogPost } from &quot;./post.types&quot;;
+import { CreatedBlogPost } from &quot;./types/post.types&quot;;
 import { CreateCommentDto } from &quot;./dto/create-comment.dto&quot;;
+import { BlogPostSanitizedResponse } from &quot;./interfaces/post.interface&quot;;
+import { sanitizeBlogPost, sanitizeBlogPosts } from &quot;./utils/post.utils&quot;;
 
 @Injectable()
 export class PostService {
-  constructor(@InjectModel(BlogPost.name) private BlogPostModel: Model&lt;BlogPost&gt;) {}
+  constructor(@InjectModel(BlogPost.name) private blogPostModel: Model&lt;BlogPost&gt;) {}
 
-  async createBlogPost(@Body() createPostDto: CreatePostDto): Promise&lt;createdBlogPost&gt; {
+  async createBlogPost(@Body() createPostDto: CreatePostDto, userId: mongoose.Types.ObjectId): Promise&lt;CreatedBlogPost&gt; {
     const post &#x3D; plainToClass(BlogPost, createPostDto);
-    const existingPost &#x3D; await this.BlogPostModel.findOne({
+    const existingPost &#x3D; await this.blogPostModel.findOne({
       title: post.title,
     });
     if (existingPost) {
       throw new PostRelationConflict(&#x60;Post with title \&quot;${post.title}\&quot; already exists.&#x60;);
     }
-    const savedPost &#x3D; await new this.BlogPostModel(post).save();
+
+    const objectIdUserId &#x3D; new mongoose.Types.ObjectId(userId);
+
+    const newPost &#x3D; new this.blogPostModel({
+      ...post,
+      createdBy: objectIdUserId,
+    });
+
+    const savedPost &#x3D; await newPost.save();
+
     return {
       result: &quot;success&quot;,
       title: savedPost.title,
@@ -1068,68 +1119,99 @@ export class PostService {
     };
   }
 
-  async getAllPosts(): Promise&lt;BlogPost[]&gt; {
-    const posts &#x3D; await this.BlogPostModel.find().select(&quot;-__v&quot;).exec();
-    if (posts.length &gt; 0) {
-      return posts;
+  async getAllPosts(): Promise&lt;BlogPostSanitizedResponse[]&gt; {
+    const posts &#x3D; await this.blogPostModel.find().select(&quot;-__v&quot;).exec();
+    if (posts.length &lt;&#x3D; 0) {
+      throw new PostDoesNotExist(&quot;Posts are empty!&quot;);
     }
-    throw new PostDoesntExist(&quot;Posts are empty!&quot;);
+    return sanitizeBlogPosts(posts.map(post &#x3D;&gt; post.toObject()));
   }
 
-  async getPostBySlug(slug: string): Promise&lt;BlogPost&gt; {
+  async getPostBySlug(slug: string): Promise&lt;BlogPostSanitizedResponse&gt; {
     const isSlugValid &#x3D; /^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$/.test(slug);
     if (isSlugValid &#x3D;&#x3D;&#x3D; true) {
-      const post &#x3D; await this.BlogPostModel.findOne({ slug: { $eq: slug } })
+      const post &#x3D; await this.blogPostModel
+        .findOne({ slug: { $eq: slug } })
+        .populate({ path: &quot;createdBy&quot;, select: &quot;username -_id&quot; })
+        .populate({ path: &quot;updatedBy&quot;, select: &quot;username -_id&quot; })
         .select(&quot;-__v -_id&quot;)
         .exec();
-      if (post) {
-        return post;
+      if (!post) {
+        throw new PostDoesNotExist(&#x60;Post with slug \&quot;${slug}\&quot; doesn&#x27;t exist.&#x60;);
       }
-      throw new PostDoesntExist(&#x60;Post with slug \&quot;${slug}\&quot; doesn&#x27;t exist.&#x60;);
+      return sanitizeBlogPost(post.toObject());
     } else {
       throw new PostSlugValidationError(&quot;Provided slug is not valid&quot;);
     }
   }
 
-  async getPostsByPagination(page: number, limit: number): Promise&lt;BlogPost[]&gt; {
+  async getPostsByPagination(page: number, limit: number): Promise&lt;BlogPostSanitizedResponse[]&gt; {
     const skip &#x3D; page * limit;
-    return this.BlogPostModel.find().skip(skip).limit(limit).sort(&quot;-createdAt&quot;).select(&quot;-__v -_id&quot;).exec();
-  }
-
-  async getPostById(id: string): Promise&lt;BlogPost | undefined&gt; {
-    try {
-      const post &#x3D; await this.BlogPostModel.findOne({ _id: id }).select(&quot;-__v -_id&quot;);
-      if (post) {
-        return post;
-      }
-      throw new PostDoesntExist(&#x60;Post with id \&quot;${id}\&quot; doesn&#x27;t exist.&#x60;);
-    } catch (error) {
-      throw new PostDoesntExist(&#x60;Post with id \&quot;${id}\&quot; doesn&#x27;t exist.&#x60;);
+    const postCount &#x3D; await this.blogPostModel.countDocuments();
+    if (postCount &#x3D;&#x3D;&#x3D; 0) {
+      throw new PostDoesNotExist(&quot;Posts are empty!&quot;);
     }
+
+    const posts &#x3D; await this.blogPostModel
+      .find()
+      .skip(skip)
+      .limit(limit)
+      .sort(&quot;-createdAt&quot;)
+      .populate({ path: &quot;createdBy&quot;, select: &quot;username -_id&quot; })
+      .populate({ path: &quot;updatedBy&quot;, select: &quot;username -_id&quot; })
+      .select(&quot;-__v&quot;)
+      .exec();
+    return sanitizeBlogPosts(posts.map(post &#x3D;&gt; post.toObject()));
   }
 
-  async deletePost(id: string): Promise&lt;number&gt; {
-    try {
-      const result &#x3D; await this.BlogPostModel.deleteOne({ _id: id }).exec();
-      if (result.deletedCount &#x3D;&#x3D;&#x3D; 0) {
-        throw new PostError(&#x60;Didnt delete post with \&quot;${id}\&quot; .&#x60;);
-      }
-      return result.deletedCount;
-    } catch (err) {
-      throw new PostDoesntExist(&#x60;Post with id \&quot;${id}\&quot; doesn&#x27;t exist.&#x60;);
+  async getPostById(id: string): Promise&lt;BlogPostSanitizedResponse&gt; {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      throw new PostIdValidationError(&quot;Provided id is not valid&quot;);
     }
-  }
+    const post &#x3D; await this.blogPostModel.findById(id, &quot;-__v -_id&quot;).exec();
 
-  async getRelatedPosts(id: string): Promise&lt;{ relatedPosts: BlogPost[] }&gt; {
-    try {
-      const post &#x3D; await this.BlogPostModel.findOne({ _id: id });
-      return { relatedPosts: post.relatedPosts };
-    } catch (error) {
-      throw new PostDoesntExist(&#x60;Post with id \&quot;${id}\&quot; doesn&#x27;t exist.&#x60;);
+    if (!post) {
+      throw new PostDoesNotExist(&#x60;Post with id &quot;${id}&quot; doesn&#x27;t exist.&#x60;);
     }
+
+    await post.populate({ path: &quot;createdBy&quot;, select: &quot;username -_id&quot; });
+    await post.populate({ path: &quot;updatedBy&quot;, select: &quot;username -_id&quot; });
+
+    return sanitizeBlogPost(post.toObject());
   }
 
-  async createRelation(sourcePostId: string, relationPostId: string): Promise&lt;BlogPost | null&gt; {
+  async deletePost(id: string, userId: mongoose.Types.ObjectId): Promise&lt;number&gt; {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      throw new PostIdValidationError(&quot;Provided id is not valid&quot;);
+    }
+    const post &#x3D; await this.blogPostModel.findOne({ _id: id }).select(&quot;-__v -_id&quot;);
+    if (!post) {
+      throw new PostDoesNotExist(&#x60;Post with id \&quot;${id}\&quot; doesn&#x27;t exist.&#x60;);
+    }
+
+    if (!post.createdBy._id.equals(userId)) {
+      throw new PostInsufficientPermissionsError(&#x60;You are not authorized to delete this post.&#x60;);
+    }
+
+    const result &#x3D; await this.blogPostModel.deleteOne({ _id: id }).exec();
+    if (result.deletedCount &#x3D;&#x3D;&#x3D; 0) {
+      throw new PostError(&#x60;Didn&#x27;t delete post with \&quot;${id}\&quot; .&#x60;);
+    }
+    return result.deletedCount;
+  }
+
+  async getRelatedPosts(id: string): Promise&lt;{ relatedPosts: BlogPostDocument[] }&gt; {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      throw new PostIdValidationError(&quot;Provided id is not valid&quot;);
+    }
+    const post &#x3D; await this.blogPostModel.findOne({ _id: id }).select(&quot;-__v -_id&quot;);
+    if (!post) {
+      throw new PostDoesNotExist(&#x60;Post with id \&quot;${id}\&quot; doesn&#x27;t exist.&#x60;);
+    }
+    return { relatedPosts: post.relatedPosts };
+  }
+
+  async createRelation(sourcePostId: string, relationPostId: string): Promise&lt;BlogPostSanitizedResponse | undefined&gt; {
     if (!mongoose.Types.ObjectId.isValid(sourcePostId)) {
       throw new PostIdValidationError(&quot;Provided sourcePostId is not valid&quot;);
     }
@@ -1140,30 +1222,29 @@ export class PostService {
       throw new PostCircularRelationship(&quot;Can&#x27;t make a relation using only one post&quot;);
     }
 
-    const sourcePost: BlogPostDocument &#x3D; await this.BlogPostModel.findOne({
+    const sourcePost: BlogPostDocument &#x3D; await this.blogPostModel.findOne({
       _id: sourcePostId,
     });
     if (!sourcePost) {
-      throw new PostDoesntExist(&quot;Post doesn&#x27;t exist cant create a relationship with other Post&quot;);
+      throw new PostDoesNotExist(&quot;Post doesn&#x27;t exist cant create a relationship with other Post&quot;);
     }
 
-    const relationPost: BlogPostDocument &#x3D; await this.BlogPostModel.findOne({
+    const relationPost: BlogPostDocument &#x3D; await this.blogPostModel.findOne({
       _id: relationPostId,
     });
     if (!relationPost) {
-      throw new PostDoesntExist(&quot;Relationship Post doesn&#x27;t exist cant create a relationship with Post.&quot;);
+      throw new PostDoesNotExist(&quot;Relationship Post doesn&#x27;t exist cant create a relationship with Post.&quot;);
     }
+    const relationExists &#x3D; sourcePost.relatedPosts.some(relatedPost &#x3D;&gt; relatedPost._id.equals(relationPost._id));
 
-    relationPost.relatedPosts &#x3D; undefined;
-
-    const index &#x3D; sourcePost.relatedPosts.findIndex(relation &#x3D;&gt; relation.slug &#x3D;&#x3D;&#x3D; relationPost.slug);
-
-    if (index &#x3D;&#x3D;&#x3D; -1) {
-      sourcePost.relatedPosts.push(relationPost);
-      const updatedPost &#x3D; await sourcePost.save();
-      return updatedPost;
+    if (relationExists) {
+      throw new PostRelationConflict(&quot;Relationship between posts already exists!&quot;);
     }
-    throw new PostRelationConflict(&quot;Relationship between posts already exists!&quot;);
+    sourcePost.relatedPosts.push(relationPost);
+    const updatedPost &#x3D; await sourcePost.save();
+    await sourcePost.populate({ path: &quot;createdBy&quot;, select: &quot;username -_id&quot; });
+    await sourcePost.populate({ path: &quot;updatedBy&quot;, select: &quot;username -_id&quot; });
+    return sanitizeBlogPost(updatedPost.toObject());
   }
 
   async getComments(postId: string): Promise&lt;BlogPostComment[]&gt; {
@@ -1171,24 +1252,25 @@ export class PostService {
       throw new PostIdValidationError(&quot;Provided postId is not valid&quot;);
     }
 
-    const post &#x3D; await this.BlogPostModel.findById(postId).select(&quot;comments&quot;);
+    const post &#x3D; await this.blogPostModel.findById(postId, &quot;comments&quot;);
+
     if (!post) {
-      throw new PostDoesntExist(&#x60;Post with id \&quot;${postId}\&quot; doesn&#x27;t exist.&#x60;);
+      throw new PostDoesNotExist(&#x60;Post with id &quot;${postId}&quot; doesn&#x27;t exist.&#x60;);
     }
-    if (post.comments.length &#x3D;&#x3D;&#x3D; 0) {
-      throw new PostDoesntHaveComments(&#x60;Post comments are empty!&#x60;);
+    if (!post.comments || post.comments.length &#x3D;&#x3D;&#x3D; 0) {
+      throw new PostDoesNotHaveComments(&#x60;Post comments are empty!&#x60;);
     }
     return post.comments;
   }
 
-  async addComment(postId: string, createCommentDto: CreateCommentDto): Promise&lt;BlogPost&gt; {
+  async addComment(postId: string, createCommentDto: CreateCommentDto): Promise&lt;BlogPostSanitizedResponse&gt; {
     if (!mongoose.Types.ObjectId.isValid(postId)) {
       throw new PostIdValidationError(&quot;Provided postId is not valid&quot;);
     }
 
-    const post &#x3D; await this.BlogPostModel.findById(postId);
+    const post &#x3D; await this.blogPostModel.findById(postId);
     if (!post) {
-      throw new PostDoesntExist(&#x60;Post with id \&quot;${postId}\&quot; doesn&#x27;t exist.&#x60;);
+      throw new PostDoesNotExist(&#x60;Post with id \&quot;${postId}\&quot; doesn&#x27;t exist.&#x60;);
     }
 
     const comment &#x3D; {
@@ -1201,23 +1283,30 @@ export class PostService {
     post.comments.push(comment);
     await post.save();
 
-    return post;
+    await post.populate({ path: &quot;createdBy&quot;, select: &quot;username -_id&quot; });
+    await post.populate({ path: &quot;updatedBy&quot;, select: &quot;username -_id&quot; });
+
+    return sanitizeBlogPost(post.toObject());
   }
 
-  async deleteComment(postId: string, commentId: string): Promise&lt;{ success: boolean }&gt; {
+  async deleteComment(postId: string, commentId: string, userId: mongoose.Types.ObjectId): Promise&lt;{ success: boolean }&gt; {
     if (!mongoose.Types.ObjectId.isValid(postId)) {
       throw new PostIdValidationError(&quot;Provided postId is not valid&quot;);
     }
 
-    const post &#x3D; await this.BlogPostModel.findById(postId);
+    const post &#x3D; await this.blogPostModel.findById(postId);
     if (!post) {
-      throw new PostDoesntExist(&#x60;Post with id \&quot;${postId}\&quot; doesn&#x27;t exist.&#x60;);
+      throw new PostDoesNotExist(&#x60;Post with id \&quot;${postId}\&quot; doesn&#x27;t exist.&#x60;);
     }
 
     const commentIndex &#x3D; post.comments.findIndex(comment &#x3D;&gt; comment._id.toString() &#x3D;&#x3D;&#x3D; commentId);
     if (commentIndex &#x3D;&#x3D;&#x3D; -1) {
-      throw new CommentDoesntExist(&#x60;Comment with id \&quot;${commentId}\&quot; doesn&#x27;t exist.&#x60;);
+      throw new CommentDoesNotExist(&#x60;Comment with id \&quot;${commentId}\&quot; doesn&#x27;t exist.&#x60;);
     }
+    if (post.createdBy._id.equals(userId)) {
+      throw new CommentInsufficientPermissionsError(&quot;You are not authorized to delete comments on this post.&quot;);
+    }
+
     post.comments.splice(commentIndex, 1);
     await post.save();
 
@@ -1295,7 +1384,6 @@ export class PostService {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

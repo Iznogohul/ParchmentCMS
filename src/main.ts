@@ -3,6 +3,7 @@ import { SwaggerModule, DocumentBuilder } from "@nestjs/swagger";
 import compression from "compression";
 
 import { AppModule } from "./app.module";
+import { ValidationPipe } from "@nestjs/common";
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule, { cors: true });
@@ -13,11 +14,18 @@ async function bootstrap(): Promise<void> {
     .setContact("Nikolaos Grigoropoulos", "https://www.github.com/Iznogohul", "nikos.gr.17@gmail.com")
     .addServer("/", "Access to Swagger API calls")
     .addServer("/proxy", "Access to Swagger API calls behind proxy")
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup("api-docs", app, document);
   app.use(compression());
 
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+      whitelist: true,
+    }),
+  );
   const port = process.env.PORT || "3000";
 
   if (port === "3000" && process.env.PORT === "") {

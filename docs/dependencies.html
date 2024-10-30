@@ -13,7 +13,7 @@
     </head>
     <body>
           <script>
-               // Blocking script to avaoid flickering dark mode
+               // Blocking script to avoid flickering dark mode
                // Dark mode toggle button
                var useDark = window.matchMedia('(prefers-color-scheme: dark)');
                var darkModeState = useDark.matches;
@@ -62,9 +62,11 @@
                toggleDarkMode(darkModeState);
           </script>
 
-        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
-            <a href="./" class="navbar-brand">ParchmentCMS Documentation 📖</a>
-            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="./" class="navbar-brand">ParchmentCMS Documentation 📖</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
@@ -73,7 +75,7 @@
 
         <div class="container-fluid main">
            <div class="row main">
-               <div class="hidden-xs menu">
+               <div class="d-none d-md-block menu">
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
@@ -99,23 +101,31 @@
     </ol>
     <ul class="dependencies-list">
         <li>
-            <b>@nestjs/axios</b> : ^3.0.2</li>
+            <b>@nestjs/axios</b> : ^3.1.1</li>
         <li>
-            <b>@nestjs/common</b> : ^10.3.8</li>
+            <b>@nestjs/common</b> : ^10.4.6</li>
         <li>
-            <b>@nestjs/config</b> : ^3.2.2</li>
+            <b>@nestjs/config</b> : ^3.3.0</li>
         <li>
-            <b>@nestjs/core</b> : ^10.3.8</li>
+            <b>@nestjs/core</b> : ^10.4.6</li>
         <li>
-            <b>@nestjs/mongoose</b> : ^10.0.6</li>
+            <b>@nestjs/jwt</b> : ^10.2.0</li>
         <li>
-            <b>@nestjs/platform-express</b> : ^10.3.8</li>
+            <b>@nestjs/mongoose</b> : ^10.1.0</li>
         <li>
-            <b>@nestjs/swagger</b> : ^7.3.1</li>
+            <b>@nestjs/passport</b> : ^10.0.3</li>
+        <li>
+            <b>@nestjs/platform-express</b> : ^10.4.6</li>
+        <li>
+            <b>@nestjs/swagger</b> : ^8.0.1</li>
         <li>
             <b>@nestjs/terminus</b> : ^10.2.3</li>
         <li>
-            <b>@swc/helpers</b> : ^0.5.11</li>
+            <b>@swc/helpers</b> : ^0.5.13</li>
+        <li>
+            <b>@typescript-eslint/eslint-plugin</b> : ^8.12.2</li>
+        <li>
+            <b>bcrypt</b> : ^5.1.1</li>
         <li>
             <b>class-transformer</b> : ^0.5.1</li>
         <li>
@@ -123,7 +133,9 @@
         <li>
             <b>compression</b> : ^1.7.4</li>
         <li>
-            <b>mongoose</b> : ^8.4.0</li>
+            <b>mongoose</b> : ^8.7.3</li>
+        <li>
+            <b>passport-jwt</b> : ^4.0.1</li>
         <li>
             <b>reflect-metadata</b> : ^0.2.2</li>
         <li>
@@ -190,7 +202,6 @@
        <script src="./js/libs/es6-shim.min.js"></script>
        <script src="./js/libs/EventDispatcher.js"></script>
        <script src="./js/libs/promise.min.js"></script>
-       <script src="./js/libs/zepto.min.js"></script>
 
        <script src="./js/compodoc.js"></script>
 
