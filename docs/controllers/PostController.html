@@ -10,6 +10,7 @@
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
         <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
     </head>
     <body>
           <script>
@@ -123,6 +124,13 @@
             </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Controller for managing blog posts.</p>
+
+            </p>
 
 
 
@@ -141,6 +149,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
@@ -220,6 +229,7 @@
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#getPostById" >getPostById</a>
                             </li>
@@ -275,6 +285,7 @@
                             <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Async</span>
                         <span ><b>addComment</b></span>
                         <a href="#addComment"><span class="icon ion-ios-link"></span></a>
@@ -292,20 +303,22 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;/:id/comments&#x27;)<br />@ApiOperation({summary: &#x27;Add comment to post&#x27;, description: &#x27;Add a comment to a blog post&#x27;})<br />@ApiBody({type: CreateCommentDto, description: &#x27;The input data to create a new comment&#x27;, required: true, schema: undefined, examples: undefined})<br />@ApiResponse({status: 201, description: &#x27;Indicates the comment was successfully added.&#x27;})<br />@ApiResponse({status: 404, description: &#x27;Indicates the post was not found.&#x27;})<br />@ApiResponse({status: 500, description: &#x27;Indicates, the request failed.&#x27;})<br /></code>
+                    <code>@Post(&#x27;/:id/comments&#x27;)<br />@ApiOperation({summary: &#x27;Add comment to post&#x27;, description: &#x27;Add a comment to a blog post&#x27;})<br />@ApiBody({type: CreateCommentDto, description: &#x27;The input data to create a new comment&#x27;, required: true, schema: undefined, examples: undefined})<br />@ApiResponse({status: 201, description: &#x27;Indicates the comment was successfully added.&#x27;})<br />@ApiResponse({status: 400, description: &#x27;Indicates that the provided post ID is not a valid MongoDB ObjectID.&#x27;})<br />@ApiResponse({status: 404, description: &#x27;Indicates the post was not found.&#x27;})<br />@ApiResponse({status: 500, description: &#x27;Indicates, the request failed.&#x27;})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="448"
-                                    class="link-to-prism">src/post/post.controller.ts:448</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="535"
+                                    class="link-to-prism">src/post/post.controller.ts:535</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Add a comment to a blog post.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -316,6 +329,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -330,6 +344,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>ID of the blog post to add the comment to.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>createCommentDto</td>
@@ -342,6 +362,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>DTO containing the comment data.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -351,7 +377,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>The updated blog post with the new comment.</p>
+
                             </div>
                 </td>
             </tr>
@@ -394,14 +421,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="93"
-                                    class="link-to-prism">src/post/post.controller.ts:93</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="107"
+                                    class="link-to-prism">src/post/post.controller.ts:107</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Create a new blog post.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -412,6 +441,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -426,6 +456,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>Data to create a new blog post.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>req</td>
@@ -438,16 +474,23 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The request object containing the authenticated user.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../classes/BlogPost.html" target="_self" >Promise&lt;CreatedBlogPost&gt;</a></code>
+                            <b>Returns : </b>        <code><a href="../interfaces/CreatedBlogPostResponse.html" target="_self" >Promise&lt;CreatedBlogPostResponse&gt;</a></code>
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>The created blog post.</p>
+
                             </div>
                 </td>
             </tr>
@@ -486,20 +529,22 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;/relation/&#x27;)<br />@ApiOperation({summary: &#x27;Set Post Relationship&#x27;, parameters: undefined, description: &#x27;Set Relationship between two posts&#x27;})<br />@ApiResponse({status: 201, description: &#x27;Indicates, the request was successful.&#x27;})<br />@ApiResponse({status: 400, description: &#x27;Indicates, the request failed.&#x27;})<br />@ApiResponse({status: 401, description: &#x27;Indicates that the user is not authorized.&#x27;})<br />@ApiResponse({status: 404, description: &#x27;Indicates, the post doesn&#x27;t exist.&#x27;})<br />@ApiResponse({status: 409, description: &#x27;Indicates, the relationship already exists.&#x27;})<br />@ApiResponse({status: 422, description: &#x27;Indicates, the query parameters are not valid&#x27;})<br />@ApiResponse({status: 500, description: &#x27;Indicates, the request failed.&#x27;})<br />@UseGuards(JwtAuthGuard)<br /></code>
+                    <code>@Post(&#x27;/relation/&#x27;)<br />@ApiOperation({summary: &#x27;Set Post Relationship&#x27;, parameters: undefined, description: &#x27;Set Relationship between two posts&#x27;})<br />@ApiResponse({status: 201, description: &#x27;Indicates, the request was successful.&#x27;})<br />@ApiResponse({status: 400, description: &#x27;Indicates that the provided post ID is not a valid MongoDB ObjectID.&#x27;})<br />@ApiResponse({status: 401, description: &#x27;Indicates that the user is not authorized.&#x27;})<br />@ApiResponse({status: 404, description: &#x27;Indicates, the post doesn&#x27;t exist.&#x27;})<br />@ApiResponse({status: 409, description: &#x27;Indicates, the relationship already exists.&#x27;})<br />@ApiResponse({status: 422, description: &#x27;Indicates, the query parameters are not valid&#x27;})<br />@ApiResponse({status: 500, description: &#x27;Indicates, the request failed.&#x27;})<br />@UseGuards(JwtAuthGuard)<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="329"
-                                    class="link-to-prism">src/post/post.controller.ts:329</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="395"
+                                    class="link-to-prism">src/post/post.controller.ts:395</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Establish a relationship between two posts.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -510,6 +555,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -524,6 +570,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>DTO containing the source and relation post IDs.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -533,7 +585,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>An object indicating success and the related post data.</p>
+
                             </div>
                 </td>
             </tr>
@@ -578,14 +631,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="501"
-                                    class="link-to-prism">src/post/post.controller.ts:501</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="598"
+                                    class="link-to-prism">src/post/post.controller.ts:598</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Remove a specific comment from a blog post by its ID.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -596,6 +651,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -610,6 +666,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>ID of the blog post from which to delete the comment.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>commentId</td>
@@ -622,6 +684,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>ID of the comment to be deleted.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>req</td>
@@ -634,6 +702,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The request object containing the authenticated user.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -643,7 +717,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>An object indicating whether the deletion was successful.</p>
+
                             </div>
                 </td>
             </tr>
@@ -686,14 +761,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="224"
-                                    class="link-to-prism">src/post/post.controller.ts:224</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="274"
+                                    class="link-to-prism">src/post/post.controller.ts:274</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Delete a blog post by its ID.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -704,6 +781,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -718,6 +796,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>ID of the post to delete.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>req</td>
@@ -730,6 +814,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The request object containing the authenticated user.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -739,7 +829,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>Resolves when the post is successfully deleted.</p>
+
                             </div>
                 </td>
             </tr>
@@ -781,14 +872,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="376"
-                                    class="link-to-prism">src/post/post.controller.ts:376</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="450"
+                                    class="link-to-prism">src/post/post.controller.ts:450</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Retrieve all comments associated with a specific blog post by its ID.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -799,6 +892,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -813,6 +907,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>ID of the blog post to retrieve comments for.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -822,7 +922,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>An array of comments associated with the blog post.</p>
+
                             </div>
                 </td>
             </tr>
@@ -834,6 +935,7 @@
                 <td class="col-md-4">
                     <a name="getPostById"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
@@ -857,20 +959,22 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/:id&#x27;)<br />@ApiOperation({summary: &#x27;Get post&#x27;, description: &#x27;Get a post based on the id&#x27;, operationId: &#x27;getPost&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, description: &#x27;The id of the post&#x27;, required: true, type: String})<br />@ApiResponse({status: 200, description: &#x27;Indicates, the request was successful.&#x27;})<br />@ApiResponse({status: 404, description: &#x27;Indicates, the post doesn&#x27;t exist.&#x27;})<br />@ApiResponse({status: 500, description: &#x27;Indicates, the request failed.&#x27;})<br /></code>
+                    <code>@Get(&#x27;/:id&#x27;)<br />@ApiOperation({summary: &#x27;Get post&#x27;, description: &#x27;Retrieve a post based on its ID.&#x27;, operationId: &#x27;getPost&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, description: &#x27;The ID of the post&#x27;, required: true, type: String})<br />@ApiResponse({status: 200, description: &#x27;Indicates that the request was successful, and the blog post is returned.&#x27;})<br />@ApiResponse({status: 400, description: &#x27;Indicates that the provided ID is not a valid MongoDB ObjectID.&#x27;})<br />@ApiResponse({status: 404, description: &#x27;Indicates that the post doesn&#x27;t exist.&#x27;})<br />@ApiResponse({status: 500, description: &#x27;Indicates that the request failed due to an internal server error.&#x27;})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="186"
-                                    class="link-to-prism">src/post/post.controller.ts:186</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="225"
+                                    class="link-to-prism">src/post/post.controller.ts:225</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Retrieve a blog post by its ID.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -881,6 +985,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -895,6 +1000,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>ID of the post to retrieve.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -904,7 +1015,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>The requested blog post.</p>
+
                             </div>
                 </td>
             </tr>
@@ -948,14 +1060,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="141"
-                                    class="link-to-prism">src/post/post.controller.ts:141</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="165"
+                                    class="link-to-prism">src/post/post.controller.ts:165</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Retrieve all blog posts or a specific post based on query parameters.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -966,6 +1080,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -980,6 +1095,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>Page number for pagination.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>limit</td>
@@ -992,6 +1113,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>Limit of posts per page.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>slug</td>
@@ -1004,6 +1131,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>Slug of the post to retrieve.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -1013,7 +1146,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>The requested posts.</p>
+
                             </div>
                 </td>
             </tr>
@@ -1054,14 +1188,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="268"
-                                    class="link-to-prism">src/post/post.controller.ts:268</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="326"
+                                    class="link-to-prism">src/post/post.controller.ts:326</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Retrieve related posts based on the provided source post ID.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -1072,6 +1208,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -1086,6 +1223,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>DTO containing the ID of the source post.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -1095,7 +1238,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>An object containing an array of related posts.</p>
+
                             </div>
                 </td>
             </tr>
@@ -1121,19 +1265,33 @@ import {
   PostSlugValidationError,
 } from &quot;./post.errors&quot;;
 import { CreateRelationshipDto } from &quot;./dto/create-relationship.dto&quot;;
-import { CreatedBlogPost } from &quot;./types/post.types&quot;;
 import { CreateCommentDto } from &quot;./dto/create-comment.dto&quot;;
 import { BlogPostComment } from &quot;@/schemas/comment.schema&quot;;
 import { JwtAuthGuard } from &quot;@/auth/jwt-auth.guard&quot;;
-import { BlogPostSanitizedResponse, ExpressRequestWithBlogPostUser } from &quot;./interfaces/post.interface&quot;;
+import { BlogPostSanitizedResponse, CreatedBlogPostResponse, ExpressRequestWithBlogPostUser } from &quot;./interfaces/post.interface&quot;;
 import { GetRelatedPostsDto } from &quot;./dto/get-related-posts.dto&quot;;
 
+/**
+ * Controller for managing blog posts.
+ * @class PostController
+ * @constructor
+ * @param {PostService} postService - The service that handles business logic related to posts.
+ */
 @ApiBearerAuth()
 @ApiTags(&quot;Post Management&quot;)
 @Controller(&quot;/api/v1/posts&quot;)
 export class PostController {
   constructor(private readonly postService: PostService) {}
 
+  /**
+   * Create a new blog post.
+   * @async
+   * @function create
+   * @param {CreatePostDto} createPostDto - Data to create a new blog post.
+   * @param {ExpressRequestWithBlogPostUser} req - The request object containing the authenticated user.
+   * @returns {Promise&lt;CreatedBlogPostResponse&gt;} The created blog post.
+   * @throws {HttpException} Throws an exception if post creation fails.
+   */
   @Post(&quot;&quot;)
   @ApiOperation({
     summary: &quot;Create post&quot;,
@@ -1197,7 +1355,7 @@ export class PostController {
   })
   @ApiResponse({ status: 500, description: &quot;Indicates, the request failed.&quot; })
   @UseGuards(JwtAuthGuard)
-  async create(@Body() createPostDto: CreatePostDto, @Request() req: ExpressRequestWithBlogPostUser): Promise&lt;CreatedBlogPost&gt; {
+  async create(@Body() createPostDto: CreatePostDto, @Request() req: ExpressRequestWithBlogPostUser): Promise&lt;CreatedBlogPostResponse&gt; {
     try {
       const blogPostUser &#x3D; req.user;
       const result &#x3D; await this.postService.createBlogPost(createPostDto, blogPostUser._id);
@@ -1212,6 +1370,16 @@ export class PostController {
     }
   }
 
+  /**
+   * Retrieve all blog posts or a specific post based on query parameters.
+   * @async
+   * @function getPosts
+   * @param {number} [page] - Page number for pagination.
+   * @param {number} [limit] - Limit of posts per page.
+   * @param {string} [slug] - Slug of the post to retrieve.
+   * @returns {Promise&lt;BlogPostSanitizedResponse | BlogPostSanitizedResponse[]&gt;} The requested posts.
+   * @throws {HttpException} Throws an exception if the retrieval fails.
+   */
   @Get(&quot;&quot;)
   @ApiOperation({
     summary: &quot;Get all posts&quot;,
@@ -1269,27 +1437,42 @@ export class PostController {
     }
   }
 
+  /**
+   * Retrieve a blog post by its ID.
+   * @async
+   * @function getPostById
+   * @param {string} id - ID of the post to retrieve.
+   * @returns {Promise&lt;BlogPostSanitizedResponse&gt;} The requested blog post.
+   * @throws {HttpException} Throws an exception if the post retrieval fails.
+   */
   @Get(&quot;/:id&quot;)
   @ApiOperation({
     summary: &quot;Get post&quot;,
-    description: &quot;Get a post based on the id&quot;,
+    description: &quot;Retrieve a post based on its ID.&quot;,
     operationId: &quot;getPost&quot;,
   })
   @ApiParam({
     name: &quot;id&quot;,
-    description: &quot;The id of the post&quot;,
+    description: &quot;The ID of the post&quot;,
     required: true,
     type: String,
   })
   @ApiResponse({
     status: 200,
-    description: &quot;Indicates, the request was successful.&quot;,
+    description: &quot;Indicates that the request was successful, and the blog post is returned.&quot;,
+  })
+  @ApiResponse({
+    status: 400,
+    description: &quot;Indicates that the provided ID is not a valid MongoDB ObjectID.&quot;,
   })
   @ApiResponse({
     status: 404,
-    description: &quot;Indicates, the post doesn&#x27;t exist.&quot;,
+    description: &quot;Indicates that the post doesn&#x27;t exist.&quot;,
   })
-  @ApiResponse({ status: 500, description: &quot;Indicates, the request failed.&quot; })
+  @ApiResponse({
+    status: 500,
+    description: &quot;Indicates that the request failed due to an internal server error.&quot;,
+  })
   async getPostById(@Param(&quot;id&quot;) id: string): Promise&lt;BlogPostSanitizedResponse&gt; {
     try {
       const post &#x3D; await this.postService.getPostById(id);
@@ -1297,11 +1480,22 @@ export class PostController {
     } catch (error) {
       if (error instanceof PostDoesNotExist) {
         throw new HttpException(error.message, HttpStatus.NOT_FOUND);
+      } else if (error instanceof PostIdValidationError) {
+        throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
       }
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 
+  /**
+   * Delete a blog post by its ID.
+   * @async
+   * @function deletePost
+   * @param {string} id - ID of the post to delete.
+   * @param {ExpressRequestWithBlogPostUser} req - The request object containing the authenticated user.
+   * @returns {Promise&lt;void&gt;} Resolves when the post is successfully deleted.
+   * @throws {HttpException} Throws an exception if the post deletion fails.
+   */
   @Delete(&quot;/:id&quot;)
   @ApiOperation({
     summary: &quot;Delete post&quot;,
@@ -1343,6 +1537,14 @@ export class PostController {
     }
   }
 
+  /**
+   * Retrieve related posts based on the provided source post ID.
+   * @async
+   * @function getRelatedPosts
+   * @param {GetRelatedPostsDto} getRelatedPostsDto - DTO containing the ID of the source post.
+   * @returns {Promise&lt;{ relatedPosts: BlogPost[] }&gt;} An object containing an array of related posts.
+   * @throws {HttpException} Throws an exception if the provided post ID is invalid or the post does not exist.
+   */
   @Get(&quot;/:id/relations&quot;)
   @ApiOperation({
     summary: &quot;Post Relationships&quot;,
@@ -1384,6 +1586,14 @@ export class PostController {
     }
   }
 
+  /**
+   * Establish a relationship between two posts.
+   * @async
+   * @function createRelation
+   * @param {CreateRelationshipDto} createRelationshipDto - DTO containing the source and relation post IDs.
+   * @returns {Promise&lt;{ success: boolean; data: BlogPostSanitizedResponse } | Error&gt;} An object indicating success and the related post data.
+   * @throws {HttpException} Throws an exception for various error conditions, including invalid IDs or existing relationships.
+   */
   @Post(&quot;/relation/&quot;)
   @ApiOperation({
     summary: &quot;Set Post Relationship&quot;,
@@ -1410,7 +1620,7 @@ export class PostController {
   })
   @ApiResponse({
     status: 400,
-    description: &quot;Indicates, the request failed.&quot;,
+    description: &quot;Indicates that the provided post ID is not a valid MongoDB ObjectID.&quot;,
   })
   @ApiResponse({
     status: 401,
@@ -1443,14 +1653,22 @@ export class PostController {
       } else if (error instanceof PostDoesNotExist) {
         throw new HttpException(error.message, HttpStatus.NOT_FOUND);
       } else if (error instanceof PostCircularRelationship) {
-        throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
-      } else if (error instanceof PostIdValidationError) {
         throw new HttpException(error.message, HttpStatus.UNPROCESSABLE_ENTITY);
+      } else if (error instanceof PostIdValidationError) {
+        throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
       }
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 
+  /**
+   * Retrieve all comments associated with a specific blog post by its ID.
+   * @async
+   * @function getComments
+   * @param {string} postId - ID of the blog post to retrieve comments for.
+   * @returns {Promise&lt;BlogPostComment[]&gt;} An array of comments associated with the blog post.
+   * @throws {HttpException} Throws an exception if the post ID is invalid or the post does not exist.
+   */
   @Get(&quot;/:id/comments&quot;)
   @ApiOperation({
     summary: &quot;Get comments for a post&quot;,
@@ -1494,6 +1712,15 @@ export class PostController {
     }
   }
 
+  /**
+   * Add a comment to a blog post.
+   * @async
+   * @function addComment
+   * @param {string} postId - ID of the blog post to add the comment to.
+   * @param {CreateCommentDto} createCommentDto - DTO containing the comment data.
+   * @returns {Promise&lt;BlogPostSanitizedResponse&gt;} The updated blog post with the new comment.
+   * @throws {HttpException} Throws an exception if the post does not exist or the input data is invalid.
+   */
   @Post(&quot;/:id/comments&quot;)
   @ApiOperation({
     summary: &quot;Add comment to post&quot;,
@@ -1548,6 +1775,10 @@ export class PostController {
     description: &quot;Indicates the comment was successfully added.&quot;,
   })
   @ApiResponse({
+    status: 400,
+    description: &quot;Indicates that the provided post ID is not a valid MongoDB ObjectID.&quot;,
+  })
+  @ApiResponse({
     status: 404,
     description: &quot;Indicates the post was not found.&quot;,
   })
@@ -1566,6 +1797,16 @@ export class PostController {
     }
   }
 
+  /**
+   * Remove a specific comment from a blog post by its ID.
+   * @async
+   * @function deleteComment
+   * @param {string} postId - ID of the blog post from which to delete the comment.
+   * @param {string} commentId - ID of the comment to be deleted.
+   * @param {ExpressRequestWithBlogPostUser} req - The request object containing the authenticated user.
+   * @returns {Promise&lt;{ success: boolean }&gt;} An object indicating whether the deletion was successful.
+   * @throws {HttpException} Throws an exception if the post or comment does not exist or if the user is not authorized.
+   */
   @Delete(&quot;/:postId/comments/:commentId&quot;)
   @ApiOperation({
     summary: &quot;Delete a comment from a post&quot;,

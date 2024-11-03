@@ -10,6 +10,7 @@
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
         <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
     </head>
     <body>
           <script>
@@ -123,6 +124,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>This DTO requires either a username or an email and a password to authenticate a user.</p>
+
+            </p>
 
 
 
@@ -213,10 +221,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/auth/dto/login-user.dto.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/auth/dto/login-user.dto.ts:62</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>This is an internal property for validation logic and should not be set directly by the user.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -252,10 +266,15 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/auth/dto/login-user.dto.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/auth/dto/login-user.dto.ts:37</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><b>Example :</b><div><pre class="line-numbers"><code class="language-html"></code></pre></div></div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -290,10 +309,15 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/auth/dto/login-user.dto.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/auth/dto/login-user.dto.ts:51</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><b>Example :</b><div><pre class="line-numbers"><code class="language-html"></code></pre></div></div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -329,10 +353,15 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/auth/dto/login-user.dto.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/auth/dto/login-user.dto.ts:23</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><b>Example :</b><div><pre class="line-numbers"><code class="language-html"></code></pre></div></div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -351,7 +380,19 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty } from &quot;@nestjs/swagger&quot;;
 import { IsNotEmpty, IsOptional, IsString } from &quot;class-validator&quot;;
 import { hasUsernameOrEmail } from &quot;../decorators/hasUsernameOrEmail.decorator&quot;;
+
+/**
+ * @class LoginUserDto
+ * @description Data transfer object for user login credentials.
+ * This DTO requires either a username or an email and a password to authenticate a user.
+ */
 export class LoginUserDto {
+  /**
+   * @property {string} [username]
+   * @description Username for the user account. Provide either username or email.
+   * @example &quot;john_doe&quot;
+   * @optional
+   */
   @ApiProperty({
     description: &quot;Username for the user account. Provide either username or email.&quot;,
     example: &quot;john_doe&quot;,
@@ -360,6 +401,12 @@ export class LoginUserDto {
   @IsOptional()
   username?: string;
 
+  /**
+   * @property {string} [email]
+   * @description Email for the user account. Provide either username or email.
+   * @example &quot;john_doe@example.com&quot;
+   * @optional
+   */
   @ApiProperty({
     description: &quot;Email for the user account. Provide either username or email.&quot;,
     example: &quot;john_doe@example.com&quot;,
@@ -368,6 +415,12 @@ export class LoginUserDto {
   @IsOptional()
   email?: string;
 
+  /**
+   * @property {string} password
+   * @description Password for the user account. This field is required for authentication.
+   * @example &quot;StrongP@ssw0rd!&quot;
+   * @required
+   */
   @ApiProperty({
     description: &quot;Password for the user account&quot;,
     example: &quot;StrongP@ssw0rd!&quot;,
@@ -376,6 +429,12 @@ export class LoginUserDto {
   @IsNotEmpty()
   password: string;
 
+  /**
+   * @property {string} [_hasUsernameOrEmail]
+   * @description Custom validation decorator to ensure either username or email must be provided.
+   * This is an internal property for validation logic and should not be set directly by the user.
+   * @optional
+   */
   @hasUsernameOrEmail({
     message: &quot;Either username or email must be provided.&quot;,
   })

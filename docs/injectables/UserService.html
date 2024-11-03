@@ -10,6 +10,7 @@
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
         <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
     </head>
     <body>
           <script>
@@ -119,6 +120,14 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>UserService is responsible for managing user-related operations,
+including registration, user information updates and more.</p>
+
+            </p>
 
 
 
@@ -189,12 +198,15 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/user/user.service.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/user/user.service.ts:17</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Creates an instance of the UserService.</p>
+<p>allowing interaction with the user data in the database.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -203,6 +215,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -217,6 +230,13 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <ul>
+<li>The Mongoose model for the BlogPostUser schema,
+allowing interaction with the user data in the database.</li>
+</ul>
+
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -255,14 +275,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="37"
-                                    class="link-to-prism">src/user/user.service.ts:37</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="62"
+                                    class="link-to-prism">src/user/user.service.ts:62</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Compares a plain text password with a hashed password.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -273,6 +295,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -287,6 +310,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The plain text password to compare.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>hashedPassword</td>
@@ -299,6 +328,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The hashed password to compare against.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -308,7 +343,10 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <ul>
+<li>A promise that resolves to a boolean indicating whether the passwords match.</li>
+</ul>
+
                             </div>
                 </td>
             </tr>
@@ -336,14 +374,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="49"
-                                    class="link-to-prism">src/user/user.service.ts:49</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="93"
+                                    class="link-to-prism">src/user/user.service.ts:93</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Finds a user by their ID.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -354,6 +394,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -368,6 +409,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The ID of the user to find.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -377,7 +424,10 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <ul>
+<li>A promise that resolves to the user document if found.</li>
+</ul>
+
                             </div>
                 </td>
             </tr>
@@ -405,14 +455,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="41"
-                                    class="link-to-prism">src/user/user.service.ts:41</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="72"
+                                    class="link-to-prism">src/user/user.service.ts:72</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Finds a user by their username.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -423,6 +475,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -437,6 +490,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The username of the user to find.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -446,7 +505,10 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <ul>
+<li>A promise that resolves to the user document if found.</li>
+</ul>
+
                             </div>
                 </td>
             </tr>
@@ -474,14 +536,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="45"
-                                    class="link-to-prism">src/user/user.service.ts:45</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="82"
+                                    class="link-to-prism">src/user/user.service.ts:82</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Finds a user by their username or email.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -492,6 +556,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -506,6 +571,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The username or email of the user to find.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -515,7 +586,10 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <ul>
+<li>A promise that resolves to the user document if found.</li>
+</ul>
+
                             </div>
                 </td>
             </tr>
@@ -544,14 +618,17 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="15"
-                                    class="link-to-prism">src/user/user.service.ts:15</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="34"
+                                    class="link-to-prism">src/user/user.service.ts:34</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Registers a new user in the system after validating that
+the username and email are not already in use.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -562,6 +639,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -576,6 +654,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The data transfer object containing user registration information.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -585,7 +669,10 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <ul>
+<li>A promise that resolves to the newly created user data, excluding the password.</li>
+</ul>
+
                             </div>
                 </td>
             </tr>
@@ -614,14 +701,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="69"
-                                    class="link-to-prism">src/user/user.service.ts:69</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="130"
+                                    class="link-to-prism">src/user/user.service.ts:130</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Updates the name of a user.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -632,6 +721,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -646,6 +736,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The ID of the user to update.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>updateUserDto</td>
@@ -658,6 +754,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The data transfer object containing the new user name.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -667,7 +769,10 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <ul>
+<li>A promise that resolves to the updated user data, excluding the password.</li>
+</ul>
+
                             </div>
                 </td>
             </tr>
@@ -695,14 +800,17 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="57"
-                                    class="link-to-prism">src/user/user.service.ts:57</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="110"
+                                    class="link-to-prism">src/user/user.service.ts:110</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Validates a user by their login credentials, checking if the user exists and
+if the password is correct.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -713,6 +821,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -727,6 +836,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The data transfer object containing the login credentials.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -736,7 +851,10 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <ul>
+<li>A promise that resolves to the user document if validation is successful.</li>
+</ul>
+
                             </div>
                 </td>
             </tr>
@@ -758,10 +876,29 @@ import { RegisterUserDto } from &quot;@/auth/dto/register-user.dto&quot;;
 import { UpdateUserDto } from &quot;../auth/dto/update-user.dto&quot;;
 import { LoginUserDto } from &quot;@/auth/dto/login-user.dto&quot;;
 
+/**
+ * @class UserService
+ * UserService is responsible for managing user-related operations,
+ * including registration, user information updates and more.
+ */
 @Injectable()
 export class UserService {
+  /**
+   * Creates an instance of the UserService.
+   *
+   * @param {Model&lt;BlogPostUser&gt;} userModel - The Mongoose model for the BlogPostUser schema,
+   * allowing interaction with the user data in the database.
+   */
   constructor(@InjectModel(BlogPostUser.name) private userModel: Model&lt;BlogPostUser&gt;) {}
 
+  /**
+   * Registers a new user in the system after validating that
+   * the username and email are not already in use.
+   *
+   * @param {RegisterUserDto} registerUserDto - The data transfer object containing user registration information.
+   * @returns {Promise&lt;Partial&lt;BlogPostUser&gt;&gt;} - A promise that resolves to the newly created user data, excluding the password.
+   * @throws {ConflictException} - If a user with the same username or email already exists.
+   */
   public async register(registerUserDto: RegisterUserDto): Promise&lt;Partial&lt;BlogPostUser&gt;&gt; {
     const { username, password, email, name } &#x3D; registerUserDto;
     const existingUser &#x3D; await this.userModel.findOne({ $or: [{ username }, { email }] }).exec();
@@ -779,23 +916,48 @@ export class UserService {
     });
     const savedUser &#x3D; await newUser.save();
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { password: _, ...userWithoutPassword } &#x3D; savedUser.toObject();
     return userWithoutPassword;
   }
 
+  /**
+   * Compares a plain text password with a hashed password.
+   *
+   * @param {string} password - The plain text password to compare.
+   * @param {string} hashedPassword - The hashed password to compare against.
+   * @returns {Promise&lt;boolean&gt;} - A promise that resolves to a boolean indicating whether the passwords match.
+   */
   public async comparePassword(password: string, hashedPassword: string): Promise&lt;boolean&gt; {
     return await bcrypt.compare(password, hashedPassword);
   }
 
+  /**
+   * Finds a user by their username.
+   *
+   * @param {string} username - The username of the user to find.
+   * @returns {Promise&lt;BlogPostUserDocument&gt;} - A promise that resolves to the user document if found.
+   */
   async findByUsername(username: string): Promise&lt;BlogPostUserDocument&gt; {
     return await this.userModel.findOne({ username }).exec();
   }
 
+  /**
+   * Finds a user by their username or email.
+   *
+   * @param {string} identifier - The username or email of the user to find.
+   * @returns {Promise&lt;BlogPostUserDocument&gt;} - A promise that resolves to the user document if found.
+   */
   async findByUsernameOrEmail(identifier: string): Promise&lt;BlogPostUserDocument&gt; {
     return await this.userModel.findOne({ $or: [{ username: identifier }, { email: identifier }] }).exec();
   }
 
+  /**
+   * Finds a user by their ID.
+   *
+   * @param {string} userId - The ID of the user to find.
+   * @returns {Promise&lt;BlogPostUserDocument&gt;} - A promise that resolves to the user document if found.
+   * @throws {NotFoundException} - If the user is not found.
+   */
   async findById(userId: string): Promise&lt;BlogPostUserDocument&gt; {
     const user &#x3D; await this.userModel.findById(userId).exec();
     if (!user) {
@@ -804,6 +966,15 @@ export class UserService {
     return user;
   }
 
+  /**
+   * Validates a user by their login credentials, checking if the user exists and
+   * if the password is correct.
+   *
+   * @param {LoginUserDto} loginUserDto - The data transfer object containing the login credentials.
+   * @returns {Promise&lt;BlogPostUserDocument&gt;} - A promise that resolves to the user document if validation is successful.
+   * @throws {NotFoundException} - If the user is not found.
+   * @throws {UnauthorizedException} - If the password is invalid.
+   */
   async validateUser(loginUserDto: LoginUserDto): Promise&lt;BlogPostUserDocument&gt; {
     const user &#x3D; await this.findByUsernameOrEmail(loginUserDto.email ?? loginUserDto.username);
     if (!user) {
@@ -816,6 +987,14 @@ export class UserService {
     return user;
   }
 
+  /**
+   * Updates the name of a user.
+   *
+   * @param {mongoose.Types.ObjectId} userId - The ID of the user to update.
+   * @param {UpdateUserDto} updateUserDto - The data transfer object containing the new user name.
+   * @returns {Promise&lt;Partial&lt;BlogPostUser&gt;&gt;} - A promise that resolves to the updated user data, excluding the password.
+   * @throws {NotFoundException} - If the user is not found.
+   */
   public async updateUserName(userId: mongoose.Types.ObjectId, updateUserDto: UpdateUserDto): Promise&lt;Partial&lt;BlogPostUser&gt;&gt; {
     const { name } &#x3D; updateUserDto;
 
@@ -824,10 +1003,9 @@ export class UserService {
       throw new NotFoundException(&quot;User not found&quot;);
     }
 
-    user.name &#x3D; name; // Update the user&#x27;s name
+    user.name &#x3D; name;
     const updatedUser &#x3D; await user.save();
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { password: _, ...userWithoutPassword } &#x3D; updatedUser.toObject();
     return userWithoutPassword;
   }

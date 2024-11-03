@@ -10,6 +10,7 @@
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
         <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
     </head>
     <body>
           <script>
@@ -119,6 +120,15 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Service for managing blog posts.</p>
+<p>The PostService class provides methods for creating, retrieving, updating,
+and deleting blog posts, as well as managing comments associated with the posts.</p>
+
+            </p>
 
 
 
@@ -202,12 +212,14 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/post/post.service.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/post/post.service.ts:33</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Constructs a new PostService.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -216,6 +228,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -230,6 +243,12 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <ul>
+<li>The Mongoose model for BlogPost.</li>
+</ul>
+
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -267,14 +286,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="200"
-                                    class="link-to-prism">src/post/post.service.ts:200</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="297"
+                                    class="link-to-prism">src/post/post.service.ts:297</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Adds a comment to a blog post.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -285,6 +306,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -299,6 +321,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The ID of the post to which the comment will be added.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>createCommentDto</td>
@@ -311,6 +339,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The data transfer object containing the comment details.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -320,7 +354,10 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <ul>
+<li>The updated blog post with the new comment.</li>
+</ul>
+
                             </div>
                 </td>
             </tr>
@@ -348,14 +385,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="30"
-                                    class="link-to-prism">src/post/post.service.ts:30</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="49"
+                                    class="link-to-prism">src/post/post.service.ts:49</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Creates a new blog post.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -366,6 +405,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -380,6 +420,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The data transfer object containing the post details.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>userId</td>
@@ -392,16 +438,25 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The ID of the user creating the post.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../classes/BlogPost.html" target="_self" >Promise&lt;CreatedBlogPost&gt;</a></code>
+                            <b>Returns : </b>        <code><a href="../interfaces/CreatedBlogPostResponse.html" target="_self" >Promise&lt;CreatedBlogPostResponse&gt;</a></code>
 
                         </div>
                             <div class="io-description">
-                                
+                                <ul>
+<li>The created blog post details.</li>
+</ul>
+
                             </div>
                 </td>
             </tr>
@@ -429,14 +484,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="148"
-                                    class="link-to-prism">src/post/post.service.ts:148</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="227"
+                                    class="link-to-prism">src/post/post.service.ts:227</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Creates a relation between two blog posts.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -447,6 +504,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -461,6 +519,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The ID of the source post.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>relationPostId</td>
@@ -473,6 +537,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The ID of the post to relate to.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -482,7 +552,10 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <ul>
+<li>The updated blog post with the new relation.</li>
+</ul>
+
                             </div>
                 </td>
             </tr>
@@ -510,14 +583,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="226"
-                                    class="link-to-prism">src/post/post.service.ts:226</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="335"
+                                    class="link-to-prism">src/post/post.service.ts:335</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Deletes a comment from a blog post.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -528,6 +603,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -542,6 +618,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The ID of the post from which the comment will be deleted.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>commentId</td>
@@ -554,6 +636,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The ID of the comment to delete.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>userId</td>
@@ -566,6 +654,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The ID of the user attempting to delete the comment.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -575,7 +669,10 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <ul>
+<li>An object indicating the success of the operation.</li>
+</ul>
+
                             </div>
                 </td>
             </tr>
@@ -603,14 +700,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="117"
-                                    class="link-to-prism">src/post/post.service.ts:117</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="177"
+                                    class="link-to-prism">src/post/post.service.ts:177</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Deletes a blog post by its ID.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -621,6 +720,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -635,6 +735,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The ID of the blog post to delete.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>userId</td>
@@ -647,6 +753,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The ID of the user attempting to delete the post.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -656,7 +768,10 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <ul>
+<li>The number of deleted posts (should be 1).</li>
+</ul>
+
                             </div>
                 </td>
             </tr>
@@ -684,19 +799,27 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="56"
-                                    class="link-to-prism">src/post/post.service.ts:56</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="81"
+                                    class="link-to-prism">src/post/post.service.ts:81</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Retrieves all blog posts.</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="../interfaces/BlogPostSanitizedResponse.html" target="_self" >Promise&lt;BlogPostSanitizedResponse[]&gt;</a></code>
 
                         </div>
+                            <div class="io-description">
+                                <ul>
+<li>A list of sanitized blog posts.</li>
+</ul>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -723,14 +846,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="184"
-                                    class="link-to-prism">src/post/post.service.ts:184</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="272"
+                                    class="link-to-prism">src/post/post.service.ts:272</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Retrieves comments for a specific blog post.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -741,6 +866,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -755,6 +881,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The ID of the post.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -764,7 +896,10 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <ul>
+<li>A list of comments associated with the post.</li>
+</ul>
+
                             </div>
                 </td>
             </tr>
@@ -792,14 +927,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="101"
-                                    class="link-to-prism">src/post/post.service.ts:101</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="150"
+                                    class="link-to-prism">src/post/post.service.ts:150</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Retrieves a blog post by its ID.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -810,6 +947,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -824,6 +962,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The ID of the blog post.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -833,7 +977,10 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <ul>
+<li>The sanitized blog post.</li>
+</ul>
+
                             </div>
                 </td>
             </tr>
@@ -861,14 +1008,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="64"
-                                    class="link-to-prism">src/post/post.service.ts:64</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="97"
+                                    class="link-to-prism">src/post/post.service.ts:97</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Retrieves a blog post by its slug.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -879,6 +1028,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -893,6 +1043,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The slug of the blog post.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -902,7 +1058,10 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <ul>
+<li>The sanitized blog post.</li>
+</ul>
+
                             </div>
                 </td>
             </tr>
@@ -930,14 +1089,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="82"
-                                    class="link-to-prism">src/post/post.service.ts:82</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="123"
+                                    class="link-to-prism">src/post/post.service.ts:123</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Retrieves posts with pagination.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -948,6 +1109,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -962,6 +1124,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The page number to retrieve.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>limit</td>
@@ -974,6 +1142,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The number of posts per page.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -983,7 +1157,10 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <ul>
+<li>A list of sanitized blog posts.</li>
+</ul>
+
                             </div>
                 </td>
             </tr>
@@ -1011,14 +1188,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="137"
-                                    class="link-to-prism">src/post/post.service.ts:137</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="205"
+                                    class="link-to-prism">src/post/post.service.ts:205</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Retrieves related posts for a given post ID.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -1029,6 +1208,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -1043,6 +1223,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The ID of the post for which to retrieve related posts.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -1052,7 +1238,10 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <ul>
+<li>An object containing related posts.</li>
+</ul>
+
                             </div>
                 </td>
             </tr>
@@ -1084,16 +1273,35 @@ import {
   PostInsufficientPermissionsError,
   CommentInsufficientPermissionsError,
 } from &quot;./post.errors&quot;;
-import { CreatedBlogPost } from &quot;./types/post.types&quot;;
 import { CreateCommentDto } from &quot;./dto/create-comment.dto&quot;;
-import { BlogPostSanitizedResponse } from &quot;./interfaces/post.interface&quot;;
+import { BlogPostSanitizedResponse, CreatedBlogPostResponse } from &quot;./interfaces/post.interface&quot;;
 import { sanitizeBlogPost, sanitizeBlogPosts } from &quot;./utils/post.utils&quot;;
 
+/**
+ * @class PostService
+ * Service for managing blog posts.
+ *
+ * The PostService class provides methods for creating, retrieving, updating,
+ * and deleting blog posts, as well as managing comments associated with the posts.
+ */
 @Injectable()
 export class PostService {
+  /**
+   * Constructs a new PostService.
+   *
+   * @param {Model&lt;BlogPost&gt;} blogPostModel - The Mongoose model for BlogPost.
+   */
   constructor(@InjectModel(BlogPost.name) private blogPostModel: Model&lt;BlogPost&gt;) {}
 
-  async createBlogPost(@Body() createPostDto: CreatePostDto, userId: mongoose.Types.ObjectId): Promise&lt;CreatedBlogPost&gt; {
+  /**
+   * Creates a new blog post.
+   *
+   * @param {CreatePostDto} createPostDto - The data transfer object containing the post details.
+   * @param {mongoose.Types.ObjectId} userId - The ID of the user creating the post.
+   * @returns {Promise&lt;CreatedBlogPostResponse&gt;} - The created blog post details.
+   * @throws {PostRelationConflict} - If a post with the same title already exists.
+   */
+  async createBlogPost(@Body() createPostDto: CreatePostDto, userId: mongoose.Types.ObjectId): Promise&lt;CreatedBlogPostResponse&gt; {
     const post &#x3D; plainToClass(BlogPost, createPostDto);
     const existingPost &#x3D; await this.blogPostModel.findOne({
       title: post.title,
@@ -1119,6 +1327,12 @@ export class PostService {
     };
   }
 
+  /**
+   * Retrieves all blog posts.
+   *
+   * @returns {Promise&lt;BlogPostSanitizedResponse[]&gt;} - A list of sanitized blog posts.
+   * @throws {PostDoesNotExist} - If no posts exist.
+   */
   async getAllPosts(): Promise&lt;BlogPostSanitizedResponse[]&gt; {
     const posts &#x3D; await this.blogPostModel.find().select(&quot;-__v&quot;).exec();
     if (posts.length &lt;&#x3D; 0) {
@@ -1127,6 +1341,14 @@ export class PostService {
     return sanitizeBlogPosts(posts.map(post &#x3D;&gt; post.toObject()));
   }
 
+  /**
+   * Retrieves a blog post by its slug.
+   *
+   * @param {string} slug - The slug of the blog post.
+   * @returns {Promise&lt;BlogPostSanitizedResponse&gt;} - The sanitized blog post.
+   * @throws {PostDoesNotExist} - If no post with the given slug exists.
+   * @throws {PostSlugValidationError} - If the provided slug is not valid.
+   */
   async getPostBySlug(slug: string): Promise&lt;BlogPostSanitizedResponse&gt; {
     const isSlugValid &#x3D; /^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$/.test(slug);
     if (isSlugValid &#x3D;&#x3D;&#x3D; true) {
@@ -1145,6 +1367,14 @@ export class PostService {
     }
   }
 
+  /**
+   * Retrieves posts with pagination.
+   *
+   * @param {number} page - The page number to retrieve.
+   * @param {number} limit - The number of posts per page.
+   * @returns {Promise&lt;BlogPostSanitizedResponse[]&gt;} - A list of sanitized blog posts.
+   * @throws {PostDoesNotExist} - If no posts exist.
+   */
   async getPostsByPagination(page: number, limit: number): Promise&lt;BlogPostSanitizedResponse[]&gt; {
     const skip &#x3D; page * limit;
     const postCount &#x3D; await this.blogPostModel.countDocuments();
@@ -1164,6 +1394,14 @@ export class PostService {
     return sanitizeBlogPosts(posts.map(post &#x3D;&gt; post.toObject()));
   }
 
+  /**
+   * Retrieves a blog post by its ID.
+   *
+   * @param {string} id - The ID of the blog post.
+   * @returns {Promise&lt;BlogPostSanitizedResponse&gt;} - The sanitized blog post.
+   * @throws {PostIdValidationError} - If the provided ID is not valid.
+   * @throws {PostDoesNotExist} - If no post with the given ID exists.
+   */
   async getPostById(id: string): Promise&lt;BlogPostSanitizedResponse&gt; {
     if (!mongoose.Types.ObjectId.isValid(id)) {
       throw new PostIdValidationError(&quot;Provided id is not valid&quot;);
@@ -1180,6 +1418,17 @@ export class PostService {
     return sanitizeBlogPost(post.toObject());
   }
 
+  /**
+   * Deletes a blog post by its ID.
+   *
+   * @param {string} id - The ID of the blog post to delete.
+   * @param {mongoose.Types.ObjectId} userId - The ID of the user attempting to delete the post.
+   * @returns {Promise&lt;number&gt;} - The number of deleted posts (should be 1).
+   * @throws {PostIdValidationError} - If the provided ID is not valid.
+   * @throws {PostDoesNotExist} - If no post with the given ID exists.
+   * @throws {PostInsufficientPermissionsError} - If the user does not have permission to delete the post.
+   * @throws {PostError} - If the deletion failed.
+   */
   async deletePost(id: string, userId: mongoose.Types.ObjectId): Promise&lt;number&gt; {
     if (!mongoose.Types.ObjectId.isValid(id)) {
       throw new PostIdValidationError(&quot;Provided id is not valid&quot;);
@@ -1200,6 +1449,14 @@ export class PostService {
     return result.deletedCount;
   }
 
+  /**
+   * Retrieves related posts for a given post ID.
+   *
+   * @param {string} id - The ID of the post for which to retrieve related posts.
+   * @returns {Promise&lt;{ relatedPosts: BlogPostDocument[] }&gt;} - An object containing related posts.
+   * @throws {PostIdValidationError} - If the provided ID is not valid.
+   * @throws {PostDoesNotExist} - If no post with the given ID exists.
+   */
   async getRelatedPosts(id: string): Promise&lt;{ relatedPosts: BlogPostDocument[] }&gt; {
     if (!mongoose.Types.ObjectId.isValid(id)) {
       throw new PostIdValidationError(&quot;Provided id is not valid&quot;);
@@ -1211,6 +1468,17 @@ export class PostService {
     return { relatedPosts: post.relatedPosts };
   }
 
+  /**
+   * Creates a relation between two blog posts.
+   *
+   * @param {string} sourcePostId - The ID of the source post.
+   * @param {string} relationPostId - The ID of the post to relate to.
+   * @returns {Promise&lt;BlogPostSanitizedResponse | undefined&gt;} - The updated blog post with the new relation.
+   * @throws {PostIdValidationError} - If either ID is not valid.
+   * @throws {PostCircularRelationship} - If trying to relate the same post.
+   * @throws {PostDoesNotExist} - If either post does not exist.
+   * @throws {PostRelationConflict} - If the relationship already exists.
+   */
   async createRelation(sourcePostId: string, relationPostId: string): Promise&lt;BlogPostSanitizedResponse | undefined&gt; {
     if (!mongoose.Types.ObjectId.isValid(sourcePostId)) {
       throw new PostIdValidationError(&quot;Provided sourcePostId is not valid&quot;);
@@ -1247,6 +1515,15 @@ export class PostService {
     return sanitizeBlogPost(updatedPost.toObject());
   }
 
+  /**
+   * Retrieves comments for a specific blog post.
+   *
+   * @param {string} postId - The ID of the post.
+   * @returns {Promise&lt;BlogPostComment[]&gt;} - A list of comments associated with the post.
+   * @throws {PostIdValidationError} - If the provided ID is not valid.
+   * @throws {PostDoesNotExist} - If no post with the given ID exists.
+   * @throws {PostDoesNotHaveComments} - If the post has no comments.
+   */
   async getComments(postId: string): Promise&lt;BlogPostComment[]&gt; {
     if (!mongoose.Types.ObjectId.isValid(postId)) {
       throw new PostIdValidationError(&quot;Provided postId is not valid&quot;);
@@ -1263,6 +1540,15 @@ export class PostService {
     return post.comments;
   }
 
+  /**
+   * Adds a comment to a blog post.
+   *
+   * @param {string} postId - The ID of the post to which the comment will be added.
+   * @param {CreateCommentDto} createCommentDto - The data transfer object containing the comment details.
+   * @returns {Promise&lt;BlogPostSanitizedResponse&gt;} - The updated blog post with the new comment.
+   * @throws {PostIdValidationError} - If the provided ID is not valid.
+   * @throws {PostDoesNotExist} - If no post with the given ID exists.
+   */
   async addComment(postId: string, createCommentDto: CreateCommentDto): Promise&lt;BlogPostSanitizedResponse&gt; {
     if (!mongoose.Types.ObjectId.isValid(postId)) {
       throw new PostIdValidationError(&quot;Provided postId is not valid&quot;);
@@ -1289,6 +1575,18 @@ export class PostService {
     return sanitizeBlogPost(post.toObject());
   }
 
+  /**
+   * Deletes a comment from a blog post.
+   *
+   * @param {string} postId - The ID of the post from which the comment will be deleted.
+   * @param {string} commentId - The ID of the comment to delete.
+   * @param {mongoose.Types.ObjectId} userId - The ID of the user attempting to delete the comment.
+   * @returns {Promise&lt;{ success: boolean }&gt;} - An object indicating the success of the operation.
+   * @throws {PostIdValidationError} - If the provided post ID is not valid.
+   * @throws {PostDoesNotExist} - If no post with the given ID exists.
+   * @throws {CommentDoesNotExist} - If no comment with the given ID exists.
+   * @throws {CommentInsufficientPermissionsError} - If the user does not have permission to delete the comment.
+   */
   async deleteComment(postId: string, commentId: string, userId: mongoose.Types.ObjectId): Promise&lt;{ success: boolean }&gt; {
     if (!mongoose.Types.ObjectId.isValid(postId)) {
       throw new PostIdValidationError(&quot;Provided postId is not valid&quot;);

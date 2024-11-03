@@ -10,6 +10,7 @@
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
         <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
     </head>
     <body>
           <script>
@@ -123,6 +124,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>This DTO is used to validate the information provided during user registration.</p>
+
+            </p>
 
 
 
@@ -218,10 +226,15 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/auth/dto/register-user.dto.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/auth/dto/register-user.dto.ts:56</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><b>Example :</b><div><pre class="line-numbers"><code class="language-html"></code></pre></div></div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -256,10 +269,15 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/auth/dto/register-user.dto.ts:40</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/auth/dto/register-user.dto.ts:70</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><b>Example :</b><div><pre class="line-numbers"><code class="language-html"></code></pre></div></div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -299,10 +317,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/auth/dto/register-user.dto.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/auth/dto/register-user.dto.ts:42</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>one lowercase letter, one number, and one special character. This field is required.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html"></code></pre></div></div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -337,10 +361,15 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/auth/dto/register-user.dto.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/auth/dto/register-user.dto.ts:22</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><b>Example :</b><div><pre class="line-numbers"><code class="language-html"></code></pre></div></div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -359,7 +388,18 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty } from &quot;@nestjs/swagger&quot;;
 import { IsEmail, IsNotEmpty, IsString, Length, Matches } from &quot;class-validator&quot;;
 
+/**
+ * @class RegisterUserDto
+ * @description Data transfer object for user registration credentials.
+ * This DTO is used to validate the information provided during user registration.
+ */
 export class RegisterUserDto {
+  /**
+   * @property {string} username
+   * @description Unique username for the user. This field is required and cannot be empty.
+   * @example &quot;john_doe&quot;
+   * @required
+   */
   @ApiProperty({
     description: &quot;Unique username for the user&quot;,
     example: &quot;john_doe&quot;,
@@ -368,6 +408,13 @@ export class RegisterUserDto {
   @IsNotEmpty()
   username: string;
 
+  /**
+   * @property {string} password
+   * @description Password for the user account. Must contain at least one uppercase letter,
+   * one lowercase letter, one number, and one special character. This field is required.
+   * @example &quot;StrongP@ssw0rd!&quot;
+   * @required
+   */
   @ApiProperty({
     description: &quot;Password for the user account, must contain at least one uppercase letter, one lowercase letter, one number, and one special character&quot;,
     example: &quot;StrongP@ssw0rd!&quot;,
@@ -381,6 +428,12 @@ export class RegisterUserDto {
   @Matches(/(?&#x3D;.*[!@#$%^&amp;*])/, { message: &quot;Password must contain at least one special character&quot; })
   password: string;
 
+  /**
+   * @property {string} email
+   * @description Email address of the user. This field is required and must be a valid email format.
+   * @example &quot;john_doe@example.com&quot;
+   * @required
+   */
   @ApiProperty({
     description: &quot;Email address of the user&quot;,
     example: &quot;john_doe@example.com&quot;,
@@ -389,6 +442,12 @@ export class RegisterUserDto {
   @IsNotEmpty()
   email: string;
 
+  /**
+   * @property {string} name
+   * @description The user&#x27;s real or display name. This field is required and cannot be empty.
+   * @example &quot;John Doe&quot;
+   * @required
+   */
   @ApiProperty({
     description: &quot;The user&#x27;s real or display name&quot;,
     example: &quot;John Doe&quot;,

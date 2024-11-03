@@ -10,6 +10,7 @@
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
         <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
     </head>
     <body>
           <script>
@@ -123,6 +124,15 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Represents a user in the blog post system.</p>
+<p>The BlogPostUser schema defines the structure of the user documents stored in MongoDB,
+including properties for username, password, email, and name.</p>
+
+            </p>
 
 
 
@@ -203,10 +213,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/schemas/user.schema.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/schemas/user.schema.ts:22</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The unique email address for the user.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -239,10 +255,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/schemas/user.schema.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/schemas/user.schema.ts:26</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The name of the user.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -275,10 +297,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/schemas/user.schema.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/schemas/user.schema.ts:18</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The hashed password for the user.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -311,10 +339,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/schemas/user.schema.ts:7</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/schemas/user.schema.ts:14</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The unique username for the user.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -333,24 +367,47 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Prop, Schema, SchemaFactory } from &quot;@nestjs/mongoose&quot;;
 import { HydratedDocument } from &quot;mongoose&quot;;
 
+/**
+ * Represents a user in the blog post system.
+ *
+ * The BlogPostUser schema defines the structure of the user documents stored in MongoDB,
+ * including properties for username, password, email, and name.
+ */
 @Schema()
 export class BlogPostUser {
+  /** The unique username for the user. */
   @Prop({ required: true, unique: true })
   username: string;
 
+  /** The hashed password for the user. */
   @Prop({ required: true })
   password: string;
 
+  /** The unique email address for the user. */
   @Prop({ required: true, unique: true })
   email: string;
 
+  /** The name of the user. */
   @Prop({ required: true })
   name: string;
 }
 
+/**
+ * The Mongoose schema for the BlogPostUser.
+ * This schema is used to create and manage user documents in the MongoDB database.
+ */
 export const UserSchema &#x3D; SchemaFactory.createForClass(BlogPostUser);
 
+/**
+ * The type representing a hydrated BlogPostUser document.
+ * This type is used to work with user documents retrieved from MongoDB.
+ */
 export type BlogPostUserDocument &#x3D; HydratedDocument&lt;BlogPostUser&gt;;
+
+/**
+ * The Mongoose schema definition for BlogPostUser.
+ * This can be used in module imports to register the user schema with Mongoose.
+ */
 export const BlogPostUserSchema &#x3D; SchemaFactory.createForClass(BlogPostUser);
 </code></pre>
     </div>

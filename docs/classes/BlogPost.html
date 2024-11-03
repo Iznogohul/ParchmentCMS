@@ -10,6 +10,7 @@
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
         <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
     </head>
     <body>
           <script>
@@ -123,6 +124,15 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Represents a blog post in the system.</p>
+<p>The BlogPost schema defines the structure of blog post documents stored in MongoDB,
+including properties for title, content, associated users, and comments.</p>
+
+            </p>
 
 
 
@@ -223,10 +233,17 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/schemas/post.schema.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/schemas/post.schema.ts:48</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>An array of comments associated with the blog post.
+Each comment is defined by the BlogPostComment schema.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -259,10 +276,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/schemas/post.schema.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/schemas/post.schema.ts:26</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The main content of the blog post.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -295,10 +318,17 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/schemas/post.schema.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/schemas/post.schema.ts:55</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The user who created the blog post, referenced by their ObjectId.
+This field is required.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -331,10 +361,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/schemas/post.schema.ts:20</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/schemas/post.schema.ts:30</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The date the blog post was created or updated. Defaults to the current date.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -367,10 +403,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/schemas/post.schema.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/schemas/post.schema.ts:22</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The path to the image associated with the blog post.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -403,10 +445,17 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/schemas/post.schema.ts:26</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/schemas/post.schema.ts:41</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>An array of related blog posts by their ObjectId references.
+This allows linking to other blog posts within the content.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -439,10 +488,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/schemas/post.schema.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/schemas/post.schema.ts:34</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The unique slug for the blog post, used for SEO-friendly URLs.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -475,10 +530,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/schemas/post.schema.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/schemas/post.schema.ts:18</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The title of the blog post.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -511,10 +572,17 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/schemas/post.schema.ts:35</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/schemas/post.schema.ts:62</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The user who last updated the blog post, referenced by their ObjectId.
+This field is optional.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -537,44 +605,90 @@ import slugify from &quot;slugify&quot;;
 import { BlogPostComment, BlogPostCommentSchema } from &quot;./comment.schema&quot;;
 import { BlogPostUser, BlogPostUserDocument } from &quot;./user.schema&quot;;
 
+/**
+ * Represents a blog post in the system.
+ *
+ * The BlogPost schema defines the structure of blog post documents stored in MongoDB,
+ * including properties for title, content, associated users, and comments.
+ */
 @Schema({ timestamps: true })
 export class BlogPost {
+  /** The title of the blog post. */
   @Prop({ required: true })
   title: string;
 
+  /** The path to the image associated with the blog post. */
   @Prop({ required: true })
   imagePath: string;
 
+  /** The main content of the blog post. */
   @Prop({ required: true })
   content: string;
 
+  /** The date the blog post was created or updated. Defaults to the current date. */
   @Prop({ required: true, default: () &#x3D;&gt; new Date() })
   date: Date;
 
+  /** The unique slug for the blog post, used for SEO-friendly URLs. */
   @Prop({ unique: true, index: true })
   slug: string;
 
+  /**
+   * An array of related blog posts by their ObjectId references.
+   * This allows linking to other blog posts within the content.
+   */
   @Prop({ type: [{ type: &quot;ObjectId&quot;, ref: &quot;BlogPost&quot; }] })
   relatedPosts: BlogPostDocument[];
 
+  /**
+   * An array of comments associated with the blog post.
+   * Each comment is defined by the BlogPostComment schema.
+   */
   @Prop({ type: [BlogPostCommentSchema], default: [] })
   comments: BlogPostComment[];
 
+  /**
+   * The user who created the blog post, referenced by their ObjectId.
+   * This field is required.
+   */
   @Prop({ type: &quot;ObjectId&quot;, ref: BlogPostUser.name, required: true })
   createdBy: BlogPostUserDocument;
 
+  /**
+   * The user who last updated the blog post, referenced by their ObjectId.
+   * This field is optional.
+   */
   @Prop({ type: &quot;ObjectId&quot;, ref: BlogPostUser.name })
   updatedBy: BlogPostUserDocument;
 }
 
+/**
+ * The Mongoose document type for BlogPost, representing a hydrated document.
+ * This type is used to work with blog post documents retrieved from MongoDB.
+ */
 export type BlogPostDocument &#x3D; HydratedDocument&lt;BlogPost&gt;;
 
+/**
+ * The Mongoose schema definition for BlogPost.
+ * This schema is used to create and manage blog post documents in the MongoDB database.
+ */
 export const BlogPostSchema &#x3D; SchemaFactory.createForClass(BlogPost);
 
+/**
+ * Generates a slug from the blog post title.
+ *
+ * @param {string} blogPostTitle - The title of the blog post to generate a slug from.
+ * @returns {string} - The generated slug, formatted to be SEO-friendly.
+ */
 function generateSlug(blogPostTitle: string): string {
   return slugify(blogPostTitle, { lower: true, strict: true });
 }
 
+/**
+ * Mongoose pre-save hook for the BlogPost schema.
+ * Automatically generates a slug from the title if not provided,
+ * and sets the updatedBy field to the creator when the post is new.
+ */
 BlogPostSchema.pre&lt;BlogPostDocument&gt;(&quot;save&quot;, function (next) {
   const blogPost &#x3D; this as BlogPostDocument;
 

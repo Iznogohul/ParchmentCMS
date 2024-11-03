@@ -10,6 +10,7 @@
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
         <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
     </head>
     <body>
           <script>
@@ -119,6 +120,14 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Strategy for authenticating users using JSON Web Tokens (JWT).
+This strategy extracts the JWT from the authorization header and validates it.</p>
+
+            </p>
 
             <p class="comment">
                 <h3>Extends</h3>
@@ -142,6 +151,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Public</span>
                                     <span class="modifier">Async</span>
                                 <a href="#validate" >validate</a>
                             </li>
@@ -168,12 +178,14 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/auth/jwt.strategy.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/auth/jwt.strategy.ts:15</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Creates an instance of JwtStrategy.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -182,6 +194,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -196,6 +209,12 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <ul>
+<li>Service for retrieving user information from the database.</li>
+</ul>
+
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -217,6 +236,7 @@
                 <td class="col-md-4">
                     <a name="validate"></a>
                     <span class="name">
+                            <span class="modifier">Public</span>
                             <span class="modifier">Async</span>
                         <span ><b>validate</b></span>
                         <a href="#validate"><span class="icon ion-ios-link"></span></a>
@@ -233,14 +253,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="16"
-                                    class="link-to-prism">src/auth/jwt.strategy.ts:16</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="38"
+                                    class="link-to-prism">src/auth/jwt.strategy.ts:38</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Validates the JWT payload and retrieves the associated user from the database.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -251,6 +273,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -265,6 +288,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The JWT payload containing the user&#39;s information.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -274,7 +303,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>A promise that resolves to the authenticated user object.</p>
+
                             </div>
                 </td>
             </tr>
@@ -288,12 +318,25 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BlogPostUser } from &quot;@/schemas/user.schema&quot;;
 import { UserService } from &quot;@/user/user.service&quot;;
-import { Injectable } from &quot;@nestjs/common&quot;;
+import { Injectable, UnauthorizedException } from &quot;@nestjs/common&quot;;
 import { PassportStrategy } from &quot;@nestjs/passport&quot;;
 import { ExtractJwt, Strategy } from &quot;passport-jwt&quot;;
 
+/**
+ * Strategy for authenticating users using JSON Web Tokens (JWT).
+ * This strategy extracts the JWT from the authorization header and validates it.
+ *
+ * @class JwtStrategy
+ * @extends PassportStrategy
+ */
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy, &quot;JWT Strategy&quot;) {
+  /**
+   * Creates an instance of JwtStrategy.
+   *
+   * @constructor
+   * @param {UserService} userService - Service for retrieving user information from the database.
+   */
   constructor(private readonly userService: UserService) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -301,8 +344,20 @@ export class JwtStrategy extends PassportStrategy(Strategy, &quot;JWT Strategy&q
       secretOrKey: process.env.JWT_SECRET,
     });
   }
-  async validate(payload: { sub: string; username: string }): Promise&lt;BlogPostUser&gt; {
+
+  /**
+   * Validates the JWT payload and retrieves the associated user from the database.
+   *
+   * @method validate
+   * @param {{ sub: string; username: string }} payload - The JWT payload containing the user&#x27;s information.
+   * @returns {Promise&lt;BlogPostUser&gt;} A promise that resolves to the authenticated user object.
+   * @throws {UnauthorizedException} When the user associated with the JWT is not found.
+   */
+  public async validate(payload: { sub: string; username: string }): Promise&lt;BlogPostUser&gt; {
     const user &#x3D; await this.userService.findByUsername(payload.username);
+    if (!user) {
+      throw new UnauthorizedException();
+    }
     return user;
   }
 }

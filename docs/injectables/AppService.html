@@ -10,6 +10,7 @@
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
         <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
     </head>
     <body>
           <script>
@@ -119,6 +120,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Service responsible for application configuration and environment management.</p>
+
+            </p>
 
 
 
@@ -127,84 +135,269 @@
     <table class="table table-sm table-bordered index-table">
         <tbody>
 
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Methods</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#getDevInstructions" >getDevInstructions</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
 
 
-
-
-        </tbody>
-    </table>
-</section>
-
-
-            <section data-compodoc="block-methods">
-    
-    <h3 id="methods">
-        Methods
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getDevInstructions"></a>
-                    <span class="name">
-                        <span ><b>getDevInstructions</b></span>
-                        <a href="#getDevInstructions"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>getDevInstructions()</code>
-                </td>
-            </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="5"
-                                    class="link-to-prism">src/app.service.ts:5</a></div>
+                            <h6><b>Accessors</b></h6>
                         </td>
                     </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                        </div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#port" >port</a>
+                                </li>
+                                <li>
+                                    <a href="#isDev" >isDev</a>
+                                </li>
+                                <li>
+                                    <a href="#devInstructions" >devInstructions</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
         </tbody>
     </table>
 </section>
 
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(configService: ConfigService)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app.service.ts:9</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Creates an instance of AppService.</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>configService</td>
+                                                  
+                                                        <td>
+                                                                    <code>ConfigService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <ul>
+<li>The configuration service for managing environment variables.</li>
+</ul>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+            <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="port"></a>
+                        <span class="name"><b>port</b><a href="#port"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>port()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app.service.ts:24</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Gets the port the application will run on.
+If not specified in the environment variables, defaults to &quot;3000&quot;.</p>
+</div>
+
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isDev"></a>
+                        <span class="name"><b>isDev</b><a href="#isDev"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>isDev()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app.service.ts:40</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Checks if the application is running in development mode.</p>
+</div>
+
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="devInstructions"></a>
+                        <span class="name"><b>devInstructions</b><a href="#devInstructions"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>devInstructions()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app.service.ts:52</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Provides instructions for using the API based on the environment.
+In development, it includes a link to the Swagger documentation.
+In production, it returns a unique welcome message.</p>
+<p>or a welcome message for production mode.</p>
+</div>
+
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+</section>
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@nestjs/common&quot;;
+import { ConfigService } from &quot;@nestjs/config&quot;;
 
+/**
+ * @class AppService
+ * Service responsible for application configuration and environment management.
+ */
 @Injectable()
 export class AppService {
-  getDevInstructions(): string {
-    return &#x60;&lt;div&gt;Welcome to Parchment CMS API.&lt;/div&gt;&lt;p&gt;To get started, please refer to the Swagger Documentation &lt;a href&#x3D;&quot;http://localhost:${process.env.PORT}/api-docs&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;&#x60;;
+  /**
+   * Creates an instance of AppService.
+   *
+   * @param {ConfigService} configService - The configuration service for managing environment variables.
+   */
+  constructor(private readonly configService: ConfigService) {}
+
+  /**
+   * Gets the port the application will run on.
+   * If not specified in the environment variables, defaults to &quot;3000&quot;.
+   *
+   * @returns {string} The port number as a string.
+   * @throws {Warning} Logs a warning if the default port is used without specification in environment variables.
+   */
+  get port(): string {
+    const port &#x3D; this.configService.get&lt;string&gt;(&quot;PORT&quot;);
+    const finalPort &#x3D; port || &quot;3000&quot;;
+
+    if (finalPort &#x3D;&#x3D;&#x3D; &quot;3000&quot; &amp;&amp; !port) {
+      console.warn(&#x60;No port specified in environment variables. Using default port ${finalPort}.&#x60;);
+    }
+
+    return finalPort;
+  }
+
+  /**
+   * Checks if the application is running in development mode.
+   *
+   * @returns {boolean} True if the NODE_ENV is set to &quot;development&quot;, false otherwise.
+   */
+  get isDev(): boolean {
+    return this.configService.get&lt;string&gt;(&quot;NODE_ENV&quot;) &#x3D;&#x3D;&#x3D; &quot;development&quot;;
+  }
+
+  /**
+   * Provides instructions for using the API based on the environment.
+   * In development, it includes a link to the Swagger documentation.
+   * In production, it returns a unique welcome message.
+   *
+   * @returns {string} A string containing instructions for developers in development mode,
+   * or a welcome message for production mode.
+   */
+  get devInstructions(): string {
+    if (this.isDev) {
+      return &#x60;&lt;div&gt;Welcome to Parchment CMS API.&lt;/div&gt;&lt;p&gt;To get started, please refer to the Swagger Documentation &lt;a href&#x3D;&quot;http://localhost:${this.port}/api-docs&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;&#x60;;
+    }
+    return &#x60;Welcome to the production version of Parchment CMS API. Enjoy the seamless experience!&#x60;;
   }
 }
 </code></pre>

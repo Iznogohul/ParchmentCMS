@@ -10,6 +10,7 @@
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
         <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
     </head>
     <body>
           <script>
@@ -119,6 +120,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Service for handling user authentication, including login and token generation.</p>
+
+            </p>
 
 
 
@@ -163,12 +171,14 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/auth/auth.service.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/auth/auth.service.ts:13</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Creates an instance of AuthService.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -177,6 +187,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -191,6 +202,12 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <ul>
+<li>Service for user-related operations.</li>
+</ul>
+
+                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>jwtService</td>
@@ -203,6 +220,12 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <ul>
+<li>Service for generating and verifying JWT tokens.</li>
+</ul>
+
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -241,14 +264,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="14"
-                                    class="link-to-prism">src/auth/auth.service.ts:14</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="33"
+                                    class="link-to-prism">src/auth/auth.service.ts:33</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Authenticates a user based on login credentials and generates a JWT access token.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -259,6 +284,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -273,6 +299,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>Data transfer object containing the user&#39;s login credentials (username and password).</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -282,7 +314,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>A promise that resolves to an object containing the generated JWT access token.</p>
+
                             </div>
                 </td>
             </tr>
@@ -300,13 +333,32 @@ import { JwtService } from &quot;@nestjs/jwt&quot;;
 import { UserService } from &quot;../user/user.service&quot;;
 import { LoginUserDto } from &quot;./dto/login-user.dto&quot;;
 
+/**
+ * Service for handling user authentication, including login and token generation.
+ *
+ * @class AuthService
+ */
 @Injectable()
 export class AuthService {
+  /**
+   * Creates an instance of AuthService.
+   *
+   * @param {UserService} userService - Service for user-related operations.
+   * @param {JwtService} jwtService - Service for generating and verifying JWT tokens.
+   */
   constructor(
     private userService: UserService,
     private jwtService: JwtService,
   ) {}
 
+  /**
+   * Authenticates a user based on login credentials and generates a JWT access token.
+   *
+   * @param {LoginUserDto} loginUserDto - Data transfer object containing the user&#x27;s login credentials (username and password).
+   * @returns {Promise&lt;{ accessToken: string }&gt;} A promise that resolves to an object containing the generated JWT access token.
+   * @throws {UnauthorizedException} When the credentials are invalid or the user cannot be validated.
+   * @method login
+   */
   public async login(loginUserDto: LoginUserDto): Promise&lt;{ accessToken: string }&gt; {
     const user &#x3D; await this.userService.validateUser(loginUserDto);
     const payload &#x3D; { username: user.username, sub: user._id };
