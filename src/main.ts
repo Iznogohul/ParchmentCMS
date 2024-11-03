@@ -4,20 +4,37 @@ import compression from "compression";
 
 import { AppModule } from "./app.module";
 import { ValidationPipe } from "@nestjs/common";
+import { NestExpressApplication } from "@nestjs/platform-express";
+import { AppService } from "./app.service";
 
+/**
+ * Initializes and bootstraps the NestJS application.
+ *
+ * This function creates the Nest application, sets up Swagger documentation
+ * if the environment is development, applies global middlewares, and starts
+ * the server on the specified port.
+ *
+ * @returns {Promise<void>} A promise that resolves when the application is bootstrapped.
+ */
 async function bootstrap(): Promise<void> {
-  const app = await NestFactory.create(AppModule, { cors: true });
-  const config = new DocumentBuilder()
-    .setTitle("Posts Creation")
-    .setDescription("OpenAPI specification for Posts")
-    .setVersion("1.0")
-    .setContact("Nikolaos Grigoropoulos", "https://www.github.com/Iznogohul", "nikos.gr.17@gmail.com")
-    .addServer("/", "Access to Swagger API calls")
-    .addServer("/proxy", "Access to Swagger API calls behind proxy")
-    .addBearerAuth()
-    .build();
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup("api-docs", app, document);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, { cors: true });
+
+  const appService = app.get(AppService);
+
+  if (appService.isDev) {
+    const config = new DocumentBuilder()
+      .setTitle("Posts Creation")
+      .setDescription("OpenAPI specification for Posts")
+      .setVersion("1.0")
+      .setContact("Nikolaos Grigoropoulos", "https://www.github.com/Iznogohul", "nikos.gr.17@gmail.com")
+      .addServer("/", "Access to Swagger API calls")
+      .addServer("/proxy", "Access to Swagger API calls behind proxy")
+      .addBearerAuth()
+      .build();
+    const document = SwaggerModule.createDocument(app, config);
+    SwaggerModule.setup("api-docs", app, document);
+  }
+
   app.use(compression());
 
   app.useGlobalPipes(
@@ -26,13 +43,10 @@ async function bootstrap(): Promise<void> {
       whitelist: true,
     }),
   );
-  const port = process.env.PORT || "3000";
 
-  if (port === "3000" && process.env.PORT === "") {
-    console.warn(`No port specified in environment variables. Using default port ${port}.`);
-  }
-  await app.listen(port);
+  await app.listen(appService.port);
 }
+
 bootstrap().catch(err => {
   console.error("Failed to bootstrap the CMS", err);
 });

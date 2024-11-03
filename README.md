@@ -1,6 +1,21 @@
-# 📝 Headless CMS
-
-This is a toy project for a headless CMS that allows you to create, delete, and partially manage posts for your blog, as well as create relations between posts. The headless CMS is built using NestJS and MongoDB.
+<div align="center">
+  <a href="https://iznogohul.github.io/ParchmentCMS/">
+    <picture>
+      <img src="public/parchmentcms-logo.webp" alt="ParchmentCMS Logo" width="128">
+    </picture>
+  </a>
+  <h1>Parchment CMS</h1>
+  <h3>A Headless Content Management System</h3>
+  <p style="max-width: 600px; margin: 20px auto; line-height: 1.5;">
+    <strong>This is a toy project</strong> for a headless CMS built with 
+    <strong>NestJS</strong> and <strong>MongoDB</strong>, enabling users to 
+    <em>create</em>, <em>delete</em>, and <em>partially manage</em> their posts, 
+    establish relationships between them, and engage in discussions through comments.
+  </p>
+  <p align="center">
+   <img src="docs/images/coverage-badge-documentation.svg" alt="Documentation Coverage Badge">
+  </p>
+</div>
 
 ## 🚀 Getting Started
 

@@ -10,6 +10,7 @@
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
         <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
     </head>
     <body>
           <script>
@@ -119,6 +120,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>This guard uses the Passport JWT strategy to authenticate requests.</p>
+
+            </p>
 
             <p class="comment">
                 <h3>Extends</h3>
@@ -139,6 +147,12 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@nestjs/common&quot;;
 import { AuthGuard } from &quot;@nestjs/passport&quot;;
 
+/**
+ * @class JwtAuthGuard
+ * @extends AuthGuard
+ * @description Guard for protecting routes using JWT authentication.
+ * This guard uses the Passport JWT strategy to authenticate requests.
+ */
 @Injectable()
 export class JwtAuthGuard extends AuthGuard(&quot;JWT Strategy&quot;) {}
 </code></pre>

@@ -10,6 +10,7 @@
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
         <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
     </head>
     <body>
           <script>
@@ -123,6 +124,17 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Data Transfer Object for creating a relationship between two blog posts.</p>
+<p>This class defines the structure and validation rules for the data needed
+to establish a relationship between a source post and a related post.
+It includes the unique identifiers for both posts, ensuring that the
+necessary validation checks are performed.</p>
+
+            </p>
 
 
 
@@ -195,16 +207,24 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsNotEmpty()<br />@IsString()<br />@ApiProperty()<br />
+                            @IsNotEmpty({message: &#x27;Related post ID must not be empty.&#x27;})<br />@IsString({message: &#x27;Related post ID must be a string.&#x27;})<br />@ApiProperty({description: &#x27;The ID of the related blog post.&#x27;, example: &#x27;60f72b2f9b1e8d001c8f4e81&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/post/dto/create-relationship.dto.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/post/dto/create-relationship.dto.ts:45</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The ID of the related blog post.</p>
+<p>This ID should correspond to an existing blog post that will be
+linked to the source post, establishing a relationship between the two.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html"></code></pre></div></div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -233,16 +253,24 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsNotEmpty()<br />@IsString()<br />@ApiProperty()<br />
+                            @IsNotEmpty({message: &#x27;Source post ID must not be empty.&#x27;})<br />@IsString({message: &#x27;Source post ID must be a string.&#x27;})<br />@ApiProperty({description: &#x27;The ID of the source blog post.&#x27;, example: &#x27;60f72b2f9b1e8d001c8f4e80&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/post/dto/create-relationship.dto.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/post/dto/create-relationship.dto.ts:28</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The ID of the source blog post.</p>
+<p>This ID should correspond to an existing blog post that serves
+as the reference for the relationship.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html"></code></pre></div></div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -261,15 +289,47 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { IsNotEmpty, IsString } from &quot;class-validator&quot;;
 import { ApiProperty } from &quot;@nestjs/swagger&quot;;
 
+/**
+ * Data Transfer Object for creating a relationship between two blog posts.
+ *
+ * This class defines the structure and validation rules for the data needed
+ * to establish a relationship between a source post and a related post.
+ * It includes the unique identifiers for both posts, ensuring that the
+ * necessary validation checks are performed.
+ */
 export class CreateRelationshipDto {
-  @IsNotEmpty()
-  @IsString()
-  @ApiProperty()
+  /**
+   * The ID of the source blog post.
+   *
+   * This ID should correspond to an existing blog post that serves
+   * as the reference for the relationship.
+   *
+   * @example &quot;60f72b2f9b1e8d001c8f4e80&quot;
+   * @remarks This property must not be empty and must be a valid string.
+   */
+  @IsNotEmpty({ message: &quot;Source post ID must not be empty.&quot; })
+  @IsString({ message: &quot;Source post ID must be a string.&quot; })
+  @ApiProperty({
+    description: &quot;The ID of the source blog post.&quot;,
+    example: &quot;60f72b2f9b1e8d001c8f4e80&quot;,
+  })
   sourcePostId: string;
 
-  @IsNotEmpty()
-  @IsString()
-  @ApiProperty()
+  /**
+   * The ID of the related blog post.
+   *
+   * This ID should correspond to an existing blog post that will be
+   * linked to the source post, establishing a relationship between the two.
+   *
+   * @example &quot;60f72b2f9b1e8d001c8f4e81&quot;
+   * @remarks This property must not be empty and must be a valid string.
+   */
+  @IsNotEmpty({ message: &quot;Related post ID must not be empty.&quot; })
+  @IsString({ message: &quot;Related post ID must be a string.&quot; })
+  @ApiProperty({
+    description: &quot;The ID of the related blog post.&quot;,
+    example: &quot;60f72b2f9b1e8d001c8f4e81&quot;,
+  })
   relationPostId: string;
 }
 </code></pre>

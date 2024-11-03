@@ -10,6 +10,7 @@
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
         <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
     </head>
     <body>
           <script>
@@ -123,6 +124,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>This DTO is used to validate the new details provided for a user&#39;s profile update.</p>
+
+            </p>
 
 
 
@@ -195,10 +203,15 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/auth/dto/update-user.dto.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/auth/dto/update-user.dto.ts:22</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><b>Example :</b><div><pre class="line-numbers"><code class="language-html"></code></pre></div></div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -217,7 +230,18 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { IsString, IsNotEmpty } from &quot;class-validator&quot;;
 import { ApiProperty } from &quot;@nestjs/swagger&quot;;
 
+/**
+ * @class UpdateUserDto
+ * @description Data transfer object for updating user information.
+ * This DTO is used to validate the new details provided for a user&#x27;s profile update.
+ */
 export class UpdateUserDto {
+  /**
+   * @property {string} name
+   * @description The new name of the user. This field is required and cannot be empty.
+   * @example &quot;John Doe&quot;
+   * @required
+   */
   @ApiProperty({
     description: &quot;The new name of the user&quot;,
     example: &quot;John Doe&quot;,

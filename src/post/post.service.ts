@@ -18,16 +18,35 @@ import {
   PostInsufficientPermissionsError,
   CommentInsufficientPermissionsError,
 } from "./post.errors";
-import { CreatedBlogPost } from "./types/post.types";
 import { CreateCommentDto } from "./dto/create-comment.dto";
-import { BlogPostSanitizedResponse } from "./interfaces/post.interface";
+import { BlogPostSanitizedResponse, CreatedBlogPostResponse } from "./interfaces/post.interface";
 import { sanitizeBlogPost, sanitizeBlogPosts } from "./utils/post.utils";
 
+/**
+ * @class PostService
+ * Service for managing blog posts.
+ *
+ * The PostService class provides methods for creating, retrieving, updating,
+ * and deleting blog posts, as well as managing comments associated with the posts.
+ */
 @Injectable()
 export class PostService {
+  /**
+   * Constructs a new PostService.
+   *
+   * @param {Model<BlogPost>} blogPostModel - The Mongoose model for BlogPost.
+   */
   constructor(@InjectModel(BlogPost.name) private blogPostModel: Model<BlogPost>) {}
 
-  async createBlogPost(@Body() createPostDto: CreatePostDto, userId: mongoose.Types.ObjectId): Promise<CreatedBlogPost> {
+  /**
+   * Creates a new blog post.
+   *
+   * @param {CreatePostDto} createPostDto - The data transfer object containing the post details.
+   * @param {mongoose.Types.ObjectId} userId - The ID of the user creating the post.
+   * @returns {Promise<CreatedBlogPostResponse>} - The created blog post details.
+   * @throws {PostRelationConflict} - If a post with the same title already exists.
+   */
+  async createBlogPost(@Body() createPostDto: CreatePostDto, userId: mongoose.Types.ObjectId): Promise<CreatedBlogPostResponse> {
     const post = plainToClass(BlogPost, createPostDto);
     const existingPost = await this.blogPostModel.findOne({
       title: post.title,
@@ -53,6 +72,12 @@ export class PostService {
     };
   }
 
+  /**
+   * Retrieves all blog posts.
+   *
+   * @returns {Promise<BlogPostSanitizedResponse[]>} - A list of sanitized blog posts.
+   * @throws {PostDoesNotExist} - If no posts exist.
+   */
   async getAllPosts(): Promise<BlogPostSanitizedResponse[]> {
     const posts = await this.blogPostModel.find().select("-__v").exec();
     if (posts.length <= 0) {
@@ -61,6 +86,14 @@ export class PostService {
     return sanitizeBlogPosts(posts.map(post => post.toObject()));
   }
 
+  /**
+   * Retrieves a blog post by its slug.
+   *
+   * @param {string} slug - The slug of the blog post.
+   * @returns {Promise<BlogPostSanitizedResponse>} - The sanitized blog post.
+   * @throws {PostDoesNotExist} - If no post with the given slug exists.
+   * @throws {PostSlugValidationError} - If the provided slug is not valid.
+   */
   async getPostBySlug(slug: string): Promise<BlogPostSanitizedResponse> {
     const isSlugValid = /^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$/.test(slug);
     if (isSlugValid === true) {
@@ -79,6 +112,14 @@ export class PostService {
     }
   }
 
+  /**
+   * Retrieves posts with pagination.
+   *
+   * @param {number} page - The page number to retrieve.
+   * @param {number} limit - The number of posts per page.
+   * @returns {Promise<BlogPostSanitizedResponse[]>} - A list of sanitized blog posts.
+   * @throws {PostDoesNotExist} - If no posts exist.
+   */
   async getPostsByPagination(page: number, limit: number): Promise<BlogPostSanitizedResponse[]> {
     const skip = page * limit;
     const postCount = await this.blogPostModel.countDocuments();
@@ -98,6 +139,14 @@ export class PostService {
     return sanitizeBlogPosts(posts.map(post => post.toObject()));
   }
 
+  /**
+   * Retrieves a blog post by its ID.
+   *
+   * @param {string} id - The ID of the blog post.
+   * @returns {Promise<BlogPostSanitizedResponse>} - The sanitized blog post.
+   * @throws {PostIdValidationError} - If the provided ID is not valid.
+   * @throws {PostDoesNotExist} - If no post with the given ID exists.
+   */
   async getPostById(id: string): Promise<BlogPostSanitizedResponse> {
     if (!mongoose.Types.ObjectId.isValid(id)) {
       throw new PostIdValidationError("Provided id is not valid");
@@ -114,6 +163,17 @@ export class PostService {
     return sanitizeBlogPost(post.toObject());
   }
 
+  /**
+   * Deletes a blog post by its ID.
+   *
+   * @param {string} id - The ID of the blog post to delete.
+   * @param {mongoose.Types.ObjectId} userId - The ID of the user attempting to delete the post.
+   * @returns {Promise<number>} - The number of deleted posts (should be 1).
+   * @throws {PostIdValidationError} - If the provided ID is not valid.
+   * @throws {PostDoesNotExist} - If no post with the given ID exists.
+   * @throws {PostInsufficientPermissionsError} - If the user does not have permission to delete the post.
+   * @throws {PostError} - If the deletion failed.
+   */
   async deletePost(id: string, userId: mongoose.Types.ObjectId): Promise<number> {
     if (!mongoose.Types.ObjectId.isValid(id)) {
       throw new PostIdValidationError("Provided id is not valid");
@@ -134,6 +194,14 @@ export class PostService {
     return result.deletedCount;
   }
 
+  /**
+   * Retrieves related posts for a given post ID.
+   *
+   * @param {string} id - The ID of the post for which to retrieve related posts.
+   * @returns {Promise<{ relatedPosts: BlogPostDocument[] }>} - An object containing related posts.
+   * @throws {PostIdValidationError} - If the provided ID is not valid.
+   * @throws {PostDoesNotExist} - If no post with the given ID exists.
+   */
   async getRelatedPosts(id: string): Promise<{ relatedPosts: BlogPostDocument[] }> {
     if (!mongoose.Types.ObjectId.isValid(id)) {
       throw new PostIdValidationError("Provided id is not valid");
@@ -145,6 +213,17 @@ export class PostService {
     return { relatedPosts: post.relatedPosts };
   }
 
+  /**
+   * Creates a relation between two blog posts.
+   *
+   * @param {string} sourcePostId - The ID of the source post.
+   * @param {string} relationPostId - The ID of the post to relate to.
+   * @returns {Promise<BlogPostSanitizedResponse | undefined>} - The updated blog post with the new relation.
+   * @throws {PostIdValidationError} - If either ID is not valid.
+   * @throws {PostCircularRelationship} - If trying to relate the same post.
+   * @throws {PostDoesNotExist} - If either post does not exist.
+   * @throws {PostRelationConflict} - If the relationship already exists.
+   */
   async createRelation(sourcePostId: string, relationPostId: string): Promise<BlogPostSanitizedResponse | undefined> {
     if (!mongoose.Types.ObjectId.isValid(sourcePostId)) {
       throw new PostIdValidationError("Provided sourcePostId is not valid");
@@ -181,6 +260,15 @@ export class PostService {
     return sanitizeBlogPost(updatedPost.toObject());
   }
 
+  /**
+   * Retrieves comments for a specific blog post.
+   *
+   * @param {string} postId - The ID of the post.
+   * @returns {Promise<BlogPostComment[]>} - A list of comments associated with the post.
+   * @throws {PostIdValidationError} - If the provided ID is not valid.
+   * @throws {PostDoesNotExist} - If no post with the given ID exists.
+   * @throws {PostDoesNotHaveComments} - If the post has no comments.
+   */
   async getComments(postId: string): Promise<BlogPostComment[]> {
     if (!mongoose.Types.ObjectId.isValid(postId)) {
       throw new PostIdValidationError("Provided postId is not valid");
@@ -197,6 +285,15 @@ export class PostService {
     return post.comments;
   }
 
+  /**
+   * Adds a comment to a blog post.
+   *
+   * @param {string} postId - The ID of the post to which the comment will be added.
+   * @param {CreateCommentDto} createCommentDto - The data transfer object containing the comment details.
+   * @returns {Promise<BlogPostSanitizedResponse>} - The updated blog post with the new comment.
+   * @throws {PostIdValidationError} - If the provided ID is not valid.
+   * @throws {PostDoesNotExist} - If no post with the given ID exists.
+   */
   async addComment(postId: string, createCommentDto: CreateCommentDto): Promise<BlogPostSanitizedResponse> {
     if (!mongoose.Types.ObjectId.isValid(postId)) {
       throw new PostIdValidationError("Provided postId is not valid");
@@ -223,6 +320,18 @@ export class PostService {
     return sanitizeBlogPost(post.toObject());
   }
 
+  /**
+   * Deletes a comment from a blog post.
+   *
+   * @param {string} postId - The ID of the post from which the comment will be deleted.
+   * @param {string} commentId - The ID of the comment to delete.
+   * @param {mongoose.Types.ObjectId} userId - The ID of the user attempting to delete the comment.
+   * @returns {Promise<{ success: boolean }>} - An object indicating the success of the operation.
+   * @throws {PostIdValidationError} - If the provided post ID is not valid.
+   * @throws {PostDoesNotExist} - If no post with the given ID exists.
+   * @throws {CommentDoesNotExist} - If no comment with the given ID exists.
+   * @throws {CommentInsufficientPermissionsError} - If the user does not have permission to delete the comment.
+   */
   async deleteComment(postId: string, commentId: string, userId: mongoose.Types.ObjectId): Promise<{ success: boolean }> {
     if (!mongoose.Types.ObjectId.isValid(postId)) {
       throw new PostIdValidationError("Provided postId is not valid");

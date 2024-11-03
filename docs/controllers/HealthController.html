@@ -10,6 +10,7 @@
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
         <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
     </head>
     <body>
           <script>
@@ -123,6 +124,13 @@
             </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Controller for health check endpoints.</p>
+
+            </p>
 
 
 
@@ -192,19 +200,25 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="27"
-                                    class="link-to-prism">src/health/health.controller.ts:27</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="47"
+                                    class="link-to-prism">src/health/health.controller.ts:47</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Performs health checks for various services including HTTP, MongoDB, memory, and disk.</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>    <code>Promise&lt;HealthCheckResult&gt;</code>
 
                         </div>
+                            <div class="io-description">
+                                <p>A promise that resolves to the health check result.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -226,9 +240,23 @@ import {
   HealthCheckResult,
 } from &quot;@nestjs/terminus&quot;;
 
+/**
+ * Controller for health check endpoints.
+ *
+ * @class HealthController
+ */
 @ApiTags(&quot;hEaLtH&quot;)
 @Controller(&quot;health&quot;)
 export class HealthController {
+  /**
+   * Creates an instance of HealthController.
+   *
+   * @param {HealthCheckService} health - Service for health checks.
+   * @param {HttpHealthIndicator} http - Indicator for HTTP health checks.
+   * @param {MongooseHealthIndicator} mongoDb - Indicator for MongoDB health checks.
+   * @param {MemoryHealthIndicator} memory - Indicator for memory health checks.
+   * @param {DiskHealthIndicator} disk - Indicator for disk health checks.
+   */
   constructor(
     private health: HealthCheckService,
     private http: HttpHealthIndicator,
@@ -237,6 +265,12 @@ export class HealthController {
     private disk: DiskHealthIndicator,
   ) {}
 
+  /**
+   * Performs health checks for various services including HTTP, MongoDB, memory, and disk.
+   *
+   * @returns {Promise&lt;HealthCheckResult&gt;} A promise that resolves to the health check result.
+   * @method check
+   */
   @Get()
   @HealthCheck()
   check(): Promise&lt;HealthCheckResult&gt; {

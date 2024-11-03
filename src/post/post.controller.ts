@@ -14,19 +14,33 @@ import {
   PostSlugValidationError,
 } from "./post.errors";
 import { CreateRelationshipDto } from "./dto/create-relationship.dto";
-import { CreatedBlogPost } from "./types/post.types";
 import { CreateCommentDto } from "./dto/create-comment.dto";
 import { BlogPostComment } from "@/schemas/comment.schema";
 import { JwtAuthGuard } from "@/auth/jwt-auth.guard";
-import { BlogPostSanitizedResponse, ExpressRequestWithBlogPostUser } from "./interfaces/post.interface";
+import { BlogPostSanitizedResponse, CreatedBlogPostResponse, ExpressRequestWithBlogPostUser } from "./interfaces/post.interface";
 import { GetRelatedPostsDto } from "./dto/get-related-posts.dto";
 
+/**
+ * Controller for managing blog posts.
+ * @class PostController
+ * @constructor
+ * @param {PostService} postService - The service that handles business logic related to posts.
+ */
 @ApiBearerAuth()
 @ApiTags("Post Management")
 @Controller("/api/v1/posts")
 export class PostController {
   constructor(private readonly postService: PostService) {}
 
+  /**
+   * Create a new blog post.
+   * @async
+   * @function create
+   * @param {CreatePostDto} createPostDto - Data to create a new blog post.
+   * @param {ExpressRequestWithBlogPostUser} req - The request object containing the authenticated user.
+   * @returns {Promise<CreatedBlogPostResponse>} The created blog post.
+   * @throws {HttpException} Throws an exception if post creation fails.
+   */
   @Post("")
   @ApiOperation({
     summary: "Create post",
@@ -90,7 +104,7 @@ export class PostController {
   })
   @ApiResponse({ status: 500, description: "Indicates, the request failed." })
   @UseGuards(JwtAuthGuard)
-  async create(@Body() createPostDto: CreatePostDto, @Request() req: ExpressRequestWithBlogPostUser): Promise<CreatedBlogPost> {
+  async create(@Body() createPostDto: CreatePostDto, @Request() req: ExpressRequestWithBlogPostUser): Promise<CreatedBlogPostResponse> {
     try {
       const blogPostUser = req.user;
       const result = await this.postService.createBlogPost(createPostDto, blogPostUser._id);
@@ -105,6 +119,16 @@ export class PostController {
     }
   }
 
+  /**
+   * Retrieve all blog posts or a specific post based on query parameters.
+   * @async
+   * @function getPosts
+   * @param {number} [page] - Page number for pagination.
+   * @param {number} [limit] - Limit of posts per page.
+   * @param {string} [slug] - Slug of the post to retrieve.
+   * @returns {Promise<BlogPostSanitizedResponse | BlogPostSanitizedResponse[]>} The requested posts.
+   * @throws {HttpException} Throws an exception if the retrieval fails.
+   */
   @Get("")
   @ApiOperation({
     summary: "Get all posts",
@@ -162,27 +186,42 @@ export class PostController {
     }
   }
 
+  /**
+   * Retrieve a blog post by its ID.
+   * @async
+   * @function getPostById
+   * @param {string} id - ID of the post to retrieve.
+   * @returns {Promise<BlogPostSanitizedResponse>} The requested blog post.
+   * @throws {HttpException} Throws an exception if the post retrieval fails.
+   */
   @Get("/:id")
   @ApiOperation({
     summary: "Get post",
-    description: "Get a post based on the id",
+    description: "Retrieve a post based on its ID.",
     operationId: "getPost",
   })
   @ApiParam({
     name: "id",
-    description: "The id of the post",
+    description: "The ID of the post",
     required: true,
     type: String,
   })
   @ApiResponse({
     status: 200,
-    description: "Indicates, the request was successful.",
+    description: "Indicates that the request was successful, and the blog post is returned.",
+  })
+  @ApiResponse({
+    status: 400,
+    description: "Indicates that the provided ID is not a valid MongoDB ObjectID.",
   })
   @ApiResponse({
     status: 404,
-    description: "Indicates, the post doesn't exist.",
+    description: "Indicates that the post doesn't exist.",
   })
-  @ApiResponse({ status: 500, description: "Indicates, the request failed." })
+  @ApiResponse({
+    status: 500,
+    description: "Indicates that the request failed due to an internal server error.",
+  })
   async getPostById(@Param("id") id: string): Promise<BlogPostSanitizedResponse> {
     try {
       const post = await this.postService.getPostById(id);
@@ -190,11 +229,22 @@ export class PostController {
     } catch (error) {
       if (error instanceof PostDoesNotExist) {
         throw new HttpException(error.message, HttpStatus.NOT_FOUND);
+      } else if (error instanceof PostIdValidationError) {
+        throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
       }
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 
+  /**
+   * Delete a blog post by its ID.
+   * @async
+   * @function deletePost
+   * @param {string} id - ID of the post to delete.
+   * @param {ExpressRequestWithBlogPostUser} req - The request object containing the authenticated user.
+   * @returns {Promise<void>} Resolves when the post is successfully deleted.
+   * @throws {HttpException} Throws an exception if the post deletion fails.
+   */
   @Delete("/:id")
   @ApiOperation({
     summary: "Delete post",
@@ -236,6 +286,14 @@ export class PostController {
     }
   }
 
+  /**
+   * Retrieve related posts based on the provided source post ID.
+   * @async
+   * @function getRelatedPosts
+   * @param {GetRelatedPostsDto} getRelatedPostsDto - DTO containing the ID of the source post.
+   * @returns {Promise<{ relatedPosts: BlogPost[] }>} An object containing an array of related posts.
+   * @throws {HttpException} Throws an exception if the provided post ID is invalid or the post does not exist.
+   */
   @Get("/:id/relations")
   @ApiOperation({
     summary: "Post Relationships",
@@ -277,6 +335,14 @@ export class PostController {
     }
   }
 
+  /**
+   * Establish a relationship between two posts.
+   * @async
+   * @function createRelation
+   * @param {CreateRelationshipDto} createRelationshipDto - DTO containing the source and relation post IDs.
+   * @returns {Promise<{ success: boolean; data: BlogPostSanitizedResponse } | Error>} An object indicating success and the related post data.
+   * @throws {HttpException} Throws an exception for various error conditions, including invalid IDs or existing relationships.
+   */
   @Post("/relation/")
   @ApiOperation({
     summary: "Set Post Relationship",
@@ -303,7 +369,7 @@ export class PostController {
   })
   @ApiResponse({
     status: 400,
-    description: "Indicates, the request failed.",
+    description: "Indicates that the provided post ID is not a valid MongoDB ObjectID.",
   })
   @ApiResponse({
     status: 401,
@@ -336,14 +402,22 @@ export class PostController {
       } else if (error instanceof PostDoesNotExist) {
         throw new HttpException(error.message, HttpStatus.NOT_FOUND);
       } else if (error instanceof PostCircularRelationship) {
-        throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
-      } else if (error instanceof PostIdValidationError) {
         throw new HttpException(error.message, HttpStatus.UNPROCESSABLE_ENTITY);
+      } else if (error instanceof PostIdValidationError) {
+        throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
       }
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 
+  /**
+   * Retrieve all comments associated with a specific blog post by its ID.
+   * @async
+   * @function getComments
+   * @param {string} postId - ID of the blog post to retrieve comments for.
+   * @returns {Promise<BlogPostComment[]>} An array of comments associated with the blog post.
+   * @throws {HttpException} Throws an exception if the post ID is invalid or the post does not exist.
+   */
   @Get("/:id/comments")
   @ApiOperation({
     summary: "Get comments for a post",
@@ -387,6 +461,15 @@ export class PostController {
     }
   }
 
+  /**
+   * Add a comment to a blog post.
+   * @async
+   * @function addComment
+   * @param {string} postId - ID of the blog post to add the comment to.
+   * @param {CreateCommentDto} createCommentDto - DTO containing the comment data.
+   * @returns {Promise<BlogPostSanitizedResponse>} The updated blog post with the new comment.
+   * @throws {HttpException} Throws an exception if the post does not exist or the input data is invalid.
+   */
   @Post("/:id/comments")
   @ApiOperation({
     summary: "Add comment to post",
@@ -441,6 +524,10 @@ export class PostController {
     description: "Indicates the comment was successfully added.",
   })
   @ApiResponse({
+    status: 400,
+    description: "Indicates that the provided post ID is not a valid MongoDB ObjectID.",
+  })
+  @ApiResponse({
     status: 404,
     description: "Indicates the post was not found.",
   })
@@ -459,6 +546,16 @@ export class PostController {
     }
   }
 
+  /**
+   * Remove a specific comment from a blog post by its ID.
+   * @async
+   * @function deleteComment
+   * @param {string} postId - ID of the blog post from which to delete the comment.
+   * @param {string} commentId - ID of the comment to be deleted.
+   * @param {ExpressRequestWithBlogPostUser} req - The request object containing the authenticated user.
+   * @returns {Promise<{ success: boolean }>} An object indicating whether the deletion was successful.
+   * @throws {HttpException} Throws an exception if the post or comment does not exist or if the user is not authorized.
+   */
   @Delete("/:postId/comments/:commentId")
   @ApiOperation({
     summary: "Delete a comment from a post",

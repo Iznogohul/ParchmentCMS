@@ -10,6 +10,7 @@
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
         <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
     </head>
     <body>
           <script>
@@ -123,6 +124,15 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Data Transfer Object for creating a new blog post.</p>
+<p>This class defines the structure and validation rules for the
+data needed to create a new blog post in the application.</p>
+
+            </p>
 
 
 
@@ -201,16 +211,22 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsNotEmpty()<br />@IsString()<br />@ApiProperty()<br />
+                            @IsNotEmpty()<br />@IsString()<br />@ApiProperty({description: &#x27;The content of the blog post&#x27;, example: &#x27;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/post/dto/create-post.dto.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/post/dto/create-post.dto.ts:37</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The content of the blog post.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html"></code></pre></div></div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -239,16 +255,22 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsNotEmpty()<br />@IsString()<br />@ApiProperty()<br />
+                            @IsNotEmpty()<br />@IsString()<br />@ApiProperty({description: &#x27;The image path for the blog post&#x27;, example: &#x27;/images/my-new-post.jpg&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/post/dto/create-post.dto.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/post/dto/create-post.dto.ts:51</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The image path for the blog post.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html"></code></pre></div></div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -277,16 +299,22 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsNotEmpty()<br />@IsString()<br />@ApiProperty()<br />
+                            @IsNotEmpty()<br />@IsString()<br />@ApiProperty({description: &#x27;The title of the blog post&#x27;, example: &#x27;My new blog post&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/post/dto/create-post.dto.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/post/dto/create-post.dto.ts:23</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The title of the blog post.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html"></code></pre></div></div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -305,20 +333,53 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { IsNotEmpty, IsString } from &quot;class-validator&quot;;
 import { ApiProperty } from &quot;@nestjs/swagger&quot;;
 
+/**
+ * Data Transfer Object for creating a new blog post.
+ *
+ * This class defines the structure and validation rules for the
+ * data needed to create a new blog post in the application.
+ */
 export class CreatePostDto {
+  /**
+   * The title of the blog post.
+   *
+   * @type {string}
+   * @example &quot;My new blog post&quot;
+   */
   @IsNotEmpty()
   @IsString()
-  @ApiProperty()
+  @ApiProperty({
+    description: &quot;The title of the blog post&quot;,
+    example: &quot;My new blog post&quot;,
+  })
   title: string;
 
+  /**
+   * The content of the blog post.
+   *
+   * @type {string}
+   * @example &quot;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&quot;
+   */
   @IsNotEmpty()
   @IsString()
-  @ApiProperty()
+  @ApiProperty({
+    description: &quot;The content of the blog post&quot;,
+    example: &quot;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&quot;,
+  })
   content: string;
 
+  /**
+   * The image path for the blog post.
+   *
+   * @type {string}
+   * @example &quot;/images/my-new-post.jpg&quot;
+   */
   @IsNotEmpty()
   @IsString()
-  @ApiProperty()
+  @ApiProperty({
+    description: &quot;The image path for the blog post&quot;,
+    example: &quot;/images/my-new-post.jpg&quot;,
+  })
   imagePath: string;
 }
 </code></pre>

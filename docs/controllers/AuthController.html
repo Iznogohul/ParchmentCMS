@@ -10,6 +10,7 @@
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
         <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
     </head>
     <body>
           <script>
@@ -123,6 +124,13 @@
             </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Controller for user authentication and management, including registration and login.</p>
+
+            </p>
 
 
 
@@ -208,20 +216,22 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;login&#x27;)<br />@ApiResponse({status: 201, description: &#x27;User successfully logged in.&#x27;, schema: undefined})<br />@ApiResponse({status: 400, description: &#x27;Bad Request.&#x27;})<br />@ApiResponse({status: 401, description: &#x27;Invalid credentials.&#x27;})<br />@ApiResponse({status: 404, description: &#x27;Invalid credentials.&#x27;})<br /></code>
+                    <code>@Post(&#x27;login&#x27;)<br />@ApiResponse({status: 201, description: &#x27;User successfully logged in.&#x27;, schema: undefined})<br />@ApiResponse({status: 400, description: &#x27;Bad Request.&#x27;})<br />@ApiResponse({status: 401, description: &#x27;Invalid credentials.&#x27;})<br />@ApiResponse({status: 404, description: &#x27;User not found.&#x27;})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="60"
-                                    class="link-to-prism">src/auth/auth.controller.ts:60</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="90"
+                                    class="link-to-prism">src/auth/auth.controller.ts:90</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Authenticates a user and returns a JWT token.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -232,6 +242,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -246,6 +257,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>Data transfer object containing login credentials.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -255,7 +272,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>A promise that resolves to an object containing the access token.</p>
+
                             </div>
                 </td>
             </tr>
@@ -294,14 +312,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="36"
-                                    class="link-to-prism">src/auth/auth.controller.ts:36</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="56"
+                                    class="link-to-prism">src/auth/auth.controller.ts:56</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Registers a new user.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -312,6 +332,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -326,6 +347,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>Data transfer object containing registration information.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -335,7 +362,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>A promise that resolves to the newly registered user&#39;s data.</p>
+
                             </div>
                 </td>
             </tr>
@@ -372,14 +400,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="66"
-                                    class="link-to-prism">src/auth/auth.controller.ts:66</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="105"
+                                    class="link-to-prism">src/auth/auth.controller.ts:105</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Updates the user&#39;s name.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -390,6 +420,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -404,6 +435,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>Data transfer object containing the new username information.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>req</td>
@@ -416,6 +453,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The request object, which includes the authenticated user data.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -425,7 +468,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>A promise that resolves to the updated user&#39;s data.</p>
+
                             </div>
                 </td>
             </tr>
@@ -447,15 +491,35 @@ import { JwtAuthGuard } from &quot;./jwt-auth.guard&quot;;
 import { ExpressRequestWithBlogPostUser } from &quot;@/post/interfaces/post.interface&quot;;
 import { UpdateUserDto } from &quot;./dto/update-user.dto&quot;;
 
+/**
+ * Controller for user authentication and management, including registration and login.
+ *
+ * @class AuthController
+ */
 @ApiBearerAuth()
-@ApiTags(&quot;Let Me In!!!&quot;)
+@ApiTags(&quot;Authentication&quot;)
 @Controller(&quot;/api/v1/&quot;)
 export class AuthController {
+  /**
+   * Creates an instance of AuthController.
+   *
+   * @param {AuthService} authService - Service for handling authentication logic.
+   * @param {UserService} userService - Service for user-related operations.
+   */
   constructor(
     private authService: AuthService,
     private readonly userService: UserService,
   ) {}
 
+  /**
+   * Registers a new user.
+   *
+   * @param {RegisterUserDto} registerUserDto - Data transfer object containing registration information.
+   * @returns {Promise&lt;Partial&lt;BlogPostUser&gt;&gt;} A promise that resolves to the newly registered user&#x27;s data.
+   * @throws {BadRequestException} When the request data is invalid.
+   * @throws {ConflictException} When a user with the same username or email already exists.
+   * @method register
+   */
   @Post(&quot;register&quot;)
   @ApiResponse({
     status: 201,
@@ -474,6 +538,16 @@ export class AuthController {
     return this.userService.register(registerUserDto);
   }
 
+  /**
+   * Authenticates a user and returns a JWT token.
+   *
+   * @param {LoginUserDto} loginUserDto - Data transfer object containing login credentials.
+   * @returns {Promise&lt;{ accessToken: string }&gt;} A promise that resolves to an object containing the access token.
+   * @throws {BadRequestException} When the request data is invalid.
+   * @throws {UnauthorizedException} When the credentials are invalid.
+   * @throws {NotFoundException} When the user is not found.
+   * @method login
+   */
   @Post(&quot;login&quot;)
   @ApiResponse({
     status: 201,
@@ -492,12 +566,21 @@ export class AuthController {
   })
   @ApiResponse({
     status: 404,
-    description: &quot;Invalid credentials.&quot;,
+    description: &quot;User not found.&quot;,
   })
   async login(@Body() loginUserDto: LoginUserDto): Promise&lt;{ accessToken: string }&gt; {
     return this.authService.login(loginUserDto);
   }
 
+  /**
+   * Updates the user&#x27;s name.
+   *
+   * @param {UpdateUserDto} updateUserDto - Data transfer object containing the new username information.
+   * @param {ExpressRequestWithBlogPostUser} req - The request object, which includes the authenticated user data.
+   * @returns {Promise&lt;Partial&lt;BlogPostUser&gt;&gt;} A promise that resolves to the updated user&#x27;s data.
+   * @throws {ForbiddenException} When the user is not authorized to update the name.
+   * @method updateUserName
+   */
   @UseGuards(JwtAuthGuard)
   @Put(&quot;users/name&quot;)
   async updateUserName(@Body() updateUserDto: UpdateUserDto, @Request() req: ExpressRequestWithBlogPostUser): Promise&lt;Partial&lt;BlogPostUser&gt;&gt; {

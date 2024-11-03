@@ -10,6 +10,7 @@
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
         <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
     </head>
     <body>
           <script>
@@ -157,11 +158,20 @@
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Initializes and bootstraps the NestJS application.</p>
+<p>This function creates the Nest application, sets up Swagger documentation
+if the environment is development, applies global middlewares, and starts
+the server on the specified port.</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
 
                         </div>
+                            <div class="io-description">
+                                <p>A promise that resolves when the application is bootstrapped.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -190,6 +200,8 @@
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Generates a slug from the blog post title.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -200,6 +212,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -214,6 +227,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The title of the blog post to generate a slug from.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -223,7 +242,10 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <ul>
+<li>The generated slug, formatted to be SEO-friendly.</li>
+</ul>
+
                             </div>
                 </td>
             </tr>
@@ -253,6 +275,9 @@
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>A custom validation decorator that checks if either a username or an email is provided.
+This is useful for scenarios where one of the two fields is required for user login or registration.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -263,6 +288,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -277,6 +303,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>Optional validation options to customize the error message and behavior.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -309,6 +341,10 @@
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Sanitizes a blog post by keeping only the <code>username</code> fields from the <code>createdBy</code>
+and <code>updatedBy</code> user objects. All other data in these fields is removed, reducing
+the amount of exposed user information.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -319,6 +355,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -333,6 +370,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The blog post to sanitize.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -342,7 +385,11 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <ul>
+<li>The sanitized blog post, with only <code>createdBy</code>
+and <code>updatedBy</code> usernames included.</li>
+</ul>
+
                             </div>
                 </td>
             </tr>
@@ -370,6 +417,9 @@
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Sanitizes an array of blog posts by keeping only the <code>username</code> fields
+from each post&#39;s <code>createdBy</code> and <code>updatedBy</code> user objects.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -379,6 +429,7 @@
                                         <tr>
                                             <td>Name</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -390,6 +441,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>Array of blog posts to sanitize.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -399,7 +456,11 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <ul>
+<li>Array of sanitized blog posts, each with
+only <code>createdBy</code> and <code>updatedBy</code> usernames included.</li>
+</ul>
+
                             </div>
                 </td>
             </tr>

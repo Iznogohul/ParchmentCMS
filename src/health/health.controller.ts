@@ -11,9 +11,23 @@ import {
   HealthCheckResult,
 } from "@nestjs/terminus";
 
+/**
+ * Controller for health check endpoints.
+ *
+ * @class HealthController
+ */
 @ApiTags("hEaLtH")
 @Controller("health")
 export class HealthController {
+  /**
+   * Creates an instance of HealthController.
+   *
+   * @param {HealthCheckService} health - Service for health checks.
+   * @param {HttpHealthIndicator} http - Indicator for HTTP health checks.
+   * @param {MongooseHealthIndicator} mongoDb - Indicator for MongoDB health checks.
+   * @param {MemoryHealthIndicator} memory - Indicator for memory health checks.
+   * @param {DiskHealthIndicator} disk - Indicator for disk health checks.
+   */
   constructor(
     private health: HealthCheckService,
     private http: HttpHealthIndicator,
@@ -22,6 +36,12 @@ export class HealthController {
     private disk: DiskHealthIndicator,
   ) {}
 
+  /**
+   * Performs health checks for various services including HTTP, MongoDB, memory, and disk.
+   *
+   * @returns {Promise<HealthCheckResult>} A promise that resolves to the health check result.
+   * @method check
+   */
   @Get()
   @HealthCheck()
   check(): Promise<HealthCheckResult> {

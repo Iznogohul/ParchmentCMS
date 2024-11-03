@@ -10,6 +10,7 @@
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
         <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
     </head>
     <body>
           <script>
@@ -123,6 +124,16 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Data Transfer Object for retrieving related posts.</p>
+<p>This class defines the structure and validation rules for the request
+to get related blog posts based on a given blog post ID. It ensures
+that the provided ID is a valid MongoDB ObjectId.</p>
+
+            </p>
 
 
 
@@ -187,16 +198,22 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty({description: &#x27;The unique identifier of the blog post&#x27;, example: &#x27;60f6c2d3a8341c8f0a5865c4&#x27;})<br />@IsMongoId({message: &#x27;Invalid MongoDB ID format&#x27;})<br />
+                            @ApiProperty({description: &#x27;The unique identifier of the blog post for which related posts are being requested.&#x27;, example: &#x27;60f6c2d3a8341c8f0a5865c4&#x27;})<br />@IsMongoId({message: &#x27;Invalid MongoDB ID format. Please provide a valid ObjectId.&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/post/dto/get-related-posts.dto.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/post/dto/get-related-posts.dto.ts:23</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The unique identifier of the blog post for which related posts are being requested.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html"></code></pre></div></div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -215,12 +232,25 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty } from &quot;@nestjs/swagger&quot;;
 import { IsMongoId } from &quot;class-validator&quot;;
 
+/**
+ * Data Transfer Object for retrieving related posts.
+ *
+ * This class defines the structure and validation rules for the request
+ * to get related blog posts based on a given blog post ID. It ensures
+ * that the provided ID is a valid MongoDB ObjectId.
+ */
 export class GetRelatedPostsDto {
+  /**
+   * The unique identifier of the blog post for which related posts are being requested.
+   *
+   * @example &quot;60f6c2d3a8341c8f0a5865c4&quot;
+   * @remarks This property must be a valid MongoDB ObjectId format.
+   */
   @ApiProperty({
-    description: &quot;The unique identifier of the blog post&quot;,
+    description: &quot;The unique identifier of the blog post for which related posts are being requested.&quot;,
     example: &quot;60f6c2d3a8341c8f0a5865c4&quot;,
   })
-  @IsMongoId({ message: &quot;Invalid MongoDB ID format&quot; })
+  @IsMongoId({ message: &quot;Invalid MongoDB ID format. Please provide a valid ObjectId.&quot; })
   id: string;
 }
 </code></pre>
