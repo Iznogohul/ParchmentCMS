@@ -1,7 +1,7 @@
 <div align="center">
   <a href="https://iznogohul.github.io/ParchmentCMS/">
     <picture>
-      <img src="https://github.com/Iznogohul/ParchmentCMS/public/parchmentcms-logo.webp" alt="ParchmentCMS Logo" width="128">
+      <img src="https://raw.githubusercontent.com/Iznogohul/ParchmentCMS/refs/heads/main/public/parchmentcms-logo.webp" alt="ParchmentCMS Logo" width="128">
     </picture>
   </a>
   <h1>Parchment CMS</h1>
@@ -13,7 +13,7 @@
     establish relationships between them, and engage in discussions through comments.
   </p>
   <p align="center">
-   <img src="https://github.com/Iznogohul/ParchmentCMS/docs/images/coverage-badge-documentation.svg" alt="Documentation Coverage Badge">
+   <img src="https://raw.githubusercontent.com/Iznogohul/ParchmentCMS/refs/heads/main/docs/images/coverage-badge-documentation.svg" alt="Documentation Coverage Badge">
   </p>
 </div>
 
