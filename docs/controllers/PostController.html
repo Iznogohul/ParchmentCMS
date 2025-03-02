@@ -309,8 +309,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="535"
-                                    class="link-to-prism">src/post/post.controller.ts:535</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="488"
+                                    class="link-to-prism">src/post/post.controller.ts:488</a></div>
                         </td>
                     </tr>
 
@@ -421,8 +421,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="107"
-                                    class="link-to-prism">src/post/post.controller.ts:107</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="99"
+                                    class="link-to-prism">src/post/post.controller.ts:99</a></div>
                         </td>
                     </tr>
 
@@ -535,8 +535,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="395"
-                                    class="link-to-prism">src/post/post.controller.ts:395</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="362"
+                                    class="link-to-prism">src/post/post.controller.ts:362</a></div>
                         </td>
                     </tr>
 
@@ -631,8 +631,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="598"
-                                    class="link-to-prism">src/post/post.controller.ts:598</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="546"
+                                    class="link-to-prism">src/post/post.controller.ts:546</a></div>
                         </td>
                     </tr>
 
@@ -761,8 +761,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="274"
-                                    class="link-to-prism">src/post/post.controller.ts:274</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="249"
+                                    class="link-to-prism">src/post/post.controller.ts:249</a></div>
                         </td>
                     </tr>
 
@@ -872,8 +872,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="450"
-                                    class="link-to-prism">src/post/post.controller.ts:450</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="408"
+                                    class="link-to-prism">src/post/post.controller.ts:408</a></div>
                         </td>
                     </tr>
 
@@ -965,8 +965,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="225"
-                                    class="link-to-prism">src/post/post.controller.ts:225</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="205"
+                                    class="link-to-prism">src/post/post.controller.ts:205</a></div>
                         </td>
                     </tr>
 
@@ -1060,8 +1060,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="165"
-                                    class="link-to-prism">src/post/post.controller.ts:165</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="152"
+                                    class="link-to-prism">src/post/post.controller.ts:152</a></div>
                         </td>
                     </tr>
 
@@ -1188,8 +1188,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="326"
-                                    class="link-to-prism">src/post/post.controller.ts:326</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="296"
+                                    class="link-to-prism">src/post/post.controller.ts:296</a></div>
                         </td>
                     </tr>
 
@@ -1249,21 +1249,13 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Post, Body, Param, Delete, Query, HttpException, HttpStatus, UseGuards, Request } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Post, Body, Param, Delete, Query, UseGuards, Request } from &quot;@nestjs/common&quot;;
 import { ApiBearerAuth, ApiBody, ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiTags } from &quot;@nestjs/swagger&quot;;
 
 import { PostService } from &quot;./post.service&quot;;
 import { CreatePostDto } from &quot;./dto/create-post.dto&quot;;
 import { BlogPost } from &quot;@/schemas/post.schema&quot;;
-import {
-  PostCircularRelationship,
-  PostDoesNotExist,
-  PostDoesNotHaveComments,
-  PostIdValidationError,
-  PostInsufficientPermissionsError,
-  PostRelationConflict,
-  PostSlugValidationError,
-} from &quot;./post.errors&quot;;
+import { handleDomainErrors } from &quot;@/utils&quot;;
 import { CreateRelationshipDto } from &quot;./dto/create-relationship.dto&quot;;
 import { CreateCommentDto } from &quot;./dto/create-comment.dto&quot;;
 import { BlogPostComment } from &quot;@/schemas/comment.schema&quot;;
@@ -1361,12 +1353,7 @@ export class PostController {
       const result &#x3D; await this.postService.createBlogPost(createPostDto, blogPostUser._id);
       return result;
     } catch (error) {
-      if (error instanceof PostRelationConflict) {
-        throw new HttpException(error.message, HttpStatus.CONFLICT);
-      } else if (error instanceof PostDoesNotExist) {
-        throw new HttpException(error.message, HttpStatus.NOT_FOUND);
-      }
-      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+      handleDomainErrors(error);
     }
   }
 
@@ -1426,14 +1413,7 @@ export class PostController {
       const posts &#x3D; await this.postService.getAllPosts();
       return posts;
     } catch (error) {
-      if (error instanceof PostRelationConflict) {
-        throw new HttpException(error.message, HttpStatus.CONFLICT);
-      } else if (error instanceof PostDoesNotExist) {
-        throw new HttpException(error.message, HttpStatus.NOT_FOUND);
-      } else if (error instanceof PostSlugValidationError) {
-        throw new HttpException(error.message, HttpStatus.UNPROCESSABLE_ENTITY);
-      }
-      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+      handleDomainErrors(error);
     }
   }
 
@@ -1478,12 +1458,7 @@ export class PostController {
       const post &#x3D; await this.postService.getPostById(id);
       return post;
     } catch (error) {
-      if (error instanceof PostDoesNotExist) {
-        throw new HttpException(error.message, HttpStatus.NOT_FOUND);
-      } else if (error instanceof PostIdValidationError) {
-        throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
-      }
-      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+      handleDomainErrors(error);
     }
   }
 
@@ -1528,12 +1503,7 @@ export class PostController {
       await this.postService.deletePost(id, blogPostUser._id);
       return { result: &quot;success&quot; };
     } catch (error) {
-      if (error instanceof PostDoesNotExist) {
-        throw new HttpException(error.message, HttpStatus.NOT_FOUND);
-      } else if (error instanceof PostInsufficientPermissionsError) {
-        throw new HttpException(error.message, HttpStatus.UNAUTHORIZED);
-      }
-      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+      handleDomainErrors(error);
     }
   }
 
@@ -1579,10 +1549,7 @@ export class PostController {
       const post &#x3D; await this.postService.getRelatedPosts(getRelatedPostsDto.id);
       return { relatedPosts: post.relatedPosts };
     } catch (error) {
-      if (error instanceof PostDoesNotExist) {
-        throw new HttpException(error.message, HttpStatus.NOT_FOUND);
-      }
-      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+      handleDomainErrors(error);
     }
   }
 
@@ -1648,16 +1615,7 @@ export class PostController {
       const post &#x3D; await this.postService.createRelation(createRelationshipDto.sourcePostId, createRelationshipDto.relationPostId);
       return { success: true, data: post };
     } catch (error) {
-      if (error instanceof PostRelationConflict) {
-        throw new HttpException(error.message, HttpStatus.CONFLICT);
-      } else if (error instanceof PostDoesNotExist) {
-        throw new HttpException(error.message, HttpStatus.NOT_FOUND);
-      } else if (error instanceof PostCircularRelationship) {
-        throw new HttpException(error.message, HttpStatus.UNPROCESSABLE_ENTITY);
-      } else if (error instanceof PostIdValidationError) {
-        throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
-      }
-      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+      handleDomainErrors(error);
     }
   }
 
@@ -1703,12 +1661,7 @@ export class PostController {
       const result &#x3D; await this.postService.getComments(postId);
       return result;
     } catch (error) {
-      if (error instanceof PostDoesNotExist || PostDoesNotHaveComments) {
-        throw new HttpException(error.message, HttpStatus.NOT_FOUND);
-      } else if (error instanceof PostIdValidationError) {
-        throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
-      }
-      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+      handleDomainErrors(error);
     }
   }
 
@@ -1788,12 +1741,7 @@ export class PostController {
       const result &#x3D; await this.postService.addComment(postId, createCommentDto);
       return result;
     } catch (error) {
-      if (error instanceof PostDoesNotExist) {
-        throw new HttpException(error.message, HttpStatus.NOT_FOUND);
-      } else if (error instanceof PostIdValidationError) {
-        throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
-      }
-      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+      handleDomainErrors(error);
     }
   }
 
@@ -1858,12 +1806,7 @@ export class PostController {
       const result &#x3D; await this.postService.deleteComment(postId, commentId, blogPostUser._id);
       return result;
     } catch (error) {
-      if (error instanceof PostDoesNotExist) {
-        throw new HttpException(error.message, HttpStatus.NOT_FOUND);
-      } else if (error instanceof PostIdValidationError) {
-        throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
-      }
-      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+      handleDomainErrors(error);
     }
   }
 }
