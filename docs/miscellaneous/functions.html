@@ -119,6 +119,9 @@
                             <a href="#generateSlug" title="src/schemas/post.schema.ts" ><b>generateSlug</b>&nbsp;&nbsp;&nbsp;(src/.../post.schema.ts)</a>
                         </li>
                         <li>
+                            <a href="#handleDomainErrors" title="src/utils/index.ts" ><b>handleDomainErrors</b>&nbsp;&nbsp;&nbsp;(src/.../index.ts)</a>
+                        </li>
+                        <li>
                             <a href="#hasUsernameOrEmail" title="src/auth/decorators/hasUsernameOrEmail.decorator.ts" ><b>hasUsernameOrEmail</b>&nbsp;&nbsp;&nbsp;(src/.../hasUsernameOrEmail.decorator.ts)</a>
                         </li>
                         <li>
@@ -246,6 +249,77 @@ the server on the specified port.</p>
 <li>The generated slug, formatted to be SEO-friendly.</li>
 </ul>
 
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/utils/index.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleDomainErrors"></a>
+                    <span class="name">
+                        <span ><b>handleDomainErrors</b></span>
+                        <a href="#handleDomainErrors"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>handleDomainErrors(error)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Handles domain-specific errors and maps them to appropriate HTTP exceptions.</p>
+<p>This function checks if the error belongs to specific domain error classes (e.g., Post errors) and
+throws an <code>HttpException</code> with the correct HTTP status code and error message. If the error doesn&#39;t match any
+known domain error, a generic internal server error is thrown.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>error</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The error object to handle.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>never</code>
+
+                        </div>
+                            <div class="io-description">
+                                
                             </div>
                 </td>
             </tr>

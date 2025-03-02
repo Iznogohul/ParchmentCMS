@@ -1,18 +1,10 @@
-import { Controller, Get, Post, Body, Param, Delete, Query, HttpException, HttpStatus, UseGuards, Request } from "@nestjs/common";
+import { Controller, Get, Post, Body, Param, Delete, Query, UseGuards, Request } from "@nestjs/common";
 import { ApiBearerAuth, ApiBody, ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiTags } from "@nestjs/swagger";
 
 import { PostService } from "./post.service";
 import { CreatePostDto } from "./dto/create-post.dto";
 import { BlogPost } from "@/schemas/post.schema";
-import {
-  PostCircularRelationship,
-  PostDoesNotExist,
-  PostDoesNotHaveComments,
-  PostIdValidationError,
-  PostInsufficientPermissionsError,
-  PostRelationConflict,
-  PostSlugValidationError,
-} from "./post.errors";
+import { handleDomainErrors } from "@/utils";
 import { CreateRelationshipDto } from "./dto/create-relationship.dto";
 import { CreateCommentDto } from "./dto/create-comment.dto";
 import { BlogPostComment } from "@/schemas/comment.schema";
@@ -110,12 +102,7 @@ export class PostController {
       const result = await this.postService.createBlogPost(createPostDto, blogPostUser._id);
       return result;
     } catch (error) {
-      if (error instanceof PostRelationConflict) {
-        throw new HttpException(error.message, HttpStatus.CONFLICT);
-      } else if (error instanceof PostDoesNotExist) {
-        throw new HttpException(error.message, HttpStatus.NOT_FOUND);
-      }
-      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+      handleDomainErrors(error);
     }
   }
 
@@ -175,14 +162,7 @@ export class PostController {
       const posts = await this.postService.getAllPosts();
       return posts;
     } catch (error) {
-      if (error instanceof PostRelationConflict) {
-        throw new HttpException(error.message, HttpStatus.CONFLICT);
-      } else if (error instanceof PostDoesNotExist) {
-        throw new HttpException(error.message, HttpStatus.NOT_FOUND);
-      } else if (error instanceof PostSlugValidationError) {
-        throw new HttpException(error.message, HttpStatus.UNPROCESSABLE_ENTITY);
-      }
-      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+      handleDomainErrors(error);
     }
   }
 
@@ -227,12 +207,7 @@ export class PostController {
       const post = await this.postService.getPostById(id);
       return post;
     } catch (error) {
-      if (error instanceof PostDoesNotExist) {
-        throw new HttpException(error.message, HttpStatus.NOT_FOUND);
-      } else if (error instanceof PostIdValidationError) {
-        throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
-      }
-      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+      handleDomainErrors(error);
     }
   }
 
@@ -277,12 +252,7 @@ export class PostController {
       await this.postService.deletePost(id, blogPostUser._id);
       return { result: "success" };
     } catch (error) {
-      if (error instanceof PostDoesNotExist) {
-        throw new HttpException(error.message, HttpStatus.NOT_FOUND);
-      } else if (error instanceof PostInsufficientPermissionsError) {
-        throw new HttpException(error.message, HttpStatus.UNAUTHORIZED);
-      }
-      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+      handleDomainErrors(error);
     }
   }
 
@@ -328,10 +298,7 @@ export class PostController {
       const post = await this.postService.getRelatedPosts(getRelatedPostsDto.id);
       return { relatedPosts: post.relatedPosts };
     } catch (error) {
-      if (error instanceof PostDoesNotExist) {
-        throw new HttpException(error.message, HttpStatus.NOT_FOUND);
-      }
-      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+      handleDomainErrors(error);
     }
   }
 
@@ -397,16 +364,7 @@ export class PostController {
       const post = await this.postService.createRelation(createRelationshipDto.sourcePostId, createRelationshipDto.relationPostId);
       return { success: true, data: post };
     } catch (error) {
-      if (error instanceof PostRelationConflict) {
-        throw new HttpException(error.message, HttpStatus.CONFLICT);
-      } else if (error instanceof PostDoesNotExist) {
-        throw new HttpException(error.message, HttpStatus.NOT_FOUND);
-      } else if (error instanceof PostCircularRelationship) {
-        throw new HttpException(error.message, HttpStatus.UNPROCESSABLE_ENTITY);
-      } else if (error instanceof PostIdValidationError) {
-        throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
-      }
-      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+      handleDomainErrors(error);
     }
   }
 
@@ -452,12 +410,7 @@ export class PostController {
       const result = await this.postService.getComments(postId);
       return result;
     } catch (error) {
-      if (error instanceof PostDoesNotExist || PostDoesNotHaveComments) {
-        throw new HttpException(error.message, HttpStatus.NOT_FOUND);
-      } else if (error instanceof PostIdValidationError) {
-        throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
-      }
-      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+      handleDomainErrors(error);
     }
   }
 
@@ -537,12 +490,7 @@ export class PostController {
       const result = await this.postService.addComment(postId, createCommentDto);
       return result;
     } catch (error) {
-      if (error instanceof PostDoesNotExist) {
-        throw new HttpException(error.message, HttpStatus.NOT_FOUND);
-      } else if (error instanceof PostIdValidationError) {
-        throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
-      }
-      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+      handleDomainErrors(error);
     }
   }
 
@@ -607,12 +555,7 @@ export class PostController {
       const result = await this.postService.deleteComment(postId, commentId, blogPostUser._id);
       return result;
     } catch (error) {
-      if (error instanceof PostDoesNotExist) {
-        throw new HttpException(error.message, HttpStatus.NOT_FOUND);
-      } else if (error instanceof PostIdValidationError) {
-        throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
-      }
-      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+      handleDomainErrors(error);
     }
   }
 }
