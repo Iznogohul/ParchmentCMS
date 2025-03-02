@@ -125,6 +125,9 @@
                             <a href="#hasUsernameOrEmail" title="src/auth/decorators/hasUsernameOrEmail.decorator.ts" ><b>hasUsernameOrEmail</b>&nbsp;&nbsp;&nbsp;(src/.../hasUsernameOrEmail.decorator.ts)</a>
                         </li>
                         <li>
+                            <a href="#isMongoDbIdValid" title="src/utils/index.ts" ><b>isMongoDbIdValid</b>&nbsp;&nbsp;&nbsp;(src/.../index.ts)</a>
+                        </li>
+                        <li>
                             <a href="#sanitizeBlogPost" title="src/post/utils/post.utils.ts" ><b>sanitizeBlogPost</b>&nbsp;&nbsp;&nbsp;(src/.../post.utils.ts)</a>
                         </li>
                         <li>
@@ -320,6 +323,78 @@ known domain error, a generic internal server error is thrown.</p>
                         </div>
                             <div class="io-description">
                                 
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isMongoDbIdValid"></a>
+                    <span class="name">
+                        <span ><b>isMongoDbIdValid</b></span>
+                        <a href="#isMongoDbIdValid"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isMongoDbIdValid(id)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Checks if a given string is a valid MongoDB ObjectId.</p>
+<p>This function uses Mongoose&#39;s <code>ObjectId.isValid</code> method to determine if the provided string
+is a valid representation of a MongoDB ObjectId. MongoDB ObjectIds are 24-character hexadecimal
+strings that are unique identifiers for documents in MongoDB collections.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The string to check for validity as a MongoDB ObjectId.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <ul>
+<li>Returns <code>true</code> if the string is a valid MongoDB ObjectId, <code>false</code> otherwise.</li>
+</ul>
+
                             </div>
                 </td>
             </tr>
