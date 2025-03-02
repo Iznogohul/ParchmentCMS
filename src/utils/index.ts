@@ -1,3 +1,6 @@
+import { HttpException, HttpStatus } from "@nestjs/common";
+import mongoose, { Types } from "mongoose";
+
 import {
   PostDoesNotExist,
   PostIdValidationError,
@@ -7,7 +10,28 @@ import {
   PostRelationConflict,
   PostDoesNotHaveComments,
 } from "@/post/post.errors";
-import { HttpException, HttpStatus } from "@nestjs/common";
+
+/**
+ * Checks if a given string is a valid MongoDB ObjectId.
+ *
+ * This function uses Mongoose's `ObjectId.isValid` method to determine if the provided string
+ * is a valid representation of a MongoDB ObjectId. MongoDB ObjectIds are 24-character hexadecimal
+ * strings that are unique identifiers for documents in MongoDB collections.
+ *
+ * @param {string} id - The string to check for validity as a MongoDB ObjectId.
+ * @returns {boolean} - Returns `true` if the string is a valid MongoDB ObjectId, `false` otherwise.
+ *
+ * @example
+ * // Example usage:
+ * const valid = isMongoDbIdValid("507f191e810c19729de860ea");
+ * console.log(valid); // true
+ *
+ * const invalid = isMongoDbIdValid("invalid-id");
+ * console.log(invalid); // false
+ */
+export function isMongoDbIdValid(id: string | Types.ObjectId): boolean {
+  return mongoose.Types.ObjectId.isValid(id);
+}
 
 /**
  * Handles domain-specific errors and maps them to appropriate HTTP exceptions.

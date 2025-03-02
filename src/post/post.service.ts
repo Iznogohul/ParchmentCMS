@@ -21,6 +21,7 @@ import {
 import { CreateCommentDto } from "./dto/create-comment.dto";
 import { BlogPostSanitizedResponse, CreatedBlogPostResponse } from "./interfaces/post.interface";
 import { sanitizeBlogPost, sanitizeBlogPosts } from "./utils/post.utils";
+import { isMongoDbIdValid } from "@/utils";
 
 /**
  * @class PostService
@@ -148,7 +149,7 @@ export class PostService {
    * @throws {PostDoesNotExist} - If no post with the given ID exists.
    */
   async getPostById(id: string): Promise<BlogPostSanitizedResponse> {
-    if (!mongoose.Types.ObjectId.isValid(id)) {
+    if (!isMongoDbIdValid(id)) {
       throw new PostIdValidationError("Provided id is not valid");
     }
     const post = await this.blogPostModel.findById(id, "-__v -_id").exec();
@@ -175,7 +176,7 @@ export class PostService {
    * @throws {PostError} - If the deletion failed.
    */
   async deletePost(id: string, userId: mongoose.Types.ObjectId): Promise<number> {
-    if (!mongoose.Types.ObjectId.isValid(id)) {
+    if (!isMongoDbIdValid(id)) {
       throw new PostIdValidationError("Provided id is not valid");
     }
     const post = await this.blogPostModel.findOne({ _id: id }).select("-__v -_id");
@@ -203,7 +204,7 @@ export class PostService {
    * @throws {PostDoesNotExist} - If no post with the given ID exists.
    */
   async getRelatedPosts(id: string): Promise<{ relatedPosts: BlogPostDocument[] }> {
-    if (!mongoose.Types.ObjectId.isValid(id)) {
+    if (!isMongoDbIdValid(id)) {
       throw new PostIdValidationError("Provided id is not valid");
     }
     const post = await this.blogPostModel.findOne({ _id: id }).select("-__v -_id");
@@ -225,10 +226,10 @@ export class PostService {
    * @throws {PostRelationConflict} - If the relationship already exists.
    */
   async createRelation(sourcePostId: string, relationPostId: string): Promise<BlogPostSanitizedResponse | undefined> {
-    if (!mongoose.Types.ObjectId.isValid(sourcePostId)) {
+    if (!isMongoDbIdValid(sourcePostId)) {
       throw new PostIdValidationError("Provided sourcePostId is not valid");
     }
-    if (!mongoose.Types.ObjectId.isValid(relationPostId)) {
+    if (!isMongoDbIdValid(relationPostId)) {
       throw new PostIdValidationError("Provided relationPostId is not valid");
     }
     if (sourcePostId === relationPostId) {
@@ -270,7 +271,7 @@ export class PostService {
    * @throws {PostDoesNotHaveComments} - If the post has no comments.
    */
   async getComments(postId: string): Promise<BlogPostComment[]> {
-    if (!mongoose.Types.ObjectId.isValid(postId)) {
+    if (!isMongoDbIdValid(postId)) {
       throw new PostIdValidationError("Provided postId is not valid");
     }
 
@@ -295,7 +296,7 @@ export class PostService {
    * @throws {PostDoesNotExist} - If no post with the given ID exists.
    */
   async addComment(postId: string, createCommentDto: CreateCommentDto): Promise<BlogPostSanitizedResponse> {
-    if (!mongoose.Types.ObjectId.isValid(postId)) {
+    if (!isMongoDbIdValid(postId)) {
       throw new PostIdValidationError("Provided postId is not valid");
     }
 
@@ -333,7 +334,7 @@ export class PostService {
    * @throws {CommentInsufficientPermissionsError} - If the user does not have permission to delete the comment.
    */
   async deleteComment(postId: string, commentId: string, userId: mongoose.Types.ObjectId): Promise<{ success: boolean }> {
-    if (!mongoose.Types.ObjectId.isValid(postId)) {
+    if (!isMongoDbIdValid(postId)) {
       throw new PostIdValidationError("Provided postId is not valid");
     }
 
