@@ -7,9 +7,9 @@
   <h1>Parchment CMS</h1>
   <h3>A Headless Content Management System</h3>
   <p style="max-width: 600px; margin: 20px auto; line-height: 1.5;">
-    <strong>This is a toy project</strong> for a headless CMS built with 
-    <strong>NestJS</strong> and <strong>MongoDB</strong>, enabling users to 
-    <em>create</em>, <em>delete</em>, and <em>partially manage</em> their posts, 
+    <strong>This is a toy project</strong> for a headless CMS built with
+    <strong>NestJS</strong> and <strong>MongoDB</strong>, enabling users to
+    <em>create</em>, <em>delete</em>, and <em>partially manage</em> their posts,
     establish relationships between them, and engage in discussions through comments.
   </p>
   <p align="center">
@@ -38,6 +38,7 @@ To run the project with Docker, you will need to have Docker installed on your m
 1. 🍴 Clone this repository to your local machine.
 2. 📝 Copy the .env.example file and rename it to .env. Open the .env file and specify the desired values for MONGODB_URI and PORT variables.
    For example:
+
    ```
    # The MongoDB connection string for the BlogPost database
    MONGODB_URI="mongodb://mongodb/test"
@@ -46,6 +47,7 @@ To run the project with Docker, you will need to have Docker installed on your m
    # The seed string to be used for the JwtStrategy
    JWT_SECRET="42"
    ```
+
 3. 🐳 Run `docker compose build` to build the containers.
 4. 🐳 Run `docker compose up` to start the containers.
 5. 🌍 The API will be available at `http://localhost:3000/`.
