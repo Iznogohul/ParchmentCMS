@@ -92,9 +92,9 @@
   <h1>Parchment CMS</h1>
   <h3>A Headless Content Management System</h3>
   <p style="max-width: 600px; margin: 20px auto; line-height: 1.5;">
-    <strong>This is a toy project</strong> for a headless CMS built with 
-    <strong>NestJS</strong> and <strong>MongoDB</strong>, enabling users to 
-    <em>create</em>, <em>delete</em>, and <em>partially manage</em> their posts, 
+    <strong>This is a toy project</strong> for a headless CMS built with
+    <strong>NestJS</strong> and <strong>MongoDB</strong>, enabling users to
+    <em>create</em>, <em>delete</em>, and <em>partially manage</em> their posts,
     establish relationships between them, and engage in discussions through comments.
   </p>
   <p align="center">
@@ -105,7 +105,7 @@
 <h2>🚀 Getting Started</h2>
 <p>To get started with this project, you can choose to either run the project natively on your machine, or with Docker.</p>
 <h3>🏠 Running natively</h3>
-<p>To run the project natively, you will need to have Node.js v22.9.0 or higher and npm v10.8.3 or higher installed on your machine.</p>
+<p>To run the project natively, you will need to have Node.js v22.19.0 or higher and pnpm v10.5.0 or higher installed on your machine.</p>
 <ol>
 <li>🍴 Clone this repository to your local machine.</li>
 <li>💻 Run <code>npm install</code> to install the necessary dependencies.</li>
@@ -116,17 +116,22 @@
 <h3>🐳 Running with Docker</h3>
 <p>To run the project with Docker, you will need to have Docker installed on your machine.</p>
 <ol>
-<li>🍴 Clone this repository to your local machine.</li>
-<li>📝 Copy the .env.example file and rename it to .env. Open the .env file and specify the desired values for MONGODB_URI and PORT variables.
-For example:<b>Example :</b><div><pre class="line-numbers"><code class="language-none"># The MongoDB connection string for the BlogPost database
+<li><p>🍴 Clone this repository to your local machine.</p>
+</li>
+<li><p>📝 Copy the .env.example file and rename it to .env. Open the .env file and specify the desired values for MONGODB_URI and PORT variables.
+For example:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-none"># The MongoDB connection string for the BlogPost database
 MONGODB_URI=&quot;mongodb://mongodb/test&quot;
 # The port on which the Blog CMS API will run
 PORT=&quot;3000&quot;
 # The seed string to be used for the JwtStrategy
 JWT_SECRET=&quot;42&quot;</code></pre></div></li>
-<li>🐳 Run <code>docker compose build</code> to build the containers.</li>
-<li>🐳 Run <code>docker compose up</code> to start the containers.</li>
-<li>🌍 The API will be available at <code>http://localhost:3000/</code>.</li>
+<li><p>🐳 Run <code>docker compose build</code> to build the containers.</p>
+</li>
+<li><p>🐳 Run <code>docker compose up</code> to start the containers.</p>
+</li>
+<li><p>🌍 The API will be available at <code>http://localhost:3000/</code>.</p>
+</li>
 </ol>
 <h2>📖 Usage</h2>
 <p>Once the server is running, you can use the following endpoints to manage your blog posts:</p>
