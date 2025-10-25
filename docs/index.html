@@ -62,6 +62,20 @@
                }
                toggleDarkMode(darkModeState);
           </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
 
         <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
                <div class="d-flex">
@@ -80,8 +94,9 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content getting-started">
+               <div class="content readme">
                    <div class="content-data">
+
 
 <div align="center">
   <a href="https://iznogohul.github.io/ParchmentCMS/">
@@ -105,7 +120,7 @@
 <h2>🚀 Getting Started</h2>
 <p>To get started with this project, you can choose to either run the project natively on your machine, or with Docker.</p>
 <h3>🏠 Running natively</h3>
-<p>To run the project natively, you will need to have Node.js v22.19.0 or higher and pnpm v10.5.0 or higher installed on your machine.</p>
+<p>To run the project natively, you will need to have Node.js v22.21.0 or higher and npm v10.9.4 or higher installed on your machine.</p>
 <ol>
 <li>🍴 Clone this repository to your local machine.</li>
 <li>💻 Run <code>npm install</code> to install the necessary dependencies.</li>
@@ -196,6 +211,9 @@ JWT_SECRET=&quot;42&quot;</code></pre></div></li>
 
 
 
+
+
+
                    </div><div class="search-results">
     <div class="has-results">
         <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
@@ -221,7 +239,7 @@ JWT_SECRET=&quot;42&quot;</code></pre></div></li>
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 0;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'getting-started';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'readme';
             var COMPODOC_CURRENT_PAGE_URL = 'index.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>

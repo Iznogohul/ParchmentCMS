@@ -1,10 +1,10 @@
+import { ValidationPipe } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
+import { NestExpressApplication } from "@nestjs/platform-express";
 import { SwaggerModule, DocumentBuilder } from "@nestjs/swagger";
 import compression from "compression";
 
 import { AppModule } from "./app.module";
-import { ValidationPipe } from "@nestjs/common";
-import { NestExpressApplication } from "@nestjs/platform-express";
 import { AppService } from "./app.service";
 
 /**

@@ -1,6 +1,7 @@
 import { Request } from "express";
-import { BlogPostUserDocument } from "@/schemas/user.schema";
+
 import { BlogPost } from "@/schemas/post.schema";
+import { BlogPostUserDocument } from "@/schemas/user.schema";
 
 /**
  * Extends the Express Request object to include the authenticated user's information.

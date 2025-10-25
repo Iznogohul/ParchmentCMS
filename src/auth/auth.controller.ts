@@ -1,14 +1,15 @@
 import { Body, Controller, Post, UseGuards, Request, Put } from "@nestjs/common";
 import { ApiBearerAuth, ApiResponse, ApiTags } from "@nestjs/swagger";
 
-import { BlogPostUser } from "@/schemas/user.schema";
-import { UserService } from "@/user/user.service";
 import { AuthService } from "./auth.service";
 import { LoginUserDto } from "./dto/login-user.dto";
 import { RegisterUserDto } from "./dto/register-user.dto";
-import { JwtAuthGuard } from "./jwt-auth.guard";
-import { ExpressRequestWithBlogPostUser } from "@/post/interfaces/post.interface";
 import { UpdateUserDto } from "./dto/update-user.dto";
+import { JwtAuthGuard } from "./jwt-auth.guard";
+
+import { ExpressRequestWithBlogPostUser } from "@/post/interfaces/post.interface";
+import { BlogPostUser } from "@/schemas/user.schema";
+import { UserService } from "@/user/user.service";
 
 /**
  * Controller for user authentication and management, including registration and login.

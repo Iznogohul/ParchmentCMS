@@ -1,6 +1,7 @@
 import { Controller, Get } from "@nestjs/common";
-import { AppService } from "./app.service";
 import { ApiTags } from "@nestjs/swagger";
+
+import { AppService } from "./app.service";
 
 /**
  * Controller for handling application-level requests and providing information.

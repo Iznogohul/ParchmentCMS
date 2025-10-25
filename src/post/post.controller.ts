@@ -1,16 +1,17 @@
 import { Controller, Get, Post, Body, Param, Delete, Query, UseGuards, Request } from "@nestjs/common";
 import { ApiBearerAuth, ApiBody, ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiTags } from "@nestjs/swagger";
 
-import { PostService } from "./post.service";
+import { CreateCommentDto } from "./dto/create-comment.dto";
 import { CreatePostDto } from "./dto/create-post.dto";
+import { CreateRelationshipDto } from "./dto/create-relationship.dto";
+import { GetRelatedPostsDto } from "./dto/get-related-posts.dto";
+import { BlogPostSanitizedResponse, CreatedBlogPostResponse, ExpressRequestWithBlogPostUser } from "./interfaces/post.interface";
+import { PostService } from "./post.service";
+
+import { JwtAuthGuard } from "@/auth/jwt-auth.guard";
+import { BlogPostComment } from "@/schemas/comment.schema";
 import { BlogPost } from "@/schemas/post.schema";
 import { handleDomainErrors } from "@/utils";
-import { CreateRelationshipDto } from "./dto/create-relationship.dto";
-import { CreateCommentDto } from "./dto/create-comment.dto";
-import { BlogPostComment } from "@/schemas/comment.schema";
-import { JwtAuthGuard } from "@/auth/jwt-auth.guard";
-import { BlogPostSanitizedResponse, CreatedBlogPostResponse, ExpressRequestWithBlogPostUser } from "./interfaces/post.interface";
-import { GetRelatedPostsDto } from "./dto/get-related-posts.dto";
 
 /**
  * Controller for managing blog posts.

@@ -1,40 +1,36 @@
-import typescriptEslintEslintPlugin from "@typescript-eslint/eslint-plugin";
-import tsParser from "@typescript-eslint/parser";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
-import js from "@eslint/js";
-import { FlatCompat } from "@eslint/eslintrc";
+import importPlugin from "eslint-plugin-import";
+import tseslint from "typescript-eslint";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all,
-});
-
-export default [
+const eslintConfig = [
+  ...tseslint.configs.recommended,
   {
-    ignores: ["**/.eslintrc.js"],
-  },
-  ...compat.extends("plugin:@typescript-eslint/recommended"),
-  {
-    plugins: {
-      "@typescript-eslint": typescriptEslintEslintPlugin,
-    },
-
+    ignores: ["node_modules/**", ".next/**", "out/**", "build/**", "next-env.d.ts"],
     languageOptions: {
-      parser: tsParser,
-      ecmaVersion: "latest",
-      sourceType: "module",
-
       parserOptions: {
-        project: "tsconfig.json",
+        projectService: {
+          allowDefaultProject: ["eslint.config.mjs"],
+        },
+        tsconfigRootDir: import.meta.dirname,
       },
     },
-
+  },
+  {
+    files: ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"],
+    plugins: {
+      import: importPlugin,
+    },
     rules: {
-      "@typescript-eslint/no-implied-eval": "error",
+      "import/order": [
+        "error",
+        {
+          groups: ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"],
+          "newlines-between": "always",
+          alphabetize: {
+            order: "asc",
+            caseInsensitive: true,
+          },
+        },
+      ],
       "@typescript-eslint/no-for-in-array": "error",
       "@typescript-eslint/no-floating-promises": "error",
       "@typescript-eslint/no-invalid-void-type": "error",
@@ -47,17 +43,27 @@ export default [
       "@typescript-eslint/no-unused-vars": [
         "error",
         {
-        "vars": "all",
-        "args": "after-used",
-        "argsIgnorePattern": "^_",
-        "varsIgnorePattern": "^_"
-        }
+          vars: "all",
+          args: "after-used",
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+        },
       ],
       "@typescript-eslint/naming-convention": [
         "error",
         { selector: "typeLike", format: ["PascalCase"], filter: { regex: "^(__String|[A-Za-z]+_[A-Za-z]+)$", match: false } },
-        { selector: "interface", format: ["PascalCase"], custom: { regex: "^I[A-Z]", match: false }, filter: { regex: "^I(Arguments|TextWriter|O([A-Z][a-z]+[A-Za-z]*)?)$", match: false } },
-        { selector: "variable", format: ["camelCase", "PascalCase", "UPPER_CASE"], leadingUnderscore: "allow", filter: { regex: "^(_{1,2}filename|_{1,2}dirname|_+|[A-Za-z]+_[A-Za-z]+)$", match: false } },
+        {
+          selector: "interface",
+          format: ["PascalCase"],
+          custom: { regex: "^I[A-Z]", match: false },
+          filter: { regex: "^I(Arguments|TextWriter|O([A-Z][a-z]+[A-Za-z]*)?)$", match: false },
+        },
+        {
+          selector: "variable",
+          format: ["camelCase", "PascalCase", "UPPER_CASE"],
+          leadingUnderscore: "allow",
+          filter: { regex: "^(_{1,2}filename|_{1,2}dirname|_+|[A-Za-z]+_[A-Za-z]+)$", match: false },
+        },
         { selector: "function", format: ["camelCase", "PascalCase"], leadingUnderscore: "allow", filter: { regex: "^[A-Za-z]+_[A-Za-z]+$", match: false } },
         { selector: "parameter", format: ["camelCase"], leadingUnderscore: "allow", filter: { regex: "^(_+|[A-Za-z]+_[A-Z][a-z]+)$", match: false } },
         { selector: "method", format: ["camelCase", "PascalCase"], leadingUnderscore: "allow", filter: { regex: "^([0-9]+|[A-Za-z]+_[A-Za-z]+)$", match: false } },
@@ -66,3 +72,4 @@ export default [
     },
   },
 ];
+export default eslintConfig;

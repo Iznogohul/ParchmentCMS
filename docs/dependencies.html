@@ -62,6 +62,20 @@
                }
                toggleDarkMode(darkModeState);
           </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
 
         <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
                <div class="d-flex">
@@ -97,6 +111,10 @@
 
 
 
+
+
+
+
     <ol class="breadcrumb">
         <li class="breadcrumb-item">Dependencies</li>
     </ol>
@@ -104,27 +122,25 @@
         <li>
             <b>@nestjs/axios</b> : ^4.0.1</li>
         <li>
-            <b>@nestjs/common</b> : ^11.1.6</li>
+            <b>@nestjs/common</b> : ^11.1.7</li>
         <li>
             <b>@nestjs/config</b> : ^4.0.2</li>
         <li>
-            <b>@nestjs/core</b> : ^11.1.6</li>
+            <b>@nestjs/core</b> : ^11.1.7</li>
         <li>
-            <b>@nestjs/jwt</b> : ^11.0.0</li>
+            <b>@nestjs/jwt</b> : ^11.0.1</li>
         <li>
             <b>@nestjs/mongoose</b> : ^11.0.3</li>
         <li>
             <b>@nestjs/passport</b> : ^11.0.5</li>
         <li>
-            <b>@nestjs/platform-express</b> : ^11.1.6</li>
+            <b>@nestjs/platform-express</b> : ^11.1.7</li>
         <li>
-            <b>@nestjs/swagger</b> : ^11.2.0</li>
+            <b>@nestjs/swagger</b> : ^11.2.1</li>
         <li>
             <b>@nestjs/terminus</b> : ^11.0.0</li>
         <li>
             <b>@swc/helpers</b> : ^0.5.17</li>
-        <li>
-            <b>@typescript-eslint/eslint-plugin</b> : ^8.41.0</li>
         <li>
             <b>bcrypt</b> : ^6.0.0</li>
         <li>
@@ -134,7 +150,7 @@
         <li>
             <b>compression</b> : ^1.8.1</li>
         <li>
-            <b>mongoose</b> : ^8.18.0</li>
+            <b>mongoose</b> : ^8.19.2</li>
         <li>
             <b>passport-jwt</b> : ^4.0.1</li>
         <li>

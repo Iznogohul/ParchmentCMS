@@ -62,6 +62,20 @@
                }
                toggleDarkMode(darkModeState);
           </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
 
         <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
                <div class="d-flex">
@@ -82,6 +96,10 @@
                <!-- START CONTENT -->
                <div class="content injectable">
                    <div class="content-data">
+
+
+
+
 
 
 
@@ -212,7 +230,7 @@ and deleting blog posts, as well as managing comments associated with the posts.
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/post/post.service.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/post/post.service.ts:35</a></div>
                             </td>
                         </tr>
 
@@ -286,8 +304,8 @@ and deleting blog posts, as well as managing comments associated with the posts.
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="298"
-                                    class="link-to-prism">src/post/post.service.ts:298</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="299"
+                                    class="link-to-prism">src/post/post.service.ts:299</a></div>
                         </td>
                     </tr>
 
@@ -385,8 +403,8 @@ and deleting blog posts, as well as managing comments associated with the posts.
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="50"
-                                    class="link-to-prism">src/post/post.service.ts:50</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="51"
+                                    class="link-to-prism">src/post/post.service.ts:51</a></div>
                         </td>
                     </tr>
 
@@ -484,8 +502,8 @@ and deleting blog posts, as well as managing comments associated with the posts.
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="228"
-                                    class="link-to-prism">src/post/post.service.ts:228</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="229"
+                                    class="link-to-prism">src/post/post.service.ts:229</a></div>
                         </td>
                     </tr>
 
@@ -583,8 +601,8 @@ and deleting blog posts, as well as managing comments associated with the posts.
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="336"
-                                    class="link-to-prism">src/post/post.service.ts:336</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="337"
+                                    class="link-to-prism">src/post/post.service.ts:337</a></div>
                         </td>
                     </tr>
 
@@ -700,8 +718,8 @@ and deleting blog posts, as well as managing comments associated with the posts.
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="178"
-                                    class="link-to-prism">src/post/post.service.ts:178</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="179"
+                                    class="link-to-prism">src/post/post.service.ts:179</a></div>
                         </td>
                     </tr>
 
@@ -799,8 +817,8 @@ and deleting blog posts, as well as managing comments associated with the posts.
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="82"
-                                    class="link-to-prism">src/post/post.service.ts:82</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="83"
+                                    class="link-to-prism">src/post/post.service.ts:83</a></div>
                         </td>
                     </tr>
 
@@ -846,8 +864,8 @@ and deleting blog posts, as well as managing comments associated with the posts.
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="273"
-                                    class="link-to-prism">src/post/post.service.ts:273</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="274"
+                                    class="link-to-prism">src/post/post.service.ts:274</a></div>
                         </td>
                     </tr>
 
@@ -927,8 +945,8 @@ and deleting blog posts, as well as managing comments associated with the posts.
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="151"
-                                    class="link-to-prism">src/post/post.service.ts:151</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="152"
+                                    class="link-to-prism">src/post/post.service.ts:152</a></div>
                         </td>
                     </tr>
 
@@ -1008,8 +1026,8 @@ and deleting blog posts, as well as managing comments associated with the posts.
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="98"
-                                    class="link-to-prism">src/post/post.service.ts:98</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="99"
+                                    class="link-to-prism">src/post/post.service.ts:99</a></div>
                         </td>
                     </tr>
 
@@ -1089,8 +1107,8 @@ and deleting blog posts, as well as managing comments associated with the posts.
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="124"
-                                    class="link-to-prism">src/post/post.service.ts:124</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="125"
+                                    class="link-to-prism">src/post/post.service.ts:125</a></div>
                         </td>
                     </tr>
 
@@ -1188,8 +1206,8 @@ and deleting blog posts, as well as managing comments associated with the posts.
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="206"
-                                    class="link-to-prism">src/post/post.service.ts:206</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="207"
+                                    class="link-to-prism">src/post/post.service.ts:207</a></div>
                         </td>
                     </tr>
 
@@ -1255,12 +1273,12 @@ and deleting blog posts, as well as managing comments associated with the posts.
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Injectable } from &quot;@nestjs/common&quot;;
 import { InjectModel } from &quot;@nestjs/mongoose&quot;;
-import mongoose, { Model } from &quot;mongoose&quot;;
 import { plainToClass } from &quot;class-transformer&quot;;
+import mongoose, { Model } from &quot;mongoose&quot;;
 
+import { CreateCommentDto } from &quot;./dto/create-comment.dto&quot;;
 import { CreatePostDto } from &quot;./dto/create-post.dto&quot;;
-import { BlogPost, BlogPostDocument } from &quot;@/schemas/post.schema&quot;;
-import { BlogPostComment } from &quot;@/schemas/comment.schema&quot;;
+import { BlogPostSanitizedResponse, CreatedBlogPostResponse } from &quot;./interfaces/post.interface&quot;;
 import {
   PostRelationConflict,
   PostDoesNotExist,
@@ -1273,9 +1291,10 @@ import {
   PostInsufficientPermissionsError,
   CommentInsufficientPermissionsError,
 } from &quot;./post.errors&quot;;
-import { CreateCommentDto } from &quot;./dto/create-comment.dto&quot;;
-import { BlogPostSanitizedResponse, CreatedBlogPostResponse } from &quot;./interfaces/post.interface&quot;;
 import { sanitizeBlogPost, sanitizeBlogPosts } from &quot;./utils/post.utils&quot;;
+
+import { BlogPostComment } from &quot;@/schemas/comment.schema&quot;;
+import { BlogPost, BlogPostDocument } from &quot;@/schemas/post.schema&quot;;
 import { isMongoDbIdValid } from &quot;@/utils&quot;;
 
 /**

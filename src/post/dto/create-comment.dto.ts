@@ -1,5 +1,5 @@
-import { IsString, IsNotEmpty } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
+import { IsString, IsNotEmpty } from "class-validator";
 
 /**
  * Data Transfer Object for creating a comment.

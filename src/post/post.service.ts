@@ -1,11 +1,11 @@
 import { Body, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-import mongoose, { Model } from "mongoose";
 import { plainToClass } from "class-transformer";
+import mongoose, { Model } from "mongoose";
 
+import { CreateCommentDto } from "./dto/create-comment.dto";
 import { CreatePostDto } from "./dto/create-post.dto";
-import { BlogPost, BlogPostDocument } from "@/schemas/post.schema";
-import { BlogPostComment } from "@/schemas/comment.schema";
+import { BlogPostSanitizedResponse, CreatedBlogPostResponse } from "./interfaces/post.interface";
 import {
   PostRelationConflict,
   PostDoesNotExist,
@@ -18,9 +18,10 @@ import {
   PostInsufficientPermissionsError,
   CommentInsufficientPermissionsError,
 } from "./post.errors";
-import { CreateCommentDto } from "./dto/create-comment.dto";
-import { BlogPostSanitizedResponse, CreatedBlogPostResponse } from "./interfaces/post.interface";
 import { sanitizeBlogPost, sanitizeBlogPosts } from "./utils/post.utils";
+
+import { BlogPostComment } from "@/schemas/comment.schema";
+import { BlogPost, BlogPostDocument } from "@/schemas/post.schema";
 import { isMongoDbIdValid } from "@/utils";
 
 /**
