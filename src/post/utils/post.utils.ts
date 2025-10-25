@@ -1,5 +1,6 @@
-import { BlogPost } from "@/schemas/post.schema";
 import { BlogPostSanitizedResponse } from "../interfaces/post.interface";
+
+import { BlogPost } from "@/schemas/post.schema";
 
 /**
  * Sanitizes a blog post by keeping only the `username` fields from the `createdBy`

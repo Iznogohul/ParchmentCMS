@@ -62,6 +62,20 @@
                }
                toggleDarkMode(darkModeState);
           </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
 
         <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
                <div class="d-flex">
@@ -82,6 +96,10 @@
                <!-- START CONTENT -->
                <div class="content controller">
                    <div class="content-data">
+
+
+
+
 
 
 
@@ -115,7 +133,6 @@
         <p class="comment">
             <code>src/post/post.controller.ts</code>
         </p>
-
             <p class="comment">
                 <h3>Prefix</h3>
             </p>
@@ -309,8 +326,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="488"
-                                    class="link-to-prism">src/post/post.controller.ts:488</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="489"
+                                    class="link-to-prism">src/post/post.controller.ts:489</a></div>
                         </td>
                     </tr>
 
@@ -421,8 +438,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="99"
-                                    class="link-to-prism">src/post/post.controller.ts:99</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="100"
+                                    class="link-to-prism">src/post/post.controller.ts:100</a></div>
                         </td>
                     </tr>
 
@@ -535,8 +552,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="362"
-                                    class="link-to-prism">src/post/post.controller.ts:362</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="363"
+                                    class="link-to-prism">src/post/post.controller.ts:363</a></div>
                         </td>
                     </tr>
 
@@ -631,8 +648,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="546"
-                                    class="link-to-prism">src/post/post.controller.ts:546</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="547"
+                                    class="link-to-prism">src/post/post.controller.ts:547</a></div>
                         </td>
                     </tr>
 
@@ -761,8 +778,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="249"
-                                    class="link-to-prism">src/post/post.controller.ts:249</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="250"
+                                    class="link-to-prism">src/post/post.controller.ts:250</a></div>
                         </td>
                     </tr>
 
@@ -872,8 +889,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="408"
-                                    class="link-to-prism">src/post/post.controller.ts:408</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="409"
+                                    class="link-to-prism">src/post/post.controller.ts:409</a></div>
                         </td>
                     </tr>
 
@@ -965,8 +982,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="205"
-                                    class="link-to-prism">src/post/post.controller.ts:205</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="206"
+                                    class="link-to-prism">src/post/post.controller.ts:206</a></div>
                         </td>
                     </tr>
 
@@ -1060,8 +1077,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="152"
-                                    class="link-to-prism">src/post/post.controller.ts:152</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="153"
+                                    class="link-to-prism">src/post/post.controller.ts:153</a></div>
                         </td>
                     </tr>
 
@@ -1188,8 +1205,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="296"
-                                    class="link-to-prism">src/post/post.controller.ts:296</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="297"
+                                    class="link-to-prism">src/post/post.controller.ts:297</a></div>
                         </td>
                     </tr>
 
@@ -1252,16 +1269,17 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Post, Body, Param, Delete, Query, UseGuards, Request } from &quot;@nestjs/common&quot;;
 import { ApiBearerAuth, ApiBody, ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiTags } from &quot;@nestjs/swagger&quot;;
 
-import { PostService } from &quot;./post.service&quot;;
+import { CreateCommentDto } from &quot;./dto/create-comment.dto&quot;;
 import { CreatePostDto } from &quot;./dto/create-post.dto&quot;;
+import { CreateRelationshipDto } from &quot;./dto/create-relationship.dto&quot;;
+import { GetRelatedPostsDto } from &quot;./dto/get-related-posts.dto&quot;;
+import { BlogPostSanitizedResponse, CreatedBlogPostResponse, ExpressRequestWithBlogPostUser } from &quot;./interfaces/post.interface&quot;;
+import { PostService } from &quot;./post.service&quot;;
+
+import { JwtAuthGuard } from &quot;@/auth/jwt-auth.guard&quot;;
+import { BlogPostComment } from &quot;@/schemas/comment.schema&quot;;
 import { BlogPost } from &quot;@/schemas/post.schema&quot;;
 import { handleDomainErrors } from &quot;@/utils&quot;;
-import { CreateRelationshipDto } from &quot;./dto/create-relationship.dto&quot;;
-import { CreateCommentDto } from &quot;./dto/create-comment.dto&quot;;
-import { BlogPostComment } from &quot;@/schemas/comment.schema&quot;;
-import { JwtAuthGuard } from &quot;@/auth/jwt-auth.guard&quot;;
-import { BlogPostSanitizedResponse, CreatedBlogPostResponse, ExpressRequestWithBlogPostUser } from &quot;./interfaces/post.interface&quot;;
-import { GetRelatedPostsDto } from &quot;./dto/get-related-posts.dto&quot;;
 
 /**
  * Controller for managing blog posts.
