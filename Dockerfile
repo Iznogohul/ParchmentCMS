@@ -1,7 +1,7 @@
 FROM node:22-alpine AS development
 WORKDIR /usr/src/app
 COPY --chown=node:node package.json pnpm-lock.yaml ./
-RUN corepack enable && pnpm install --frozen-lockfile --ignore-scripts --reporter=silent
+RUN corepack enable && pnpm install --frozen-lockfile --ignore-scripts
 
 FROM node:22-alpine AS build
 WORKDIR /usr/src/app
